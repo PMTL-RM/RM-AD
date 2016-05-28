@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Running</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_home_page">HomePageActivity</string>
+    <string name="kilometers">TOTAL KILOMETERS</string>
+    <string name="kilometer_count">101.4</string>
+    <string name="tot_runs">TOTAL RUNS</string>
+    <string name="tot_runs_count">13</string>
+    <string name="avg_pace">AVG PACE</string>
+    <string name="avg_pace_count">7\'05\"</string>
+    <string name="avg_nike">AVG NIKEFUEL</string>
+    <string name="avg_nike_count">1923</string>
+    <string name="begin_run">BEGIN RUN</string>
+    <string name="date">NOVEMBER 2015</string>
+    <string name="footer">Compare and compete with your friends by adding them on Nike+</string>
+    <string name="number">01</string>
+    <string name="user">YOU</string>
+    <string name="km">44.86 KM</string>
+    <string name="title_activity_list">ListActivity</string>
+</resources>
