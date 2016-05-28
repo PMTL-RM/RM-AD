@@ -105,6 +105,13 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
+
+
+
+
+
+
     private void sendRequest() {
         String origin = etOrigin.getText().toString();
         String destination = etDestination.getText().toString();
@@ -182,6 +189,14 @@ public class MainActivity extends AppCompatActivity
             polylinePaths.add(map.addPolyline(polylineOptions));
         }
     }
+
+
+
+
+
+
+
+
 
     @Override
     protected void onStart() {
@@ -342,6 +357,15 @@ public class MainActivity extends AppCompatActivity
         //move camera
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(PULI, 15));
     }
+
+
+
+
+
+
+
+
+
 
     /**
      * 按鈕:放大地圖

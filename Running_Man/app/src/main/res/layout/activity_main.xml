@@ -87,7 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/etDestination"
-        android:hint="Enter origin address"
+        android:hint="Enter destination address"
         android:layout_above="@+id/button4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -95,7 +95,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter destination address"
+        android:hint="Enter origin address"
         android:id="@+id/etOrigin"
         android:layout_above="@+id/etDestination"
         android:layout_alignParentLeft="true" />
