@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RunHelper</string>
+    <string name="app_name">RunX</string>
     <string name="start">START</string>
     <string name="stop">STOP</string>
     <string name="save">SAVE</string>
@@ -38,8 +38,13 @@
 
     <string name="restart_prompt">Restarting App is recommended after changing configuration.</string>
 
-    <string name="have_fun">Jason Chan: Have fun.</string>
-    <string name="open_source">RunHelper is an open source project. For more info, see: https://github.com/zwChan/RunningX</string>
+    <string name="have_fun">安安 這是version1.0 有看到問題 私訊我!!by Brain Liu</string>
+    <string name="open_source">最健康不花錢的運動是什麼？答案是跑步。隨時隨地，只要有雙鞋，便可開始跑步這項運動。
+        多數人要跑步時，便會前往學校操場運動，此時發現幾個問題，如果晚上想跑步呢？學校是否有開？沒開的話那我今天跑步行程是不是該取消呢？
+        自己一人跑步瘦身好無聊哦！周遭不知道有沒有人也喜歡跑步呢？Running Man替自己規畫了一條專屬的跑道，
+        在鎮上、山上，任何地方都可以變成你的路線，如果覺得自己跑步太無聊，甚至可以建立一個團，招集所有愛好跑步的跑者，加入此團，當日與你一起參加跑步，你並不是孤軍奮戰。
+    </string>
+
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
@@ -48,7 +53,7 @@
         <item >History records</item>
         <!--<item >Analysis</item>-->
         <item >Configuration</item>
-        <item >About RunHelper</item>
+        <item >About RunX</item>
     </string-array>
     
     <!-- Nav Drawer List Item Icons -->
