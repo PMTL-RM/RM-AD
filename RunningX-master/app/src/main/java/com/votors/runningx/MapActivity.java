@@ -43,6 +43,7 @@ public class MapActivity extends Activity {
     double center_lat = 0;
     double center_lng = 0;
 
+
     int movePointCnt = 0;
 
     LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -51,6 +52,7 @@ public class MapActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Conf.init(getApplicationContext());
+
 
         setContentView(R.layout.main_map);
         locations = (ArrayList<GpsRec>)getIntent().getSerializableExtra(EXTRA_MESSAGE);
