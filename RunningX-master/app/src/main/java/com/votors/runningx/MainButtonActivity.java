@@ -101,7 +101,7 @@ public class MainButtonActivity extends Activity implements android.location.Loc
         final Button button_map = (Button) findViewById(R.id.button_map);
         final Button button_stop = (Button) findViewById(R.id.button_stop);
         final Button button_chart = (Button) findViewById(R.id.button_chart);
-        //button_share = (Button) findViewById(R.id.share);
+        button_share = (Button) findViewById(R.id.share);
 
         text_dist = (TextView) findViewById(R.id.button_distance);
         text_speed = (TextView) findViewById(R.id.button_speed);
@@ -251,6 +251,9 @@ public class MainButtonActivity extends Activity implements android.location.Loc
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1), true, ""+Record.getRecords(this).size()));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
+        navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 
         // Recycle the typed array
         navMenuIcons.recycle();
@@ -419,6 +422,14 @@ public class MainButtonActivity extends Activity implements android.location.Loc
                 break;
             case 3:
                 fragment = new AboutUsFragment();
+                disableEnableControls(false,button_all);
+                break;
+            case 4:
+                fragment = new AboutUsFragment();
+                disableEnableControls(false,button_all);
+                break;
+            case 5:
+                fragment = new FriendsFragment();
                 disableEnableControls(false,button_all);
                 break;
 
