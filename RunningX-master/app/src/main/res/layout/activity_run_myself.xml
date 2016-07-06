@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <!-- Framelayout to display Fragments -->
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/button_all"
+            android:layout_width="match_parent" android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="89dp"
+                android:layout_height="161dp"
+                android:id="@+id/imageView"
+                android:src="@drawable/weather"
+                android:layout_alignTop="@+id/textView"
+                android:layout_alignLeft="@+id/textView2"
+                android:layout_alignStart="@+id/textView2"
+                android:layout_alignBottom="@+id/textView3"
+                android:layout_alignRight="@+id/Start_RunSelf"
+                android:layout_alignEnd="@+id/Start_RunSelf"
+                android:layout_gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="111dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Running"
+                android:layout_marginLeft="100dip"
+                android:layout_marginRight="100dip"
+                android:textSize="24sp"
+                android:id="@+id/textView2"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="開跑"
+                android:id="@+id/Start_RunSelf"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="bottom"
+                android:onClick="jumpToAcyivityActionRun" />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Weather"
+                android:gravity="center_horizontal"
+                android:id="@+id/textView"
+                android:paddingEnd="5dp"
+                android:layout_below="@+id/imageView2"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="總里程：4km"
+                android:id="@+id/textView3"
+                android:layout_above="@+id/Start_RunSelf"
+                android:layout_centerHorizontal="true" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="150dp"
+                android:id="@+id/imageView2"
+                android:src="@drawable/map"
+                android:layout_below="@+id/textView2"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignLeft="@+id/button_start"
+                android:layout_alignStart="@+id/button_start">
+
+            </TableRow>
+
+        </RelativeLayout>
+    </FrameLayout>
+
+
+    <!-- Listview to display slider menu -->
+    <ListView
+        android:id="@+id/list_slidermenu"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:choiceMode="singleChoice"
+        android:divider="@color/list_divider"
+        android:dividerHeight="1dp"
+        android:listSelector="@drawable/list_selector"
+        android:background="@color/list_background"
+
+        />
+
+</android.support.v4.widget.DrawerLayout>

@@ -16,20 +16,33 @@
             android:id="@+id/button_all"
             android:layout_width="match_parent" android:layout_height="match_parent">
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="完成"
+                android:id="@+id/Success"
+                android:layout_below="@+id/textView7"
+                android:layout_alignRight="@+id/textView7"
+                android:layout_alignEnd="@+id/textView7"
+                android:layout_marginTop="39dp"
+                android:onClick="jumpToAcyivityMain()" />
+
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/Start_RunSelf"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="64dp">
+                android:weightSum="1">
 
-
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New Button"
-                    android:id="@+id/Start_RunSelf"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_height="149dp"
+                    android:text="Success"
+                    android:id="@+id/textView10"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="50dp"
+                    android:layout_weight="0.72" />
             </TableRow>
 
         </RelativeLayout>

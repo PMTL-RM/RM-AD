@@ -101,7 +101,20 @@ public class MainButtonActivity extends Activity implements android.location.Loc
         final Button button_map = (Button) findViewById(R.id.button_map);
         final Button button_stop = (Button) findViewById(R.id.button_stop);
         final Button button_chart = (Button) findViewById(R.id.button_chart);
-        button_share = (Button) findViewById(R.id.share);
+        //button_share = (Button) findViewById(R.id.share);
+
+        //Test  跳頁
+        Button button_next = (Button)findViewById(R.id.button_next);
+        button_next.setOnClickListener(new Button.OnClickListener(){
+
+            public void onClick(View v) {
+
+                // TODO Auto-generated method stub
+
+                jumpToActivitySelect();
+
+            }
+        });
 
         text_dist = (TextView) findViewById(R.id.button_distance);
         text_speed = (TextView) findViewById(R.id.button_speed);
@@ -309,6 +322,130 @@ public class MainButtonActivity extends Activity implements android.location.Loc
         };
         IntentFilter filter_conf = new IntentFilter(ConfFragment.CONF_MESSAGE);
         this.registerReceiver(receiver_conf, filter_conf);
+    }
+
+    public void jumpToActivitySelect(){
+
+        setContentView(R.layout.activity_select);
+
+        Button button_Invite= (Button)findViewById(R.id.Invite);
+        Button button_RunMyself= (Button)findViewById(R.id.RunSelf);
+
+        button_Invite.setOnClickListener(new Button.OnClickListener(){
+
+            public void onClick(View v) {
+
+                // TODO Auto-generated method stub
+
+                jumpToAcyivityInviteRun();
+
+            }
+
+        });
+        button_RunMyself.setOnClickListener(new Button.OnClickListener(){
+
+            public void onClick(View v) {
+
+                // TODO Auto-generated method stub
+
+                jumpToAcyivityMyselfRun();
+
+            }
+
+        });
+
+    }
+    public void jumpToAcyivityInviteRun(){
+
+        setContentView(R.layout.activity_invite_run);
+
+        Button StartRun = (Button)findViewById(R.id.StartRun);
+
+        StartRun.setOnClickListener(new Button.OnClickListener(){
+
+            public void onClick(View v) {
+
+                // TODO Auto-generated method stub
+
+                jumpToAcyivityActionRun();
+
+            }
+
+        });
+
+    }
+    public void jumpToAcyivityMyselfRun(){
+
+        setContentView(R.layout.activity_run_myself);
+
+        Button Start_RunSelf = (Button)findViewById(R.id.Start_RunSelf);
+
+        Start_RunSelf.setOnClickListener(new Button.OnClickListener(){
+
+            public void onClick(View v) {
+
+                // TODO Auto-generated method stub
+
+                jumpToAcyivityActionRun();
+
+            }
+
+        });
+
+    }
+
+    public void jumpToAcyivityActionRun(){
+
+        setContentView(R.layout.activity_run__action);
+
+        Button complete = (Button)findViewById(R.id.Success);
+
+        complete.setOnClickListener(new Button.OnClickListener(){
+
+            public void onClick(View v) {
+
+                // TODO Auto-generated method stub
+                jumpToAcyivityCompletetion();
+
+            }
+
+        });
+
+    }
+    public void jumpToAcyivityCompletetion(){
+
+        setContentView(R.layout.activity_run__completion);
+
+        Button Success = (Button)findViewById(R.id.Success);
+
+        Success.setOnClickListener(new Button.OnClickListener(){
+
+            public void onClick(View v) {
+
+                // TODO Auto-generated method stub
+                jumpToAcyivityMain();
+
+            }
+
+        });
+
+    }
+    public void jumpToAcyivityMain(){
+
+        setContentView(R.layout.main_button);
+
+        Button button_next = (Button)findViewById(R.id.button_next);
+        button_next.setOnClickListener(new Button.OnClickListener(){
+
+            public void onClick(View v) {
+
+                // TODO Auto-generated method stub
+
+                jumpToActivitySelect();
+
+            }
+        });
+
     }
     private void buildAlertMessageNoGps() {
         final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );

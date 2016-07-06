@@ -102,7 +102,12 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SelectActivity" />
+        <activity android:name=".InviteRunActivity" />
+        <activity android:name=".Run_MyselfActivity" />
+        <activity android:name=".Run_ActionActivity" />
+        <activity android:name=".Run_CompletionActivity"></activity>
     </application>
 
 </manifest>

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 
 public class FriendsFragment extends Fragment {
@@ -19,7 +18,7 @@ public class FriendsFragment extends Fragment {
             Bundle savedInstanceState) {
         context = getActivity().getApplicationContext();
         View rootView = inflater.inflate(R.layout.fragment_friends, container, false);
-        final Button button_share = (Button) rootView.findViewById(R.id.share);
+        //final Button button_share = (Button) rootView.findViewById(R.id.share);
 
         /*button_share.setOnClickListener(new View.OnClickListener() {
             @Override
