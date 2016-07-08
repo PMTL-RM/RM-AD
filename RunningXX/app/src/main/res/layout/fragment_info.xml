@@ -19,7 +19,9 @@
                    android:layout_height="wrap_content"
                    android:layout_below="@id/appLogo"
                    android:layout_marginTop="20dp"
-                   android:layout_centerHorizontal="true">
+       android:layout_alignLeft="@+id/appLogo"
+       android:layout_alignStart="@+id/appLogo"
+       android:layout_above="@+id/applicense">
       <TextView
          android:id="@+id/developedBy"
          android:layout_width="wrap_content"
@@ -57,6 +59,15 @@
          android:textSize="20sp"
          android:layout_below="@id/author2"
          android:layout_centerHorizontal="true"/>
+
+      <TextView
+          android:id="@+id/textView"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/author4"
+          android:textSize="20sp"
+          android:layout_centerVertical="true"
+          android:layout_centerHorizontal="true" />
    </RelativeLayout>
 
    <TextView

@@ -46,6 +46,7 @@
    <string name="default_last_meters_summary">Intermediate lenght</string>
    <string name="newSession">New session</string>
    <string name="sessionList">Session list</string>
+   <string name="CreateTeam">Create Team</string>
    <string name="done">Done</string>
    <string name="exportSessionsDialogTitle">Export sessions</string>
    <string name="exportSessionsDialogSummary">Do you want to export sessions? Files will be exported in: </string>
@@ -58,7 +59,7 @@
    <string name="pref_vib_summary">Vibrate when slower or faster than default speed</string>
    <string name="vibration_active">Vibration active</string>
    <string name="vibration_not_active">Vibration not active</string>
-
+   <string name="one">123</string>
    <string name="graphTimeSpeed">Time(sec) / Speed(m/s)</string>
    <string name="graphDistanceSpeed">Distance(m) / Speed(m/s)</string>
    <string name="graphTimeAltitude">Time(sec) / Altitude(m)</string>
@@ -66,9 +67,10 @@
    <string name="graphTimePace">Time(sec) / Pace(min/km)</string>
    <string name="graphDistancePace">Distance(m) / Pace(min/km)</string>
 
-   <string name="author1">Alessandro Mereu</string>
-   <string name="author2">Maurizio Romano</string>
-   <string name="author3">Matteo Enrico Serpi</string>
+   <string name="author1">Brian Liu</string>
+   <string name="author2">YY Chiu</string>
+   <string name="author3">BoBo Young</string>
+   <string name="author4">Ivan Lin</string>
    <string name="developed_by">developed by:</string>
 
    <string name="title_main_content"></string>
@@ -86,17 +88,21 @@
 
 
    <string-array name="item_list">
-     <item>Sessions</item>
-     <item>Import</item>
-     <item>Export</item>
-     <item>Settings</item>
-     <item>Info</item>
+      <item>Sessions</item>
+      <item>Import</item>
+      <item>Export</item>
+      <item>Settings</item>
+      <item>Info</item>
+      <item>Myfriend</item>
    </string-array>
 
    <string-array name="item_options">
-   <item>Export</item>
-   <item>Delete</item>
+      <item>Export</item>
+      <item>Delete</item>
    </string-array>
+
+   <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

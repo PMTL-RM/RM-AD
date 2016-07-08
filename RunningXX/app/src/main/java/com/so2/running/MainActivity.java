@@ -41,6 +41,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -137,6 +138,11 @@ public class MainActivity extends ActionBarActivity
                   MainActivity.changeFragment(getFragmentManager(), new InfoFragment());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
+               //Go to info
+               case 5:
+                  MainActivity.changeFragment(getFragmentManager(), new InfoFragment());
+                  mDrawerLayout.closeDrawer(mDrawerList);
+                  break;
             }
 
          }
@@ -216,6 +222,16 @@ public class MainActivity extends ActionBarActivity
       locationManager.addGpsStatusListener(gpsListener);
    }
 
+   //actionBar item
+   android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+
+   public boolean onCreateOptionsMenu(Menu menu){
+      MenuInflater menuInflater =getMenuInflater();
+      menuInflater.inflate(R.menu.menu_main,menu);
+      return super.onCreateOptionsMenu(menu);
+   }
+
+
    // Called when invalidateOptionsMenu() is invoked
    public boolean onPrepareOptionsMenu(Menu menu) {
       return super.onPrepareOptionsMenu(menu);
@@ -225,6 +241,16 @@ public class MainActivity extends ActionBarActivity
    public boolean onOptionsItemSelected(MenuItem item) {
       if (mDrawerToggle.onOptionsItemSelected(item)) {
          return true;
+      }
+      switch (item.getItemId()){
+         case R.id.action_announcement:
+            MainActivity.changeFragment(getFragmentManager(), new InfoFragment());
+            Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
+            return true;
+         case R.id.action_friend:
+            MainActivity.changeFragment(getFragmentManager(), new ManagementTeamActivity());
+            Toast.makeText(getApplicationContext(),"Fuck you",Toast.LENGTH_SHORT).show();
+            return true;
       }
       return false;
    }

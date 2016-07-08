@@ -13,10 +13,11 @@
               android:id="@+id/appLogo"
               android:layout_width="150dp"
               android:layout_height="150dp"
-              android:layout_centerHorizontal="true"
-              android:layout_marginTop="80dp"
+       android:layout_marginTop="45dp"
               android:scaleType="fitXY"
-              android:src="@drawable/icon_hi_res"/>
+              android:src="@drawable/icon_hi_res"
+       android:layout_alignParentTop="true"
+       android:layout_centerHorizontal="true" />
 
 
    <Button
@@ -29,9 +30,10 @@
       android:layout_centerVertical="true"
       android:layout_centerHorizontal="true"
       android:layout_alignParentBottom="true"
-      android:layout_margin="30dp"
-      android:elevation="8dp"
-      />
+       android:elevation="8dp"
+       android:layout_marginRight="30dp"
+       android:layout_marginLeft="30dp"
+       android:layout_marginBottom="120dp" />
 
    <Button
         android:id="@+id/newSessionButton"
@@ -46,8 +48,19 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:elevation="8dp"
-        />
+       android:layout_marginBottom="50dp" />
 
+   <Button
+       android:id="@+id/button"
+       android:layout_width="fill_parent"
+       android:layout_height="50dp"
+       android:text="@string/CreateTeam"
+       android:textColor="@color/White"
+       android:background="@drawable/rounded_blue"
+       android:elevation="8dp"
+       android:layout_alignParentBottom="true"
+       android:layout_centerHorizontal="true"
+       android:layout_margin="30dp" />
 
 
 </RelativeLayout>
