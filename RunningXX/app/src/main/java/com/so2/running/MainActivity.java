@@ -70,12 +70,12 @@ public class MainActivity extends ActionBarActivity
       ActionBar actionBar = getSupportActionBar();
       actionBar.setDisplayHomeAsUpEnabled(true);
       actionBar.setElevation(0);
-      actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.SeaGreen)));
+      actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.Black)));
 
       //Set NavigationDrawer
       mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
       mDrawerList = (ListView) findViewById(R.id.left_drawer);
-      mDrawerList.setBackgroundResource(R.color.SeaGreen);
+      mDrawerList.setBackgroundResource(R.color.Black);
       itemList = getResources().getStringArray(R.array.item_list);
 
       //Set the content of the activity with the MainFagment
@@ -244,7 +244,7 @@ public class MainActivity extends ActionBarActivity
       }
       switch (item.getItemId()){
          case R.id.action_announcement:
-            MainActivity.changeFragment(getFragmentManager(), new InfoFragment());
+            //startActivity(new Intent(this, ManagementTeamActivity.class));
             Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
             return true;
          case R.id.action_friend:

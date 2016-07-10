@@ -23,26 +23,11 @@ public class ManagementTeamActivity extends Fragment {
         getActivity().setTitle(getString(R.string.title_info));
 
         view = inflater.inflate(R.layout.activity_management_team, container, false);
-        /*joined = (Button) view.findViewById(R.id.joined);
-        joined.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                //verify GPS availability
-                if (((MainActivity)getActivity()).getGPSFix())
-                {
-                    DialogFragment newFragment = new NewSessionDialog();
-                    newFragment.show(getFragmentManager(), "New Training");
-                }
-                else
-                {
-                    Toast.makeText(getActivity(), R.string.gpsNoFix, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-                                  }
+        joined = (Button) view.findViewById(R.id.joined);
+
+
         invited = (Button) view.findViewById(R.id.invited);
-        myteam = (Button) view.findViewById(R.id.myteam);*/
+        myteam = (Button) view.findViewById(R.id.myteam);
 
         return view;
     }
