@@ -1,37 +1,67 @@
 package com.so2.running;
 
-import android.app.Fragment;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 
 
-public class ManagementTeamActivity extends Fragment {
+public class ManagementTeamActivity extends Activity {
 
-    Button joined;
-    Button invited;
-    Button myteam;
-    View view;
+    private android.support.design.widget.TabLayout mTabs;
+
+    private ViewPager mViewPager;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_management_team);
+        mTabs = (android.support.design.widget.TabLayout) findViewById(R.id.tabs);
+        mTabs.addTab(mTabs.newTab().setText("Tab 1"));
+        mTabs.addTab(mTabs.newTab().setText("Tab 2"));
+        mTabs.addTab(mTabs.newTab().setText("Tab 3"));
 
-        //Set ActionBar title
-        getActivity().setTitle(getString(R.string.title_info));
-
-        view = inflater.inflate(R.layout.activity_management_team, container, false);
-        joined = (Button) view.findViewById(R.id.joined);
-
-
-        invited = (Button) view.findViewById(R.id.invited);
-        myteam = (Button) view.findViewById(R.id.myteam);
-
-        return view;
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mViewPager.setAdapter(new SamplePagerAdapter());
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabs));
     }
 
+    class SamplePagerAdapter extends PagerAdapter {
 
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object o) {
+            return o == view;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return "Item " + (position + 1);
+        }
+
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            View view = getLayoutInflater().inflate(R.layout.activity_tool_bar,
+                    container, false);
+            container.addView(view);
+            TextView title = (TextView) view.findViewById(R.id.item_title);
+            title.setText(String.valueOf(position + 1));
+            return view;
+        }
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View) object);
+        }
+
+    }
 
 }

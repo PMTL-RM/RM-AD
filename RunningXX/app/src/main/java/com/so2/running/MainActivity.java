@@ -138,9 +138,9 @@ public class MainActivity extends ActionBarActivity
                   MainActivity.changeFragment(getFragmentManager(), new InfoFragment());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
-               //Go to info
+               //Go to Back
                case 5:
-                  MainActivity.changeFragment(getFragmentManager(), new InfoFragment());
+                  MainActivity.changeFragment(getFragmentManager(), new MainFragment());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
             }
@@ -223,7 +223,7 @@ public class MainActivity extends ActionBarActivity
    }
 
    //actionBar item
-   android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+   //android.support.v7.app.ActionBar actionBar = getSupportActionBar();
 
    public boolean onCreateOptionsMenu(Menu menu){
       MenuInflater menuInflater =getMenuInflater();
@@ -248,7 +248,8 @@ public class MainActivity extends ActionBarActivity
             Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
             return true;
          case R.id.action_friend:
-            MainActivity.changeFragment(getFragmentManager(), new ManagementTeamActivity());
+            startActivity(new Intent(this, ManagementTeamActivity.class));
+            //MainActivity.changeFragment(getFragmentManager(), new ManagementTeamActivity());
             Toast.makeText(getApplicationContext(),"Fuck you",Toast.LENGTH_SHORT).show();
             return true;
       }
