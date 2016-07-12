@@ -22,12 +22,14 @@
 
 package com.so2.running;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.location.GpsStatus;
 import android.location.Location;
@@ -36,6 +38,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.SystemClock;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -48,10 +51,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import java.io.File;
 
-public class MainActivity extends ActionBarActivity
-{
+public class MainActivity extends ActionBarActivity {
    final Context context = this;
    private DrawerLayout mDrawerLayout;
    private ListView mDrawerList;
@@ -61,8 +64,7 @@ public class MainActivity extends ActionBarActivity
    private long lastUpdateMillis;   //used to verify GPS availability
    private Location lastLocation;   //used to verify GPS availability
 
-   protected void onCreate(Bundle savedInstanceState)
-   {
+   protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_main);
 
@@ -83,14 +85,11 @@ public class MainActivity extends ActionBarActivity
 
       // Set the adapter for the list view
       mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, itemList));
-      mDrawerList.setOnItemClickListener(new ListView.OnItemClickListener()
-      {
+      mDrawerList.setOnItemClickListener(new ListView.OnItemClickListener() {
          //Manage events on NavigationDrawer items click
-         public void onItemClick(AdapterView parent, View view, int position, long id)
-         {
+         public void onItemClick(AdapterView parent, View view, int position, long id) {
 
-            switch (position)
-            {
+            switch (position) {
                //Go to session list
                case 0:
                   FragmentManager sessionsFragmentManager = getFragmentManager();
@@ -149,18 +148,15 @@ public class MainActivity extends ActionBarActivity
       });
 
 
-      mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close)
-      {
+      mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
          @Override
-         public void onDrawerOpened(View drawerView)
-         {
+         public void onDrawerOpened(View drawerView) {
             super.onDrawerOpened(drawerView);
             invalidateOptionsMenu();
          }
 
          @Override
-         public void onDrawerClosed(View drawerView)
-         {
+         public void onDrawerClosed(View drawerView) {
             super.onDrawerClosed(drawerView);
             invalidateOptionsMenu();
          }
@@ -170,24 +166,18 @@ public class MainActivity extends ActionBarActivity
 
       //verify GPS availability
       final LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-      GpsStatus.Listener gpsListener = new GpsStatus.Listener()
-      {
+      GpsStatus.Listener gpsListener = new GpsStatus.Listener() {
          @Override
-         public void onGpsStatusChanged(int event)
-         {
-            switch (event)
-            {
+         public void onGpsStatusChanged(int event) {
+            switch (event) {
                case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
-                  if (lastLocation != null)
-                  {
+                  if (lastLocation != null) {
                      isGPSFix = (SystemClock.elapsedRealtime() - lastUpdateMillis < 3000);
                   }
 
                   if (isGPSFix) {
                      // A fix has been acquired.
-                  }
-                  else
-                  {
+                  } else {
                      // The fix has been lost.
                   }
                   break;
@@ -200,10 +190,8 @@ public class MainActivity extends ActionBarActivity
          }
       };
 
-      final LocationListener locationListener = new LocationListener()
-      {
-         public void onLocationChanged(Location newLocation)
-         {
+      final LocationListener locationListener = new LocationListener() {
+         public void onLocationChanged(Location newLocation) {
             lastUpdateMillis = SystemClock.elapsedRealtime();
             lastLocation = newLocation;
          }
@@ -218,6 +206,16 @@ public class MainActivity extends ActionBarActivity
          }
       };
 
+      if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+         // TODO: Consider calling
+         //    ActivityCompat#requestPermissions
+         // here to request the missing permissions, and then overriding
+         //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+         //                                          int[] grantResults)
+         // to handle the case where the user grants the permission. See the documentation
+         // for ActivityCompat#requestPermissions for more details.
+         return;
+      }
       locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
       locationManager.addGpsStatusListener(gpsListener);
    }
@@ -245,6 +243,10 @@ public class MainActivity extends ActionBarActivity
       switch (item.getItemId()){
          case R.id.action_announcement:
             //startActivity(new Intent(this, ManagementTeamActivity.class));
+            Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
+            return true;
+         case R.id.action_search:
+            MainActivity.changeFragment(getFragmentManager(), new SearchFragment());
             Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
             return true;
          case R.id.action_friend:

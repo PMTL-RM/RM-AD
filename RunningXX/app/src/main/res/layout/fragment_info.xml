@@ -13,7 +13,7 @@
               android:layout_centerHorizontal="true"
               android:layout_marginTop="60dp"
               android:scaleType="fitXY"
-              android:src="@drawable/icon_hi_res"/>
+              android:src="@drawable/ic_logo"/>
 
    <RelativeLayout android:layout_width="wrap_content"
                    android:layout_height="wrap_content"

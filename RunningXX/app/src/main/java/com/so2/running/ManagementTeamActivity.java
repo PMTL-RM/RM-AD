@@ -21,14 +21,15 @@ public class ManagementTeamActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_management_team);
         mTabs = (android.support.design.widget.TabLayout) findViewById(R.id.tabs);
-        mTabs.addTab(mTabs.newTab().setText("Tab 1"));
-        mTabs.addTab(mTabs.newTab().setText("Tab 2"));
-        mTabs.addTab(mTabs.newTab().setText("Tab 3"));
+        mTabs.addTab(mTabs.newTab().setText("我的團"));
+        mTabs.addTab(mTabs.newTab().setText("受邀團"));
+        mTabs.addTab(mTabs.newTab().setText("加入圖"));
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setAdapter(new SamplePagerAdapter());
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabs));
     }
+
 
     class SamplePagerAdapter extends PagerAdapter {
 
