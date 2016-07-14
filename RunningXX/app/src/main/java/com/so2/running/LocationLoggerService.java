@@ -24,10 +24,12 @@
 package com.so2.running;
 
 
+import android.Manifest;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -39,6 +41,7 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.widget.SeekBar;
 
@@ -90,6 +93,16 @@ public class LocationLoggerService extends Service implements LocationListener {
    @Override
    public void onDestroy() {
       super.onDestroy();
+      if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+         // TODO: Consider calling
+         //    ActivityCompat#requestPermissions
+         // here to request the missing permissions, and then overriding
+         //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+         //                                          int[] grantResults)
+         // to handle the case where the user grants the permission. See the documentation
+         // for ActivityCompat#requestPermissions for more details.
+         return;
+      }
       locationManager.removeUpdates(this);
    }
 
@@ -99,35 +112,35 @@ public class LocationLoggerService extends Service implements LocationListener {
    }
 
    public class LocalBinder extends Binder {
-      LocationLoggerService getService(){
+      LocationLoggerService getService() {
          return LocationLoggerService.this;
       }
    }
 
    //Methods used by client
-   public void setStarted(boolean started){
+   public void setStarted(boolean started) {
       this.started = started;
       this.paused = !started;
    }
 
-   public boolean getStarted(){
+   public boolean getStarted() {
       return started;
    }
 
-   public void setPaused(boolean paused){
+   public void setPaused(boolean paused) {
       this.paused = paused;
       this.started = !paused;
    }
 
-   public boolean getPaused(){
+   public boolean getPaused() {
       return paused;
    }
 
-   public void setChrono(Chrono chrono){
+   public void setChrono(Chrono chrono) {
       this.mChrono = chrono;
    }
 
-   public Chrono getChrono(){
+   public Chrono getChrono() {
       return mChrono;
    }
 
@@ -135,39 +148,39 @@ public class LocationLoggerService extends Service implements LocationListener {
       return instantSpeed;
    }
 
-   public long getLastUpdateMillis(){
+   public long getLastUpdateMillis() {
       return lastUpdateMillis;
    }
 
-   public SessionData getSessionData(){
+   public SessionData getSessionData() {
       return sessionData;
    }
 
-   public float getLastMetersSpeed(){
+   public float getLastMetersSpeed() {
       return lastMetersSpeed;
    }
 
-   public void setLastMetersSpeed(float lastMetersSpeed){
+   public void setLastMetersSpeed(float lastMetersSpeed) {
       this.lastMetersSpeed = lastMetersSpeed;
    }
 
-   public int getDetectionCount(){
+   public int getDetectionCount() {
       return detectionCount;
    }
 
-   public void setDetectionCount(int detectionCount){
+   public void setDetectionCount(int detectionCount) {
       this.detectionCount = detectionCount;
    }
 
-   public void setUserSetSpeed(int userSetSpeed){
+   public void setUserSetSpeed(int userSetSpeed) {
       this.userSetSpeed = userSetSpeed;
    }
 
-   public void setSeekBar(SeekBar seekBar){
+   public void setSeekBar(SeekBar seekBar) {
       this.seekBar = seekBar;
    }
 
-   public void addOnNewGPSPointsListener( OnNewGPSPointsListener listener ){
+   public void addOnNewGPSPointsListener(OnNewGPSPointsListener listener) {
       clientListener = listener;
    }
 
@@ -178,13 +191,12 @@ public class LocationLoggerService extends Service implements LocationListener {
    //When a new location is available notify the client
    public void onLocationChanged(Location newLocation) {
 
-      if(mChrono != null){
+      if (mChrono != null) {
 
          if ((lastLocation == null) || (!started || paused)) {
             lastLocation = newLocation;
             lastUpdate = mChrono.getTimeOnSession();
-         } else
-         {
+         } else {
             distanceFromLastLocation = lastLocation.distanceTo(newLocation);
             updateDifferences = mChrono.getTimeOnSession() - lastUpdate;
             instantSpeed = (distanceFromLastLocation * 1000) / (float) updateDifferences;
@@ -199,8 +211,8 @@ public class LocationLoggerService extends Service implements LocationListener {
             lastSpeed = instantSpeed;
          }
 
-         if ((instantSpeed > lastSpeed*2) && (started && !paused) && instantSpeed > 6) {
-            instantSpeed = lastSpeed*2;
+         if ((instantSpeed > lastSpeed * 2) && (started && !paused) && instantSpeed > 6) {
+            instantSpeed = lastSpeed * 2;
             lastSpeed = instantSpeed;
          }
 
@@ -223,8 +235,7 @@ public class LocationLoggerService extends Service implements LocationListener {
             dataUpdateTimes++;
          }
 
-         if ((started && !paused))
-         {
+         if ((started && !paused)) {
             this.sendMessage("updateUI");
 
             deltaSpeed = (int) ((0 - ((userSetSpeed - instantSpeed) / userSetSpeed)) * RunSessionActivity.DEFAULT_SEEKBAR_MAX_VALUE);
@@ -237,20 +248,15 @@ public class LocationLoggerService extends Service implements LocationListener {
          }
 
 
-         if (v  && (started && !paused))
-         {
-            if ( (SystemClock.elapsedRealtime() - lastVibrationTime > LocationLoggerService.VIBRATION_INTERVAL ) ||  lastVibrationTime == 0)
-            {
+         if (v && (started && !paused)) {
+            if ((SystemClock.elapsedRealtime() - lastVibrationTime > LocationLoggerService.VIBRATION_INTERVAL) || lastVibrationTime == 0) {
                lastVibrationTime = SystemClock.elapsedRealtime();
 
                Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-               if ( seekBarPosition < (RunSessionActivity.DEFAULT_SEEKBAR_MAX_VALUE / 4))
-               {
+               if (seekBarPosition < (RunSessionActivity.DEFAULT_SEEKBAR_MAX_VALUE / 4)) {
                   vibrator.vibrate(lowSpeedPattern, 0);
                   System.out.println("lento");
-               }
-               else if ( seekBarPosition > ( RunSessionActivity.DEFAULT_SEEKBAR_MAX_VALUE * 3/4 ))
-               {
+               } else if (seekBarPosition > (RunSessionActivity.DEFAULT_SEEKBAR_MAX_VALUE * 3 / 4)) {
                   vibrator.vibrate(highSpeedPattern, 0);
                   System.out.println("veloce");
                }
@@ -278,10 +284,8 @@ public class LocationLoggerService extends Service implements LocationListener {
    }
 
    @Override
-   public void onStatusChanged(String provider, int status, Bundle extras)
-   {
-      switch (status)
-      {
+   public void onStatusChanged(String provider, int status, Bundle extras) {
+      switch (status) {
          case LocationProvider.AVAILABLE:
             sendMessage("gpsAvailable");
          case LocationProvider.OUT_OF_SERVICE:
@@ -295,8 +299,17 @@ public class LocationLoggerService extends Service implements LocationListener {
       this.locationManager =
               (LocationManager) getSystemService(Context.LOCATION_SERVICE);
       //Verifica se il GPS e' abilitato altrimenti avvisa l'utente
-      if(!locationManager.isProviderEnabled("gps"))
-      {
+      if (!locationManager.isProviderEnabled("gps")) {
+      }
+      if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+         // TODO: Consider calling
+         //    ActivityCompat#requestPermissions
+         // here to request the missing permissions, and then overriding
+         //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+         //                                          int[] grantResults)
+         // to handle the case where the user grants the permission. See the documentation
+         // for ActivityCompat#requestPermissions for more details.
+         return;
       }
       this.locationManager.requestLocationUpdates(getProvider(), 0, 0, this);
    }
