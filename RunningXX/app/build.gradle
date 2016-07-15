@@ -25,6 +25,9 @@ android {
             debuggable true
         }
     }
+    repositories {
+        mavenCentral()
+    }
 }
 
 dependencies {
@@ -34,4 +37,6 @@ dependencies {
     compile 'com.jjoe64:graphview:4.0.0'
     compile 'com.android.support:design:24.0.0'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile "com.squareup.picasso:picasso:2.4.0"
 }

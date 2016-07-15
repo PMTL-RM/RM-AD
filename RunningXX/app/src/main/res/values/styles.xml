@@ -15,4 +15,10 @@
 
    </style>
 
+   <style name="FacebookLoginButton">
+      <item name="android:textColor">@color/GhostWhite</item>
+      <item name="android:textSize">21sp</item>
+      <item name="android:gravity">center</item>
+   </style>
+
 </resources>
