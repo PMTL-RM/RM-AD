@@ -3,7 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".RunSession"
+              tools:context="com.so2.running.RunSessionActivity"
               android:background="@color/White" >
 
 

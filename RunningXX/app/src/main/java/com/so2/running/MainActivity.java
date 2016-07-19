@@ -47,6 +47,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -65,6 +67,11 @@ public class MainActivity extends ActionBarActivity {
    private Location lastLocation;   //used to verify GPS availability
 
    protected void onCreate(Bundle savedInstanceState) {
+
+      //消除標題列
+      requestWindowFeature(Window.FEATURE_NO_TITLE);
+      //消除狀態列
+      getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_main);
 
@@ -328,7 +335,7 @@ public class MainActivity extends ActionBarActivity {
    //Back button override
    public void onBackPressed()
    {
-      FragmentManager fm = getFragmentManager();
+      /*FragmentManager fm = getFragmentManager();
 
       if(fm.getBackStackEntryCount()>0)
       {
@@ -341,7 +348,26 @@ public class MainActivity extends ActionBarActivity {
       else
       {
          super.onBackPressed();
-      }
+      }*/
+      AlertDialog.Builder builder = new AlertDialog.Builder(this);
+      builder.setTitle(R.string.app_name);
+      builder.setMessage("回上頁將會清除目前作業資料，確定返回上一頁？");
+      builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+         @Override
+         public void onClick(DialogInterface dialog, int which) {
+            finish();
+         }
+      });
+
+      builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+         @Override
+         public void onClick(DialogInterface dialog, int which) {
+            dialog.cancel();
+         }
+      });
+
+      AlertDialog alert = builder.create();
+      alert.show();
    }
 
    /**

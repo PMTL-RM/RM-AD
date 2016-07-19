@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -33,7 +35,14 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //消除標題列
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //消除狀態列
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         super.onCreate(savedInstanceState);
+
 
         //Initialize FB SDK
         //This line must be put here before the  setContentView(R.layout.activity_login);

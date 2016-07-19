@@ -7,15 +7,48 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.so2.running.LoginActivity">
+    tools:context="com.so2.running.LoginActivity"
+    >
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageView2"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/login"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/appLogo"
+        android:layout_alignParentEnd="true" />
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/appLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="45dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
     <com.facebook.login.widget.LoginButton
         xmlns:fb="http://schemas.android.com/apk/res-auto"
         android:id="@+id/login_button"
         style="@style/FacebookLoginButton"
         android:layout_width="485dp"
         android:layout_height="64dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:theme="@android:style/Theme.Holo.NoActionBar"
+        android:layout_marginBottom="113dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_alignBottom="@+id/imageView2"
+        android:layout_centerHorizontal="true" />
+    ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/google_login_button"
+        android:paddingTop="20dp"
+        android:src="@drawable/google"
+        android:background="#00000000"
+        android:layout_alignBottom="@+id/imageView2"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
