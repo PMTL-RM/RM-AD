@@ -18,19 +18,33 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
     private AccessToken accessToken ;
-    private final static String TAG = LoginActivity.class.getName().toString();
+    private final static String TAG = LoginActivity.class.getName();
 
 
     @Override
@@ -84,6 +98,66 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 //Once authorized from facebook will directly go to MainActivity
                 accessToken = loginResult.getAccessToken();
+                //this code will help us to obtain information from facebook, if
+                //need some other field which not show here, please refer to https://developers.facebook.com/docs/graph-api/using-graph-api/
+                GraphRequest request1 = GraphRequest.newMeRequest(
+                        AccessToken.getCurrentAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(
+                                    JSONObject object,
+                                    GraphResponse response) {
+                                // Application code
+                                try{
+                                    String birthday = object.getString("birthday");
+                                    String name = object.getString("name");
+                                    String id = object.getString("id");
+                                    String gender = object.getString("gender");
+                                    String email = object.getString("email");
+
+                                    String url = "http://ncnurunforall-yychiu.rhcloud.com/users";
+
+                                    OkHttpClient client = new OkHttpClient();
+                                    RequestBody formBody = new FormBody.Builder()
+                                            .add("_id",id)
+                                            .add("name",name)
+                                            .add("birthday",birthday)
+                                            .add("gender",gender)
+                                            .add("email",email)
+                                            .build();
+
+                                    Request request = new Request.Builder()
+                                            .url(url)
+                                            .post(formBody)
+                                            .build();
+
+                                    client.newCall(request).enqueue(new Callback() {
+                                        @Override
+                                        public void onFailure(Call call, IOException e) {
+                                            // Error
+                                        }
+
+                                        @Override
+                                        public void onResponse(Call call, Response response) throws IOException {
+                                            if (response.isSuccessful()) {
+                                                String res = response.body().string();
+                                                handlePostResponse(res);
+                                            } else {
+                                                Log.e("APp", "Error");
+                                            }
+                                        }
+                                    });
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,birthday,gender");
+                request1.setParameters(parameters);
+                request1.executeAsync();
+
+
                 Intent main = new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(main);
 
@@ -121,8 +195,7 @@ public class LoginActivity extends AppCompatActivity {
                 md.update(signature.toByteArray());
                 Log.i("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
             }
-        } catch (PackageManager.NameNotFoundException e) {
-        } catch (NoSuchAlgorithmException e) {
+        } catch (PackageManager.NameNotFoundException | NoSuchAlgorithmException ignored) {
         }
     }
 
@@ -144,5 +217,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStop();
         accessTokenTracker.stopTracking();
     }
-
+    void handlePostResponse(String response) {
+        Log.i("OkHttpPost", response);
+    }
 }
