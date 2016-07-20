@@ -44,8 +44,7 @@ public class MainFragment extends Fragment {
    private View view;
 
    @Override
-   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-   {
+   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
       view = inflater.inflate(R.layout.fragment_main_content, container, false);
@@ -84,7 +83,7 @@ public class MainFragment extends Fragment {
       });
 
       //Go to session list
-      team_button = (Button) view.findViewById(R.id.team_button);
+      team_button = (Button) view.findViewById(R.id.button);
       team_button.setOnClickListener(new View.OnClickListener()
       {
          @Override
