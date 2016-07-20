@@ -1,10 +1,12 @@
 package com.so2.running;
 
 
+import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,29 +23,29 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class UserActivity extends AppCompatActivity {
+public class UserActivity extends Fragment {
     ImageView imageView;
     TextView txtName, txtURL, txtGender,txtBd;
     Button btnShare;
 
     private ShareDialog shareDialog;
+    private View view;
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        view = inflater.inflate(R.layout.activity_user, container, false);
 
         shareDialog = new ShareDialog(this);
 
-        imageView = (ImageView) findViewById(R.id.imgPhoto);
-        txtName = (TextView) findViewById(R.id.txtName);
-        txtURL = (TextView) findViewById(R.id.txtURL);
-        txtGender = (TextView) findViewById(R.id.txtGender);
-        txtBd = (TextView) findViewById(R.id.txtBd);
+        imageView = (ImageView) view.findViewById(R.id.imgPhoto);
+        txtName = (TextView) view.findViewById(R.id.txtName);
+        txtURL = (TextView) view.findViewById(R.id.txtURL);
+        txtGender = (TextView) view.findViewById(R.id.txtGender);
+        txtBd = (TextView) view.findViewById(R.id.txtBd);
 
         //Another way to share content
-        btnShare = (Button) findViewById(R.id.btnShare);
+        btnShare = (Button) view.findViewById(R.id.btnShare);
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +67,7 @@ public class UserActivity extends AppCompatActivity {
         GetUserInfo();
 
         //Like
-        LikeView likeView = (LikeView) findViewById(R.id.likeView);
+        LikeView likeView = (LikeView) view.findViewById(R.id.likeView);
         likeView.setLikeViewStyle(LikeView.Style.STANDARD);
         likeView.setAuxiliaryViewPosition(LikeView.AuxiliaryViewPosition.INLINE);
 
@@ -78,7 +80,7 @@ public class UserActivity extends AppCompatActivity {
         //Share Dialog
         //You cannot preset the shared link in design time, if you do so, the fb share button will
         //look disabled. You need to set in the code as below
-        ShareButton fbShareButton = (ShareButton) findViewById(R.id.fb_share_button);
+        ShareButton fbShareButton = (ShareButton) view.findViewById(R.id.fb_share_button);
         ShareLinkContent content = new ShareLinkContent.Builder()
                 .setContentTitle("Hello Guys")
                 .setContentDescription(
@@ -88,6 +90,7 @@ public class UserActivity extends AppCompatActivity {
 
                 .build();
         fbShareButton.setShareContent(content);
+        return view;
     }
 
     private void GetUserInfo(){
@@ -113,7 +116,7 @@ public class UserActivity extends AppCompatActivity {
                             txtBd.setText(birthday);
                             if (object.has("picture")) {
                                 String profilePicUrl = object.getJSONObject("picture").getJSONObject("data").getString("url");
-                                Picasso.with(UserActivity.this).load(profilePicUrl).into(imageView);
+                                Picasso.with(imageView.getContext()).load(profilePicUrl).into(imageView);
                             }
 
 

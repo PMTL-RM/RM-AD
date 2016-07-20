@@ -99,6 +99,11 @@ public class MainActivity extends ActionBarActivity {
             switch (position) {
                //Go to session list
                case 0:
+                  MainActivity.changeFragment(getFragmentManager(), new UserActivity());
+                  mDrawerLayout.closeDrawer(mDrawerList);
+                  break;
+               //Go to session list
+               case 1:
                   FragmentManager sessionsFragmentManager = getFragmentManager();
                   sessionsFragmentManager.popBackStackImmediate(null, sessionsFragmentManager.POP_BACK_STACK_INCLUSIVE);
                   sessionsFragmentManager.beginTransaction()
@@ -109,7 +114,7 @@ public class MainActivity extends ActionBarActivity {
                   break;
 
                //Show import dialog
-               case 1:
+               case 2:
                   AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
                   alertBuilder
                           .setTitle(getString(R.string.importDialogTitle))
@@ -128,24 +133,24 @@ public class MainActivity extends ActionBarActivity {
                   break;
 
                //Show export dialog
-               case 2:
+               case 3:
                   MainActivity.alertExportDialogBehavior(context);
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
 
                //Go to settings
-               case 3:
+               case 4:
                   MainActivity.changeFragment(getFragmentManager(), new ApplicationSettingsFragment());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
 
                //Go to info
-               case 4:
+               case 5:
                   MainActivity.changeFragment(getFragmentManager(), new InfoFragment());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
                //Go to Back
-               case 5:
+               case 6:
                   MainActivity.changeFragment(getFragmentManager(), new MainFragment());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
@@ -253,7 +258,7 @@ public class MainActivity extends ActionBarActivity {
             Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
             return true;
          case R.id.action_search:
-            startActivity(new Intent(this, UserActivity.class));
+            //startActivity(new Intent(this, UserActivity.class));
             Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
             return true;
          case R.id.action_friend:

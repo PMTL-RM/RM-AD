@@ -88,6 +88,7 @@
 
 
     <string-array name="item_list">
+        <item>User</item>
         <item>Sessions</item>
         <item>Import</item>
         <item>Export</item>
