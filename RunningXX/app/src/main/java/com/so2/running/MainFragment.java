@@ -37,6 +37,7 @@ public class MainFragment extends Fragment {
 
    private Button newSessionButton;
    private Button sessionListButton;
+   private Button team_button;
    //   private boolean isGPSFix = false;
 //   private long lastUpdateMillis;   //used to verify GPS availability
 //   private Location lastLocation;   //used to verify GPS availability
@@ -78,6 +79,21 @@ public class MainFragment extends Fragment {
             sessionsFragmentManager.popBackStackImmediate(null, sessionsFragmentManager.POP_BACK_STACK_INCLUSIVE);
             sessionsFragmentManager.beginTransaction()
                     .replace(R.id.content_frame, new SessionListFragment())
+                    .commit();
+         }
+      });
+
+      //Go to session list
+      team_button = (Button) view.findViewById(R.id.team_button);
+      team_button.setOnClickListener(new View.OnClickListener()
+      {
+         @Override
+         public void onClick(View v)
+         {
+            FragmentManager sessionsFragmentManager = getFragmentManager();
+            sessionsFragmentManager.popBackStackImmediate(null, sessionsFragmentManager.POP_BACK_STACK_INCLUSIVE);
+            sessionsFragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, new CreateTeamFragment())
                     .commit();
          }
       });
