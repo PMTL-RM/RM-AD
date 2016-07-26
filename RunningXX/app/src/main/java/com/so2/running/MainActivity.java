@@ -258,7 +258,8 @@ public class MainActivity extends ActionBarActivity {
             Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
             return true;
          case R.id.action_search:
-            //startActivity(new Intent(this, UserActivity.class));
+            MainActivity.changeFragment(getFragmentManager(), new SearchFragment());
+            //startActivity(new Intent(this, SearchFragment.class));
             Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
             return true;
          case R.id.action_friend:

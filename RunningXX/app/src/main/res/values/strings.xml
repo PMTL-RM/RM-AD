@@ -107,5 +107,13 @@
 
     <string name="facebook_app_id">1755131554729903</string>
 
+    <string name="provincia">Provincia</string>
+    <string name="localidad">Localidad</string>
+    <string name="provincia_prompt">Elija una provincia</string>
+    <string name="localidad_prompt">Elija una localidad</string>
+    <string name="comprobar">Comprobar</string>
+    <string name="message">Ha seleccionado %1$s (%2$s)</string>
+
+
 
 </resources>

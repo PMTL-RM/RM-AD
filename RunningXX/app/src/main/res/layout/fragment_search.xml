@@ -1,15 +1,36 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/White"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/Ivory"
     >
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+    <Spinner
+        android:id="@+id/spinnner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        >
+    </Spinner>
+    <Spinner
+        android:id="@+id/spinnner1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        >
+    </Spinner>
+    <Spinner
+        android:id="@+id/spinnner2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        >
+    </Spinner>
+    <Spinner
+        android:id="@+id/spinnner3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        >
+    </Spinner>
+</LinearLayout>
