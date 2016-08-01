@@ -7,7 +7,7 @@
     >
 
     <ListView
-        android:id="@+id/session_list_view"
+        android:id="@+id/team_list_view"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:choiceMode="singleChoice"

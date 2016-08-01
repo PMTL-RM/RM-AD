@@ -2,6 +2,7 @@ package com.so2.running;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -49,6 +50,10 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final SharedPreferences preferences = getSharedPreferences("here", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+
 
         //消除標題列
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -116,7 +121,11 @@ public class LoginActivity extends AppCompatActivity {
                                     String email = object.getString("email");
 
                                     String url = "http://ncnurunforall-yychiu.rhcloud.com/users";
-
+                                    editor.putString("name",name).apply();
+                                    String asd = preferences.getString("name",null);
+                                    if (asd != null) {
+                                        System.out.println(asd);
+                                    }
                                     OkHttpClient client = new OkHttpClient();
                                     RequestBody formBody = new FormBody.Builder()
                                             .add("_id",id)
