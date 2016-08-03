@@ -253,9 +253,10 @@ public class MainActivity extends ActionBarActivity {
          return true;
       }
       switch (item.getItemId()){
-         case R.id.action_announcement:
-            //startActivity(new Intent(this, ManagementTeamActivity.class));
-            Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
+         case R.id.action_location:
+            startActivity(new Intent(this, MapsActivity.class));
+            //MainActivity.changeFragment(getFragmentManager(), new ManagementTeamActivity());
+            Toast.makeText(getApplicationContext(),"Fuck you",Toast.LENGTH_SHORT).show();
             return true;
          case R.id.action_search:
             MainActivity.changeFragment(getFragmentManager(), new SearchFragment());
@@ -266,6 +267,10 @@ public class MainActivity extends ActionBarActivity {
             startActivity(new Intent(this, ManagementTeamActivity.class));
             //MainActivity.changeFragment(getFragmentManager(), new ManagementTeamActivity());
             Toast.makeText(getApplicationContext(),"Fuck you",Toast.LENGTH_SHORT).show();
+            return true;
+         case R.id.action_announcement:
+            //startActivity(new Intent(this, MapsActivity.class));
+            Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
             return true;
       }
       return false;

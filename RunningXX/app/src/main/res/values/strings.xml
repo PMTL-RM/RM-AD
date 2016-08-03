@@ -113,7 +113,7 @@
     <string name="localidad_prompt">Elija una localidad</string>
     <string name="comprobar">Comprobar</string>
     <string name="message">Ha seleccionado %1$s (%2$s)</string>
-
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>
