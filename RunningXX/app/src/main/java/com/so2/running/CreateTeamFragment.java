@@ -1,13 +1,14 @@
 package com.so2.running;
 
 
+import android.app.DialogFragment;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import java.io.IOException;
@@ -21,14 +22,20 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class CreateTeamFragment extends Fragment {
+public class CreateTeamFragment extends DialogFragment {
     private View view;
-    Button button ;
-    EditText editText  , editText2 , editText3 , editText4 ;
+    Button button ,timebutton ,datebutton;
+    CheckBox checkbox;
+    EditText editText  , editText1 , editText2 ;
 
+    public void showTimePickerDialog(View v) {
+        TimePickerFragment newFragment = new TimePickerFragment();
+        newFragment.show(getFragmentManager(), "timePicker");
+    }
+    public void showDatePickerDialog(View v) {
+        DatePickerFragment newFragment = new DatePickerFragment();
+        newFragment.show(getFragmentManager(), "datePicker");
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_create_team, container, false);
@@ -38,10 +45,15 @@ public class CreateTeamFragment extends Fragment {
 
         button = (Button)view.findViewById(R.id.button);
 
+        datebutton = (Button)view.findViewById(R.id.datebutton);
+        timebutton = (Button)view.findViewById(R.id.timebutton);
+
+        checkbox = (CheckBox)view.findViewById(R.id.checkbox);
+
         editText = (EditText)view.findViewById(R.id.editText);
+        editText1 = (EditText)view.findViewById(R.id.editText1);
         editText2 = (EditText)view.findViewById(R.id.editText2);
-        editText3 = (EditText)view.findViewById(R.id.editText3);
-        editText4 = (EditText)view.findViewById(R.id.editText4);
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +67,18 @@ public class CreateTeamFragment extends Fragment {
                 }
             }
         });
+        datebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog(view);
+            }
+        });
+        timebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTimePickerDialog(view);
+            }
+        });
 
         return view;
     }
@@ -64,9 +88,11 @@ public class CreateTeamFragment extends Fragment {
 
         RequestBody formBody = new FormBody.Builder()
                 .add("name", editText.getText().toString())
-                .add("location", editText2.getText().toString())
-                .add("content", editText3.getText().toString())
-                .add("privacy", editText4.getText().toString())
+                .add("location", editText1.getText().toString())
+                .add("content", editText2.getText().toString())
+                .add("time", timebutton.getText().toString())
+                .add("date", datebutton.getText().toString())
+                .add("privacy", checkbox.getText().toString())
                 .build();
 
         Request request = new Request.Builder()
@@ -99,4 +125,7 @@ public class CreateTeamFragment extends Fragment {
     void handlePostResponse(String response) {
         Log.i("OkHttpPost", response);
     }
+
+
+
 }
