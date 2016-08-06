@@ -95,6 +95,7 @@
         <item>Settings</item>
         <item>Info</item>
         <item>Back</item>
+        <item>Test</item>
     </string-array>
 
     <string-array name="item_options">

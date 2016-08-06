@@ -4,7 +4,6 @@ package com.so2.running;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +23,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class Fragment2 extends Fragment {
+public class Fragment2 extends android.app.Fragment {
     Fragment2ListItem item2 = new Fragment2ListItem();
 
 

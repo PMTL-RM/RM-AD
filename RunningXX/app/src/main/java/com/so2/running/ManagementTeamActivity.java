@@ -72,7 +72,7 @@ public class ManagementTeamActivity extends AppCompatActivity {
                 case 0:
                     return new MyTeamFragment();
                 case 1:
-                    return new Fragment2();
+                    return new MyTeamFragment();
                 default:
                     return null;
             }

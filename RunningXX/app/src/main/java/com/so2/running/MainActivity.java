@@ -154,6 +154,11 @@ public class MainActivity extends ActionBarActivity {
                   MainActivity.changeFragment(getFragmentManager(), new MainFragment());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
+               //Go to Test
+               case 7:
+                  MainActivity.changeFragment(getFragmentManager(), new Fragment2());
+                  mDrawerLayout.closeDrawer(mDrawerList);
+                  break;
             }
 
          }
