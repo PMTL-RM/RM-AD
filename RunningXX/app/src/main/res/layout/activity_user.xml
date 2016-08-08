@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.so2.running.UserActivity"
     android:theme="@style/Theme.AppCompat.Light"
@@ -13,9 +10,9 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="400dp"
 
-        >
+        android:id="@+id/tableLayout">
 
         <TableRow
             android:layout_width="0dp"
@@ -148,10 +145,6 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <Button
@@ -160,9 +153,19 @@
                 android:layout_height="wrap_content"
                 android:text="Share Dialog"
                 android:id="@+id/btnShare"
-                android:layout_column="0" />
+                android:layout_column="1" />
+
         </TableRow>
 
     </TableLayout>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:text="返回"
+        android:id="@+id/returnbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

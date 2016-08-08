@@ -2,6 +2,7 @@ package com.so2.running;
 
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,16 +27,16 @@ import org.json.JSONObject;
 public class UserActivity extends Fragment {
     ImageView imageView;
     TextView txtName, txtURL, txtGender,txtBd;
-    Button btnShare;
+    Button btnShare , returnbutton;
 
     private ShareDialog shareDialog;
     private View view;
 
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_user, container, false);
 
+        returnbutton = (Button)view.findViewById(R.id.returnbutton);
         shareDialog = new ShareDialog(this);
 
         imageView = (ImageView) view.findViewById(R.id.imgPhoto);
@@ -43,6 +44,18 @@ public class UserActivity extends Fragment {
         txtURL = (TextView) view.findViewById(R.id.txtURL);
         txtGender = (TextView) view.findViewById(R.id.txtGender);
         txtBd = (TextView) view.findViewById(R.id.txtBd);
+
+
+
+        returnbutton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
+                ft.commit();
+            }
+        });
 
         //Another way to share content
         btnShare = (Button) view.findViewById(R.id.btnShare);
