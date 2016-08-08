@@ -46,4 +46,12 @@
             android:textSize="25dp" />
     </RelativeLayout>
 
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="返回"
+        android:id="@+id/returnbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
