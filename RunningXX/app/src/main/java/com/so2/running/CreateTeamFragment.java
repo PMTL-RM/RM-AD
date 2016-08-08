@@ -1,6 +1,8 @@
 package com.so2.running;
 
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,8 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -25,8 +32,11 @@ import okhttp3.Response;
 
 public class CreateTeamFragment extends DialogFragment {
     private View view;
-    Button button ,timebutton ,datebutton;
+    Button button ,timebutton ,datebutton,privacy_button;
     EditText editText  , editText1 , editText2 ;
+    ListView listview = null;
+
+    Activity activity;
 
     public void showTimePickerDialog(View v) {
         TimePickerFragment newFragment = new TimePickerFragment();
@@ -36,15 +46,42 @@ public class CreateTeamFragment extends DialogFragment {
         DatePickerFragment newFragment = new DatePickerFragment();
         newFragment.show(getFragmentManager(), "datePicker");
     }
+    public void showDialogListView(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(true);
+        builder.setPositiveButton("OK", null);
+        builder.setView(listview);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        this.activity=activity;
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_create_team, container, false);
+        listview = new ListView(getActivity());
+        String[] items={"私密","公開"};
+        ArrayAdapter<String > adapter = new ArrayAdapter<String>(getActivity(), R.layout.fragment_createam_privacy, R.id.txtitem, items);
+        listview.setAdapter(adapter);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ViewGroup vg = (ViewGroup)view;
+                TextView txt = (TextView)vg.findViewById(R.id.txtitem);
+                Toast.makeText(getActivity(), txt.getText().toString(), Toast.LENGTH_SHORT).show();
 
-
+            }
+        });
         button = (Button)view.findViewById(R.id.button);
 
         datebutton = (Button)view.findViewById(R.id.datebutton);
         timebutton = (Button)view.findViewById(R.id.timebutton);
+        privacy_button = (Button)view.findViewById(R.id.privacy_button);
 
 
         editText = (EditText)view.findViewById(R.id.editText);
@@ -67,13 +104,19 @@ public class CreateTeamFragment extends DialogFragment {
         datebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDatePickerDialog(view);
+                showDatePickerDialog(v);
             }
         });
         timebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showTimePickerDialog(view);
+                showTimePickerDialog(v);
+            }
+        });
+        privacy_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogListView(v);
             }
         });
 
