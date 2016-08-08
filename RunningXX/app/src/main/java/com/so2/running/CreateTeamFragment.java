@@ -2,13 +2,14 @@ package com.so2.running;
 
 
 import android.app.DialogFragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 
 import java.io.IOException;
@@ -25,7 +26,6 @@ import okhttp3.Response;
 public class CreateTeamFragment extends DialogFragment {
     private View view;
     Button button ,timebutton ,datebutton;
-    CheckBox checkbox;
     EditText editText  , editText1 , editText2 ;
 
     public void showTimePickerDialog(View v) {
@@ -41,14 +41,11 @@ public class CreateTeamFragment extends DialogFragment {
         view = inflater.inflate(R.layout.fragment_create_team, container, false);
 
 
-
-
         button = (Button)view.findViewById(R.id.button);
 
         datebutton = (Button)view.findViewById(R.id.datebutton);
         timebutton = (Button)view.findViewById(R.id.timebutton);
 
-        checkbox = (CheckBox)view.findViewById(R.id.checkbox);
 
         editText = (EditText)view.findViewById(R.id.editText);
         editText1 = (EditText)view.findViewById(R.id.editText1);
@@ -84,15 +81,18 @@ public class CreateTeamFragment extends DialogFragment {
     }
 
     void doPostRequest(String url) throws IOException {
+        SharedPreferences preferences = getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);
+        String name = preferences.getString("name","error");
+        System.out.println("this name in dopostrequest ::::"+name);
         OkHttpClient client = new OkHttpClient();
 
         RequestBody formBody = new FormBody.Builder()
-                .add("name", editText.getText().toString())
+                .add("groupname", editText.getText().toString())
                 .add("location", editText1.getText().toString())
                 .add("content", editText2.getText().toString())
                 .add("time", timebutton.getText().toString())
                 .add("date", datebutton.getText().toString())
-                .add("privacy", checkbox.getText().toString())
+                .add("username", name)
                 .build();
 
         Request request = new Request.Builder()

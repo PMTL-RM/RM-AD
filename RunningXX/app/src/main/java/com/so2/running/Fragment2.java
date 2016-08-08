@@ -1,6 +1,7 @@
 package com.so2.running;
 
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -30,7 +32,7 @@ public class Fragment2 extends android.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         SharedPreferences preferences = this.getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);
-        String name = preferences.getString("name","1010");
+        String name = preferences.getString("name","error");
         System.out.println("here :::::::"+name);
 
         ArrayList<Fragment2ListItem> sessionList;
@@ -53,6 +55,22 @@ public class Fragment2 extends android.app.Fragment {
         //Visualize session list
         else {
             listview.setAdapter(new Fragment2Adapter(getActivity(), R.layout.frag2_createteam_layout, sessionList));
+
+            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                //Go to session detail
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    // selected item
+                    final Fragment2ListItem item = (Fragment2ListItem) listview.getItemAtPosition(position);
+                    System.out.println("the position : : "+position);
+                    Fragment2Detail itemDetail = new Fragment2Detail();
+                    itemDetail.setItem(item);
+                    FragmentManager fm = getFragmentManager();
+                    fm.beginTransaction()
+                            .replace(R.id.content_frame, itemDetail)
+                            .commit();
+                }
+            });
 
             return view;
         }
@@ -84,7 +102,8 @@ public class Fragment2 extends android.app.Fragment {
                         JSONObject obj = array.getJSONObject(i);
                         item = new Fragment2ListItem();
 
-                        item.setName(obj.getString("name"));
+                        item.setUsername(obj.getString("username"));
+                        item.setGroupname(obj.getString("groupname"));
                         item.setContent(obj.getString("content"));
                         item.setDate(obj.getString("date"));
                         item.setLocation(obj.getString("location"));
@@ -92,7 +111,7 @@ public class Fragment2 extends android.app.Fragment {
                         item2 = item;
 
                         sessionList.add(item2);
-                        Log.d("JSON:", item2.getName() + "/" + item2.getDate() + "/" + item2.getContent() + "/" + item2.getLocation());
+                        Log.d("JSON:", item2.getUsername() + "/" + item2.getGroupname() + "/" + item2.getDate() + "/" + item2.getContent() + "/" + item2.getLocation());
                     }
 
                 } catch (JSONException e) {
@@ -109,7 +128,7 @@ public class Fragment2 extends android.app.Fragment {
             }
         });
 
-        if (item2.getName() == null) {
+        if (item2.getUsername() == null) {
             synchronized (this) {
                 try {
                     wait(1000);

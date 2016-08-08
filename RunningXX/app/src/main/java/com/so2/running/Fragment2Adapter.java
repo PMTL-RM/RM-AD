@@ -37,23 +37,21 @@ public class Fragment2Adapter extends ArrayAdapter<Fragment2ListItem> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-        TextView name;
+        TextView groupname;
         TextView date;
         TextView location;
         TextView content;
 
         convertView = mInflater.inflate(R.layout.frag2_createteam_layout, null);
-        name = (TextView) convertView.findViewById(R.id.name);
+        groupname = (TextView) convertView.findViewById(R.id.groupname);
         date = (TextView) convertView.findViewById(R.id.date);
         location = (TextView) convertView.findViewById(R.id.location);
-        content = (TextView) convertView.findViewById(R.id.content);
 
 
 
-        name.setText(sessionList.get(position).getName());
+        groupname.setText(sessionList.get(position).getGroupname());
         date.setText(sessionList.get(position).getDate());
         location.setText(sessionList.get(position).getLocation());
-        content.setText(sessionList.get(position).getContent());
 
         return convertView;
     }
