@@ -29,6 +29,7 @@ public class Fragment2ListItem
     private String username;
     private String groupname;
     private String date;
+    private String time;
     private String content;
 
     public String getLocation() {
@@ -55,6 +56,12 @@ public class Fragment2ListItem
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getTime() {return time;}
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getContent() {

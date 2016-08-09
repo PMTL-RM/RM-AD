@@ -40,7 +40,6 @@ public class Fragment2Adapter extends ArrayAdapter<Fragment2ListItem> {
         TextView groupname;
         TextView date;
         TextView location;
-        TextView content;
 
         convertView = mInflater.inflate(R.layout.frag2_createteam_layout, null);
         groupname = (TextView) convertView.findViewById(R.id.groupname);
@@ -50,7 +49,7 @@ public class Fragment2Adapter extends ArrayAdapter<Fragment2ListItem> {
 
 
         groupname.setText(sessionList.get(position).getGroupname());
-        date.setText(sessionList.get(position).getDate());
+        date.setText(new StringBuilder().append(sessionList.get(position).getDate()).append(sessionList.get(position).getTime()).toString());
         location.setText(sessionList.get(position).getLocation());
 
         return convertView;

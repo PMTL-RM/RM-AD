@@ -11,7 +11,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="人名 : "
+            android:text="創團人 : "
             android:id="@+id/textView3"
             android:layout_above="@+id/textView6"
             android:layout_alignParentStart="true"
@@ -52,6 +52,6 @@
         android:text="返回"
         android:id="@+id/returnbutton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

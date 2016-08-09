@@ -2,6 +2,7 @@ package com.so2.running;
 
 
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -27,7 +29,7 @@ import okhttp3.Response;
 
 public class Fragment2 extends android.app.Fragment {
     Fragment2ListItem item2 = new Fragment2ListItem();
-
+    Button returnbutton ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,6 +40,19 @@ public class Fragment2 extends android.app.Fragment {
         ArrayList<Fragment2ListItem> sessionList;
         View view = inflater.inflate(R.layout.frag2, container, false);
         final ListView listview = (ListView) view.findViewById(R.id.team_list_view);
+
+        returnbutton = (Button)view.findViewById(R.id.returnbutton);
+
+
+        returnbutton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
+                ft.commit();
+            }
+        });
 
         //Set ActionBar title
         getActivity().setTitle(getString(R.string.title_info));
@@ -106,12 +121,13 @@ public class Fragment2 extends android.app.Fragment {
                         item.setGroupname(obj.getString("groupname"));
                         item.setContent(obj.getString("content"));
                         item.setDate(obj.getString("date"));
+                        item.setTime(obj.getString("time"));
                         item.setLocation(obj.getString("location"));
 
                         item2 = item;
 
                         sessionList.add(item2);
-                        Log.d("JSON:", item2.getUsername() + "/" + item2.getGroupname() + "/" + item2.getDate() + "/" + item2.getContent() + "/" + item2.getLocation());
+                        Log.d("JSON:", item2.getUsername() + "/" + item2.getGroupname() + "/" + item2.getDate()+item2.getTime() + "/" + item2.getContent() + "/" + item2.getLocation());
                     }
 
                 } catch (JSONException e) {
