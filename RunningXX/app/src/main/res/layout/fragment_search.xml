@@ -6,31 +6,43 @@
     android:background="@color/Ivory"
     >
     <Spinner
-        android:id="@+id/spinnner"
+        android:id="@+id/type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        >
+        android:layout_marginLeft="170dp"
+        android:layout_marginTop="50dp">
     </Spinner>
     <Spinner
-        android:id="@+id/spinnner1"
+        android:id="@+id/type2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_marginLeft="170dp"
+        android:layout_marginTop="50dp"
         >
     </Spinner>
     <Spinner
         android:id="@+id/spinnner2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_marginLeft="170dp"
+        android:layout_marginTop="50dp"
         >
     </Spinner>
     <Spinner
         android:id="@+id/spinnner3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_marginLeft="170dp"
+        android:layout_marginTop="50dp"
         >
     </Spinner>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="送出"
+        android:id="@+id/button2"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp" />
+
 </LinearLayout>

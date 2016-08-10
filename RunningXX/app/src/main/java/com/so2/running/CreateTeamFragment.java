@@ -117,6 +117,7 @@ public class CreateTeamFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 showDialogListView(v);
+                datebutton.setText(String.valueOf(v));
             }
         });
 
