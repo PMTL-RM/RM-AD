@@ -58,13 +58,7 @@
             android:layout_marginLeft="15dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"/>
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText1"
-            android:hint="請輸入地點"
-            android:layout_marginTop="110dp"
-            android:layout_marginLeft="90dp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -191,17 +185,22 @@
             android:text="送出"
             android:id="@+id/button"
             android:layout_alignParentBottom="true" />
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/type"
+            android:layout_marginTop="130dp"
+            android:layout_marginLeft="120dp" />
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/type2"
+            android:layout_marginTop="130dp"
+            android:layout_marginLeft="220dp" />
 
 
 
     </RelativeLayout>
-
-    <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New ToggleButton"
-        android:id="@+id/toggleButton"
-        android:layout_gravity="center_vertical" />
 
 
 </LinearLayout>
