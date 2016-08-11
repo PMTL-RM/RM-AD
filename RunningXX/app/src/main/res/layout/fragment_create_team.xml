@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.so2.running.CreateTeamFragment"
     android:background="@android:color/background_light"
-    >
+    android:orientation="horizontal">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

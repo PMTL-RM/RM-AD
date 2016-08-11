@@ -123,11 +123,12 @@ public class Fragment2 extends android.app.Fragment {
                         item.setDate(obj.getString("date"));
                         item.setTime(obj.getString("time"));
                         item.setLocation(obj.getString("location"));
+                        item.setPrivacy(obj.getString("privacy"));
 
                         item2 = item;
 
                         sessionList.add(item2);
-                        Log.d("JSON:", item2.getUsername() + "/" + item2.getGroupname() + "/" + item2.getDate()+item2.getTime() + "/" + item2.getContent() + "/" + item2.getLocation());
+                        Log.d("JSON:", item2.getUsername() + "/" + item2.getGroupname() + "/" + item2.getDate()+item2.getTime() + "/" + item2.getContent() + "/" + item2.getLocation()+ "/" + item2.getPrivacy());
                     }
 
                 } catch (JSONException e) {

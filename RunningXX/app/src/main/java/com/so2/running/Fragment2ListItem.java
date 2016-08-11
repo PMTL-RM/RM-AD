@@ -31,6 +31,8 @@ public class Fragment2ListItem
     private String date;
     private String time;
     private String content;
+    private String privacy;
+
 
     public String getLocation() {
         return location;
@@ -70,6 +72,12 @@ public class Fragment2ListItem
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getPrivacy() {return privacy;}
+
+    public void setPrivacy(String privacy) {
+        this.privacy = privacy;
     }
 
 
