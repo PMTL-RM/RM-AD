@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 
 /**
@@ -19,6 +21,10 @@ import android.widget.Spinner;
 public class SearchFragment extends Fragment {
 
     View view;
+
+    ImageButton datebutton;
+    TextView date;
+
     private String[] type = new String[] {"基隆市", "新北市","臺北市","宜蘭縣","新竹市","新竹縣","桃園市"
             ,"苗栗縣","臺中市","彰化縣","南投縣","嘉義縣","雲林縣","臺南市","高雄市","澎湖縣","金門縣"
             ,"屏東縣","台東縣","花蓮縣"};
@@ -59,6 +65,11 @@ public class SearchFragment extends Fragment {
         context = activity;
     }
 
+    public void showDatePickerDialog(View v) {
+        DatePickerFragment newFragment = new DatePickerFragment();
+        newFragment.show(getFragmentManager(), "datePicker");
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,6 +78,15 @@ public class SearchFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_search, container, false);
 
+        datebutton = (ImageButton)view.findViewById(R.id.datebutton);
+        date = (TextView)view.findViewById(R.id.date);
+
+        datebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog(v);
+            }
+        });
 
         //程式剛啟始時載入第一個下拉選單
         adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item, type);
