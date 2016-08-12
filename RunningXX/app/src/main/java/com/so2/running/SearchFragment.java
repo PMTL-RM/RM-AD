@@ -3,13 +3,16 @@ package com.so2.running;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,7 +24,7 @@ import android.widget.TextView;
 public class SearchFragment extends Fragment {
 
     View view;
-
+    Button result;
     ImageButton datebutton;
     TextView date;
 
@@ -72,11 +75,40 @@ public class SearchFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle(getString(R.string.title_info));
 
         view = inflater.inflate(R.layout.fragment_search, container, false);
+
+
+        result = (Button)view.findViewById(R.id.result);
+
+
+        result.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+                final SharedPreferences preferences = getActivity().getSharedPreferences("search", Context.MODE_PRIVATE);
+                final SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.putString("city",type[sp.getSelectedItemPosition()]);
+                editor.putString("zone",type2[sp.getSelectedItemPosition()][sp2.getSelectedItemPosition()]);
+                editor.putString("date",date.getText().toString());
+                editor.apply();
+                String city1 = preferences.getString("city","error");
+                String zone1 = preferences.getString("zone","error");
+                String date1 = preferences.getString("date","error");
+
+
+                System.out.println("search :::::::"+city1+zone1+date1);
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new Search_Result());
+                ft.commit();
+            }
+        });
+
 
         datebutton = (ImageButton)view.findViewById(R.id.datebutton);
         date = (TextView)view.findViewById(R.id.date);
@@ -86,7 +118,10 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 showDatePickerDialog(v);
             }
+
         });
+
+
 
         //程式剛啟始時載入第一個下拉選單
         adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item, type);
@@ -112,6 +147,7 @@ public class SearchFragment extends Fragment {
             adapter2 = new ArrayAdapter<String>(context,android.R.layout.simple_spinner_item, type2[pos]);
             //載入第二個下拉選單Spinner
             sp2.setAdapter(adapter2);
+
         }
 
         public void onNothingSelected(AdapterView<?> arg0){

@@ -4,9 +4,8 @@ package com.so2.running;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.os.Bundle;
 import android.app.DialogFragment;
-import android.widget.Button;
+import android.os.Bundle;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
