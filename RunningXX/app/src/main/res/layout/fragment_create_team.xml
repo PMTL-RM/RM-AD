@@ -202,6 +202,30 @@
             android:layout_marginTop="130dp"
             android:layout_marginLeft="220dp" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="select"
+            android:id="@+id/btn_choose"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentStart="true"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_pic"
+            android:src="@mipmap/ic_revise"
+            android:layout_alignTop="@+id/textView"
+            android:layout_alignEnd="@+id/textView7" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_button"
+            android:layout_below="@+id/btn_choose"
+            android:layout_alignEnd="@+id/textView7"
+            android:src="@mipmap/ic_arrow" />
 
 
     </RelativeLayout>
