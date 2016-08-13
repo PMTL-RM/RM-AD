@@ -34,6 +34,6 @@ public class DatePickerFragment extends DialogFragment
         // Do something with the date chosen by the user
         ImageButton datebutton = (ImageButton) getActivity().findViewById(R.id.datebutton);
         TextView date = (TextView) getActivity().findViewById(R.id.date);
-        date.setText(String.valueOf(year)+ "年" +String.valueOf(month)+"月"+String.valueOf(day)+"日");
+        date.setText(String.valueOf(year)+ "年" +String.valueOf(month+1)+"月"+String.valueOf(day)+"日");
     }
 }
