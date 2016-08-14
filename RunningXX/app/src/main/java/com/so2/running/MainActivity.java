@@ -450,6 +450,9 @@ public class MainActivity extends ActionBarActivity {
 
       endSessionDialog.show();
    }
+   public void go (View v) {
+      MainActivity.changeFragment(getFragmentManager(), new Creater_Detail());
+   }
 
 }
 

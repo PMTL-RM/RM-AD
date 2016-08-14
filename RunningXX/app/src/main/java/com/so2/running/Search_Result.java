@@ -53,7 +53,7 @@ public class Search_Result extends Fragment {
             @Override
             public void onClick(View v)
             {
-                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
+                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new SearchFragment());
                 ft.commit();
             }
         });
@@ -82,7 +82,7 @@ public class Search_Result extends Fragment {
                     // selected item
                     final Fragment2ListItem item = (Fragment2ListItem) listview.getItemAtPosition(position);
                     System.out.println("the position : : "+position);
-                    Fragment2Detail itemDetail = new Fragment2Detail();
+                    Search_Result_Detail itemDetail = new Search_Result_Detail();
                     itemDetail.setItem(item);
                     FragmentManager fm = getFragmentManager();
                     fm.beginTransaction()
