@@ -109,13 +109,43 @@
 
     <string name="facebook_app_id">1755131554729903</string>
 
-    <string name="provincia">Provincia</string>
-    <string name="localidad">Localidad</string>
-    <string name="provincia_prompt">Elija una provincia</string>
-    <string name="localidad_prompt">Elija una localidad</string>
-    <string name="comprobar">Comprobar</string>
-    <string name="message">Ha seleccionado %1$s (%2$s)</string>
+    <string name="provincia">Fuck</string>
+    <string name="localidad">Damn</string>
+    <string name="provincia_prompt">66666</string>
+    <string name="localidad_prompt">3333</string>
+    <string name="comprobar">123</string>
+    <string name="message">456</string>
     <string name="title_activity_maps">Map</string>
+
+
+    <string name="triple_icon_description">Triple Icon</string>
+    <string name="triple_user_name_placeholder">User</string>
+    <string name="triple_status_placeholder">Status</string>
+    <string name="triple_contact_placeholder">Contact</string>
+
+    <string-array name="animals" >
+        <item>Dog</item>
+        <item>Cat</item>
+        <item>Tiger</item>
+        <item>Elephant</item>
+        <item>Duck</item>
+        <item>Dolphin</item>
+        <item>Beagle</item>
+        <item>Pub</item>
+        <item>Whale</item>
+        <item>Snake</item>
+        <item>Hamster</item>
+        <item>Donkey</item>
+        <item>Zebra</item>
+        <item>Gnu</item>
+        <item>Boxer</item>
+        <item>English Bulldog</item>
+        <item>Belgian Shepherd</item>
+        <item>Irish Wolfhound</item>
+        <item>Great Dane</item>
+        <item>Goose</item>
+        <item>Crocodile</item>
+    </string-array>
 
 
 </resources>

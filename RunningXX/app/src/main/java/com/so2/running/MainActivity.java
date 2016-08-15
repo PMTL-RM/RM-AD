@@ -282,6 +282,7 @@ public class MainActivity extends ActionBarActivity {
             return true;
          case R.id.action_announcement:
             //startActivity(new Intent(this, MapsActivity.class));
+            MainActivity.changeFragment(getFragmentManager(), new NotificationFragment());
             Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
             return true;
       }
