@@ -327,11 +327,11 @@ public class MainActivity extends ActionBarActivity {
    protected void onRestart ()
    {
       super.onRestart();
-      FragmentManager sessionsFragmentManager = getFragmentManager();
-      sessionsFragmentManager.popBackStackImmediate(null, sessionsFragmentManager.POP_BACK_STACK_INCLUSIVE);
-      sessionsFragmentManager.beginTransaction()
-              .replace(R.id.content_frame, new SessionListFragment())
-              .commit();
+//      FragmentManager sessionsFragmentManager = getFragmentManager();
+//      sessionsFragmentManager.popBackStackImmediate(null, sessionsFragmentManager.POP_BACK_STACK_INCLUSIVE);
+//      sessionsFragmentManager.beginTransaction()
+//              .replace(R.id.content_frame, new SessionListFragment())
+//              .commit();
    }
 
    @Override

@@ -31,7 +31,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -52,12 +55,8 @@ public class CreateTeamFragment extends DialogFragment {
     TextView privacy, date, time;
     String choice;
 
-    private Uri mImageCaptureUri;
-    private static final int PICK_FROM_CAMERA = 1;
-    private static final int PICK_FROM_FILE = 2;
-    private String mPath;
-    private ImageView mImageView;
-    Bitmap bitmap = null;
+    ImageView viewImage;
+
 
 
     private String[] type = new String[] {"基隆市", "新北市","臺北市","宜蘭縣","新竹市","新竹縣","桃園市"
@@ -176,58 +175,14 @@ public class CreateTeamFragment extends DialogFragment {
             }
         });
 
-        final String[] items = new String[] { "From Camera", "From SD Card" };
-        mImageView = (ImageView)view.findViewById(R.id.iv_pic);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, items);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Select Image");
-
-        builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int item) {
-                if (item == 0) {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    File file = new File(Environment.getExternalStorageDirectory(), "tmp_avatar_"
-                            + String.valueOf(System.currentTimeMillis())
-                            + ".jpg");
-                    mImageCaptureUri = Uri.fromFile(file);
-
-                    try {
-                        intent.putExtra(
-                                android.provider.MediaStore.EXTRA_OUTPUT,
-                                mImageCaptureUri);
-                        intent.putExtra("return-data", true);
-
-                        getActivity().startActivityForResult(intent,
-                                PICK_FROM_CAMERA);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    dialog.cancel();
-                } else {
-                    Intent intent = new Intent();
-
-                    intent.setType("image/*");
-                    intent.setAction(Intent.ACTION_GET_CONTENT);
-
-                    getActivity().startActivityForResult(
-                            Intent.createChooser(intent,
-                                    "Complete action using"), PICK_FROM_FILE);
-                }
-            }
-        });
-        final AlertDialog dialog = builder.create();
-
-        Button show = (Button) view.findViewById(R.id.btn_choose);
-        show.setOnClickListener(new View.OnClickListener() {
+        image_button =(Button)view.findViewById(R.id.btnSelectPhoto);
+        viewImage=(ImageView)view.findViewById(R.id.viewImage);
+        image_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Switch the tab content to display the list view.
-                dialog.show();
+                selectImage();
             }
         });
-
-
 
 
         return view;
@@ -315,37 +270,93 @@ public class CreateTeamFragment extends DialogFragment {
         }
 
     };
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    private void selectImage() {
 
-        if (resultCode != Activity.RESULT_OK)
-            return;
+        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
 
-        if (requestCode == PICK_FROM_FILE) {
-            mImageCaptureUri = data.getData();
-            // mPath = getRealPathFromURI(mImageCaptureUri); //from Gallery
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Add Photo!");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (options[item].equals("Take Photo"))
+                {
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+                    startActivityForResult(intent, 1);
+                }
+                else if (options[item].equals("Choose from Gallery"))
+                {
+                    Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, 2);
 
-            if (mPath == null)
-                mPath = mImageCaptureUri.getPath(); // from File Manager
-
-            if (mPath != null)
-                bitmap = BitmapFactory.decodeFile(mPath);
-        } else {
-            mPath = mImageCaptureUri.getPath();
-            bitmap = BitmapFactory.decodeFile(mPath);
-        }
-        mImageView.setImageBitmap(bitmap);
+                }
+                else if (options[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
     }
 
-    public String getRealPathFromURI(Uri contentUri) {
-        String [] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = context.getContentResolver().query(contentUri, proj, null, null,null);
 
-        if (cursor == null) return null;
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == 1) {
+                File f = new File(Environment.getExternalStorageDirectory().toString());
+                for (File temp : f.listFiles()) {
+                    if (temp.getName().equals("temp.jpg")) {
+                        f = temp;
+                        break;
+                    }
+                }
+                try {
+                    Bitmap bitmap;
+                    BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
 
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
+                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
+                            bitmapOptions);
+
+                    viewImage.setImageBitmap(bitmap);
+
+                    String path = android.os.Environment
+                            .getExternalStorageDirectory()
+                            + File.separator
+                            + "Phoenix" + File.separator + "default";
+                    f.delete();
+                    OutputStream outFile = null;
+                    File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
+                    try {
+                        outFile = new FileOutputStream(file);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
+                        outFile.flush();
+                        outFile.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (requestCode == 2) {
+
+                Uri selectedImage = data.getData();
+                String[] filePath = { MediaStore.Images.Media.DATA };
+                Cursor c = getActivity().getContentResolver().query(selectedImage,filePath, null, null, null);
+                c.moveToFirst();
+                int columnIndex = c.getColumnIndex(filePath[0]);
+                String picturePath = c.getString(columnIndex);
+                c.close();
+                Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
+                //Log.w("path of image from gallery......******************.........", picturePath+"");
+                viewImage.setImageBitmap(thumbnail);
+            }
+        }
     }
 
 
