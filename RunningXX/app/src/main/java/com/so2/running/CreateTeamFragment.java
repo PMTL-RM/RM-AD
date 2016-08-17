@@ -214,8 +214,7 @@ public class CreateTeamFragment extends DialogFragment {
 
         RequestBody formBody = new FormBody.Builder()
                 .add("groupname", editText.getText().toString())
-                .add("location", sp.getSelectedItem().toString()+
-                        sp2.getSelectedItem().toString())
+                .add("location", sp.getSelectedItem().toString() + sp2.getSelectedItem().toString())
                 .add("content", editText2.getText().toString())
                 .add("time", time.getText().toString())
                 .add("date", date.getText().toString())

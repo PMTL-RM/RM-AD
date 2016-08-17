@@ -1,7 +1,6 @@
 package com.so2.running;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -20,10 +19,6 @@ public class ManagementTeamActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        final SharedPreferences preferences = getSharedPreferences("here", MODE_PRIVATE);
-        String name = preferences.getString("name","");
-        System.out.println("this in managementteamactivity  ::::"+name);
-
         //消除標題列
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         //消除狀態列

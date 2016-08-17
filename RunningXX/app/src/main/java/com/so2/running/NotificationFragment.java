@@ -1,71 +1,141 @@
 package com.so2.running;
 
 
-import android.content.res.Resources;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class NotificationFragment extends Fragment {
+import java.io.IOException;
+import java.util.ArrayList;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
-    View view;
+public class NotificationFragment extends android.app.Fragment {
+    NotificationListItem item2 = new NotificationListItem();
+//    Button returnbutton ;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_notification, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);
+        String name = preferences.getString("name","error");
 
-        Resources res = getResources();
-        String[] animals = res.getStringArray(R.array.animals);
+        ArrayList<NotificationListItem> sessionList;
+        View view = inflater.inflate(R.layout.fragment_notification, container, false);
+        final ListView listview = (ListView) view.findViewById(R.id.myListView);
 
-        // We need a ListAdapter to adapt the Array to the ListView:
-        ListAdapter myArrayAdapter = new NotificationListItem(
-                getActivity(),                        // context
-                R.layout.notification_list_item,  // layoutResource int
-                R.id.triple_user,            // textViewResourceId int
-                animals                      // list of objects
-        );
-                /*
-                When you specify your own row layout, you must specify the id (e.g. firstLine)
-                of the view element which shall contain the array elements
+//        returnbutton = (Button)view.findViewById(R.id.returnbutton);
+//
+//
+//        returnbutton.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
+//                ft.commit();
+//            }
+//        });
 
-                Another Basic Example:
-                ListAdapter myArrayAdapter = new ArrayAdapter<>(
-                                          this, android.R.layout.simple_list_item_1, animals);
-                */
-
-        ListView theListView = (ListView) view.findViewById(R.id.myListView);
-        // Define a reference to the ListView in our layout resource
-
-        theListView.setAdapter(myArrayAdapter);
-        // Tell listView what data to use
+        //Set ActionBar title
+        getActivity().setTitle(getString(R.string.title_info));
+        // Inflate the layout for this fragment
 
 
-        // catch any clicks on our listView:
-        theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        sessionList = getSessionList(name);
 
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+        //If there are no sessions emtyListFragment is called
+        if (sessionList.size() == 0) {
+            view = inflater.inflate(R.layout.frag2_createteam_layout, container, false);
+        }
 
-                // Display a message with Toast:
-                String animalPicked = "You selected " + String.valueOf(adapterView.getItemAtPosition(pos));
-                Toast.makeText(getActivity(), animalPicked, Toast.LENGTH_SHORT).show();
+        //Visualize session list
+        else {
+            listview.setAdapter(new NotificationAdapter(getActivity(), R.layout.notification_list_item, sessionList));
 
-            }
-        });
+            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                //Go to session detail
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                }
+            });
+
+            return view;
+        }
         return view;
     }
 
+    public ArrayList<NotificationListItem> getSessionList(String name) {
+        final ArrayList<NotificationListItem> sessionList = new ArrayList<>();
+
+        OkHttpClient client = new OkHttpClient();
+
+        System.out.println("you should be :::" + name);
+
+        Request req = new Request.Builder()
+                .url("http://ncnurunforall-yychiu.rhcloud.com/notices/" + name)
+                .build();
+        Call call = client.newCall(req);
+
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String aFinalString = response.body().string();
+                System.out.println(aFinalString);
+                NotificationListItem item;
+                if (response.isSuccessful()) try {
+                    final JSONArray array = new JSONArray(aFinalString);
+
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject obj = array.getJSONObject(i);
+                        item = new NotificationListItem();
+
+                        item.setContent(obj.getString("content"));
+
+                        item2 = item;
+
+                        sessionList.add(item2);
+                        Log.d("JSON:",  item2.getContent());
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                else {
+                    Log.e("APp", "Error");
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                //告知使用者連線失敗
+            }
+        });
+
+        if (item2.getContent() == null) {
+            synchronized (this) {
+                try {
+                    wait(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            onStart();
+        }
+        return sessionList;
+    }
 }

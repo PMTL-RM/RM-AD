@@ -1,78 +1,41 @@
-package com.so2.running;
+/*
+                    RUNNING
+   Copyright (C) 2015  Alessandro Mereu, Maurizio Romano, Matteo Enrico Serpi
 
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
 
-import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
 
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /**
- * A simple {@link Fragment} subclass.
+ * This class contain session data
  */
-public class NotificationListItem extends ArrayAdapter<String> {
+
+package com.so2.running;
+
+public class NotificationListItem
+{
+
+    private String content;
 
 
-    // We call the constructor of the super class ArrayAdapter
-    public NotificationListItem(Context context, int resource, int textViewResourceId, String[] objects) {
-        super(context, resource, textViewResourceId, objects);
+    public String getContent() {
+        return content;
     }
 
-    // We use the ViewHolder Pattern for ensuring smooth scrolling
-    static class ViewHolder {
-        ImageView tripleIcon;
-        TextView tripleUser;
-        TextView tripleStatus;
-        TextView tripleContact;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    int i;
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
 
-        ViewHolder holder;
-
-        if(convertView == null) {
-
-            // The LayoutInflater instantiate a layout xml file into its corresponding View objects:
-            LayoutInflater myInflater = LayoutInflater.from(getContext());
-
-            convertView = myInflater.inflate(R.layout.notification_list_item, parent, false);
-
-            // The ViewHolder ensures smooth scrolling of our ListView:
-            holder = new ViewHolder();
-            holder.tripleUser = (TextView) convertView.findViewById(R.id.triple_user);
-            holder.tripleStatus = (TextView) convertView.findViewById(R.id.triple_status);
-            holder.tripleContact = (TextView) convertView.findViewById(R.id.triple_contact);
-            holder.tripleIcon = (ImageView) convertView.findViewById(R.id.triple_icon);
-
-            convertView.setTag(holder);
-
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-            i++;
-        }
-
-        // Bind the data efficiently with the holder:
-        String animal = getItem(position);
-        holder.tripleUser.setText(animal);
-        holder.tripleStatus.setText("Hier steht jetzt Text");
-        holder.tripleContact.setText("eMail");
-
-        // Change some values
-        if ( animal.equals("Tiger") || animal.equals("Wal") || animal.equals("Gnu") ) {
-            holder.tripleIcon.setImageResource(R.drawable.circle_blue);
-            holder.tripleStatus.setText("Hier steht jetzt Text");
-            holder.tripleContact.setText("eMail");
-
-        } else {
-            holder.tripleIcon.setImageResource(R.drawable.circle_red);
-        }
-        return convertView;
-    }
 }
