@@ -91,6 +91,7 @@ public class NotificationFragment extends android.app.Fragment {
         Call call = client.newCall(req);
 
         call.enqueue(new Callback() {
+
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String aFinalString = response.body().string();
