@@ -59,7 +59,7 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
 
         convertView = mInflater.inflate(R.layout.notification_list_item, null);
 
-        content = (TextView) convertView.findViewById(R.id.content);
+        content = (TextView) convertView.findViewById(R.id.name);
         decide_button = (Button) convertView.findViewById(R.id.decide_button);
 
         content.setText(sessionList.get(position).getContent());

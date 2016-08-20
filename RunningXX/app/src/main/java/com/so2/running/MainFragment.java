@@ -150,6 +150,8 @@ public class MainFragment extends Fragment {
 //      locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
 //      locationManager.addGpsStatusListener(gpsListener);
 
+      getActivity().setTitle("主畫面");
+
       return view;
    }
 }
