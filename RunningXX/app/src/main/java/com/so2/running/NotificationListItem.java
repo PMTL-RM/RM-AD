@@ -26,15 +26,22 @@ public class NotificationListItem
 {
 
     private String content;
+    private String notice_name;
 
 
     public String getContent() {
         return content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setContent(String content) {this.content = content;}
+
+
+    public String getNotice_name() {
+        return notice_name;
     }
+
+    public void setNotice_name(String notice_name) {this.notice_name = notice_name;}
+
 
 
 

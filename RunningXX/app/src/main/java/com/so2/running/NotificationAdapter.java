@@ -27,9 +27,7 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
     private LayoutInflater mInflater;
     private ArrayList<NotificationListItem> sessionList;
     SharedPreferences preferences = getContext().getSharedPreferences("here", Context.MODE_PRIVATE);       //目前使用者的名字
-    SharedPreferences preferences1 = this.getContext().getSharedPreferences("creater_detail", Context.MODE_PRIVATE);       //你想加好友的人
     String user_name = preferences.getString("name","error");
-    String friend_name = preferences1.getString("creater_name","error1");
 
     public NotificationAdapter(Context context, int resource, List<NotificationListItem> objects) {
         super(context, resource, objects);
@@ -51,7 +49,7 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
         return arg0;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
 
         TextView content;
@@ -63,6 +61,9 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
         decide_button = (Button) convertView.findViewById(R.id.decide_button);
 
         content.setText(sessionList.get(position).getContent());
+        final String friend_name = sessionList.get(position).getNotice_name();
+
+        System.out.println("asd asda asdd asds ::::"+friend_name);
 
         decide_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +74,7 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
                 try {
                     doPatchFriendListRequest(url);
                     doPatchNoticeRequest(url1);
-                    doPostFriendListRequest_Reverse(url2);
+                    doPostFriendListRequest_Reverse(url2 , position);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -115,8 +116,11 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
     }
 
 
-    void doPostFriendListRequest_Reverse(String url) throws IOException {
+    void doPostFriendListRequest_Reverse(String url , int position) throws IOException {
         OkHttpClient client = new OkHttpClient();
+
+
+        final String friend_name = sessionList.get(position).getNotice_name();
 
         RequestBody formBody = new FormBody.Builder()
                 .add("status", "1")

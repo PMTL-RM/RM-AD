@@ -105,6 +105,7 @@ public class NotificationFragment extends android.app.Fragment {
                         item = new NotificationListItem();
 
                         item.setContent(obj.getString("content"));
+                        item.setNotice_name(obj.getString("notice_name"));
 
                         item2 = item;
 
