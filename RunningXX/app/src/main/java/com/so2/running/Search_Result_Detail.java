@@ -62,7 +62,7 @@ public class Search_Result_Detail extends Fragment {
 
         //Get textview from view
         TextView name = (TextView) view.findViewById(R.id.name);
-        TextView content = (TextView) view.findViewById(R.id.name);
+        TextView content = (TextView) view.findViewById(R.id.content);
         TextView privacy = (TextView) view.findViewById(R.id.privacy);
 
 
@@ -77,8 +77,7 @@ public class Search_Result_Detail extends Fragment {
         final SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         editor.putString("creater_name",creater_name).apply();
-        String asd = preferences.getString("name",null);
-        System.out.println("in search_result_detail ::::::::"+creater_name);
+
 
 
         //Set ActionBar title

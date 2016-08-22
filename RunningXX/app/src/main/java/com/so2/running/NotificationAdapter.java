@@ -69,9 +69,11 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
             public void onClick(View v) {
                 String url = "http://ncnurunforall-yychiu.rhcloud.com/friendlists/"+user_name+"/"+friend_name;
                 String url1 = "http://ncnurunforall-yychiu.rhcloud.com/notices/"+user_name+"/"+friend_name;
+                String url2 = "http://ncnurunforall-yychiu.rhcloud.com/friendlists/";
                 try {
                     doPatchFriendListRequest(url);
                     doPatchNoticeRequest(url1);
+                    doPostFriendListRequest_Reverse(url2);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -111,6 +113,41 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
 
         });
     }
+
+
+    void doPostFriendListRequest_Reverse(String url) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody formBody = new FormBody.Builder()
+                .add("status", "1")
+                .add("user_name",friend_name)
+                .add("friend_name",user_name)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(formBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // Error
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String res = response.body().string();
+                    handlePostResponse(res);
+                } else {
+                    Log.e("APp", "Error");
+                }
+            }
+
+        });
+    }
+
 
     void doPatchNoticeRequest(String url) throws IOException {
         OkHttpClient client = new OkHttpClient();

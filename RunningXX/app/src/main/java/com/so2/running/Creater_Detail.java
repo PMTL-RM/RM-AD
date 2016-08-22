@@ -164,6 +164,7 @@ public class Creater_Detail extends Fragment {
 
 
     void doPostFriendListRequest(String url) throws IOException {
+        int status = 0;
         SharedPreferences preferences = getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);       //目前使用者的名字
         SharedPreferences preferences1 = this.getActivity().getSharedPreferences("creater_detail", Context.MODE_PRIVATE);       //你想加好友的人
         String user_name = preferences.getString("name","error");
@@ -171,6 +172,7 @@ public class Creater_Detail extends Fragment {
         OkHttpClient client = new OkHttpClient();
 
         RequestBody formBody = new FormBody.Builder()
+                .add("status", String.valueOf(status))
                 .add("user_name", user_name)
                 .add("friend_name", friend_name)
                 .build();
@@ -209,7 +211,7 @@ public class Creater_Detail extends Fragment {
         RequestBody formBody = new FormBody.Builder()
                 .add("user_name", user_name)
                 .add("notice_name", notice_name)
-                .add("content",notice_name+" 想加你為好友")
+                .add("content",user_name+" 想加你為好友")
                 .build();
 
         Request request = new Request.Builder()
