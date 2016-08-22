@@ -44,6 +44,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -52,12 +53,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.File;
 
 public class MainActivity extends ActionBarActivity {
+   public static final String FRAGMENT_TAG = "single";
    final Context context = this;
    private DrawerLayout mDrawerLayout;
    private ListView mDrawerList;
@@ -88,7 +91,7 @@ public class MainActivity extends ActionBarActivity {
       //Set NavigationDrawer
       mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
       mDrawerList = (ListView) findViewById(R.id.left_drawer);
-      mDrawerList.setBackgroundResource(R.color.Black);
+      mDrawerList.setBackgroundResource(R.drawable.night_sky);
       itemList = getResources().getStringArray(R.array.item_list);
 
       //Set the content of the activity with the MainFagment
@@ -453,6 +456,28 @@ public class MainActivity extends ActionBarActivity {
    }
    public void go (View v) {
       MainActivity.changeFragment(getFragmentManager(), new Creater_Detail());
+   }
+   private void showInputDialog(){
+      android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(this);
+      builder.setTitle("Change city");
+      final EditText input = new EditText(this);
+      input.setInputType(InputType.TYPE_CLASS_TEXT);
+      builder.setView(input);
+      builder.setPositiveButton("Go", new DialogInterface.OnClickListener() {
+         @Override
+         public void onClick(DialogInterface dialog, int which) {
+            changeCity(input.getText().toString());
+         }
+      });
+      builder.show();
+   }
+
+   public void changeCity(String city){
+      WeatherActivityFragment wf = (WeatherActivityFragment)getSupportFragmentManager()
+              .findFragmentById(R.id.content_frame);
+      wf.changeCity(city);
+      new CityPreference(this).setCity(city);
+
    }
 
 }
