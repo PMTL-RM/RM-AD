@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d(TAG, "not log in yet");
                 } else {
                     Log.d(TAG, "Logged in");
-                    Intent main = new Intent(LoginActivity.this,MainActivity.class);
+                    Intent main = new Intent(LoginActivity.this,GuideActivity.class);
                     startActivity(main);
 
                 }
@@ -167,7 +167,7 @@ public class LoginActivity extends AppCompatActivity {
                 request1.executeAsync();
 
 
-                Intent main = new Intent(LoginActivity.this,MainActivity.class);
+                Intent main = new Intent(LoginActivity.this,GuideActivity.class);
                 startActivity(main);
 
             }
