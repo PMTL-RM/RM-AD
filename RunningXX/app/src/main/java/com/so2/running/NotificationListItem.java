@@ -26,7 +26,7 @@ public class NotificationListItem
 {
 
     private String content;
-    private String notice_name;
+    private String friend_name;
 
 
     public String getContent() {
@@ -36,11 +36,11 @@ public class NotificationListItem
     public void setContent(String content) {this.content = content;}
 
 
-    public String getNotice_name() {
-        return notice_name;
+    public String getFriend_name() {
+        return friend_name;
     }
 
-    public void setNotice_name(String notice_name) {this.notice_name = notice_name;}
+    public void setFriend_name(String friend_name) {this.friend_name = friend_name;}
 
 
 

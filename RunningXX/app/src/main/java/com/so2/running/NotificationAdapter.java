@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
         // TODO Auto-generated method stub
 
         TextView content;
-        Button decide_button ;
+        final Button decide_button ;
 
         convertView = mInflater.inflate(R.layout.notification_list_item, null);
 
@@ -61,15 +62,15 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
         decide_button = (Button) convertView.findViewById(R.id.decide_button);
 
         content.setText(sessionList.get(position).getContent());
-        final String friend_name = sessionList.get(position).getNotice_name();
+        final String friend_name = sessionList.get(position).getFriend_name();
 
         System.out.println("asd asda asdd asds ::::"+friend_name);
 
         decide_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "http://ncnurunforall-yychiu.rhcloud.com/friendlists/"+user_name+"/"+friend_name;
-                String url1 = "http://ncnurunforall-yychiu.rhcloud.com/notices/"+user_name+"/"+friend_name;
+                String url = "http://ncnurunforall-yychiu.rhcloud.com/friendlists/"+ friend_name+"/"+user_name;
+                String url1 = "http://ncnurunforall-yychiu.rhcloud.com/notices/"+friend_name+"/"+ user_name;
                 String url2 = "http://ncnurunforall-yychiu.rhcloud.com/friendlists/";
                 try {
                     doPatchFriendListRequest(url);
@@ -78,6 +79,8 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                Toast.makeText(getContext(), "加好友成功", Toast.LENGTH_SHORT).show();
+                decide_button.setEnabled(false);
             }
         });
 
@@ -120,12 +123,12 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
         OkHttpClient client = new OkHttpClient();
 
 
-        final String friend_name = sessionList.get(position).getNotice_name();
+        final String friend_name = sessionList.get(position).getFriend_name();
 
         RequestBody formBody = new FormBody.Builder()
                 .add("status", "1")
-                .add("user_name",friend_name)
-                .add("friend_name",user_name)
+                .add("user_name", user_name)
+                .add("friend_name",friend_name)
                 .build();
 
         Request request = new Request.Builder()
