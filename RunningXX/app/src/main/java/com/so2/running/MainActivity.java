@@ -91,7 +91,7 @@ public class MainActivity extends ActionBarActivity {
       //Set NavigationDrawer
       mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
       mDrawerList = (ListView) findViewById(R.id.left_drawer);
-      mDrawerList.setBackgroundResource(R.drawable.night_sky);
+      mDrawerList.setBackgroundResource(R.color.Black);
       itemList = getResources().getStringArray(R.array.item_list);
 
       //Set the content of the activity with the MainFagment

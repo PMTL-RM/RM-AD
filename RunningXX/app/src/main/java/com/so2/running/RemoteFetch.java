@@ -13,7 +13,7 @@ import java.net.URL;
 public class RemoteFetch {
 
     private static final String OPEN_WEATHER_MAP_API =
-            "http://api.openweathermap.org/data/2.5/weather?id=1675720&appid=501e2ddc2301b017cc303bfe41ba42f1";
+            "http://api.openweathermap.org/data/2.5/weather?id=1670310&appid=501e2ddc2301b017cc303bfe41ba42f1";
 
     public static JSONObject getJSON(Context context, String city) {
         try {

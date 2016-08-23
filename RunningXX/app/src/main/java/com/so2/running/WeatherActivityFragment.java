@@ -87,7 +87,7 @@ public class WeatherActivityFragment extends Fragment {
                     String.format("%s\nHumidity: %s%%\nPressure: %s hPa", details.getString("description").toUpperCase(Locale.US), main.getString("humidity"), main.getString("pressure")));
 
             currentTemperatureField.setText(
-                    String.format("%s ℃", String.format("%.2f", main.getDouble("temp"))));
+                    String.format("%s ℃", String.format("%.2f", main.getDouble("temp")-273.15)));
 
             DateFormat df = DateFormat.getDateTimeInstance();
             String updatedOn = df.format(new Date(json.getLong("dt") * 1000));
