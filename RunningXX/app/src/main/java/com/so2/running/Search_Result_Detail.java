@@ -33,12 +33,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.so2.running.Fragment.TeamListItem;
+
 public class Search_Result_Detail extends Fragment {
     View view;
-    Fragment2ListItem item;
+    TeamListItem item;
     Button returnbutton ;
 
-    public void setItem (Fragment2ListItem item)
+    public void setItem (TeamListItem item)
     {
         this.item = item;
     }

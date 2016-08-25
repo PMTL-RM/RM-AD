@@ -1,4 +1,4 @@
-package com.so2.running;
+package com.so2.running.Fragment;
 
 
 import android.app.Fragment;
@@ -19,12 +19,14 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.LikeView;
 import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
+import com.so2.running.MainFragment;
+import com.so2.running.R;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class UserActivity extends Fragment {
+public class UserInterface extends Fragment {
     ImageView imageView;
     TextView txtName, txtURL, txtGender,txtBd;
     Button btnShare , returnbutton;

@@ -1,4 +1,4 @@
-package com.so2.running;
+package com.so2.running.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,16 +10,17 @@ import android.widget.ImageView;
 
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.so2.running.Adapter.GuideAdapter;
+import com.so2.running.MainActivity;
+import com.so2.running.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 罗峰 on 2016/8/17.
- */
+
 public class GuideActivity extends Activity implements ViewPager.OnPageChangeListener {
     private ViewPager vp;
-    private ViewPagerAdapter vpAdapter;
+    private GuideAdapter vpAdapter;
     private List<View> views;
     private ImageView[] dots;
     private int[] ids = {R.id.dot_1, R.id.dot_2, R.id.dot_3};
@@ -49,7 +50,7 @@ public class GuideActivity extends Activity implements ViewPager.OnPageChangeLis
         views.add(inflater.inflate(R.layout.lead_2, null));
         views.add(inflater.inflate(R.layout.lead_3, null));
 
-        vpAdapter = new ViewPagerAdapter(views, this);
+        vpAdapter = new GuideAdapter(views, this);
         vp = (ViewPager) findViewById(R.id.viewpager);
         vp.setAdapter(vpAdapter);
         startButton = (ImageView) views.get(2).findViewById(R.id.start_button);

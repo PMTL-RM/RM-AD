@@ -1,4 +1,4 @@
-package com.so2.running;
+package com.so2.running.Activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +23,7 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.so2.running.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

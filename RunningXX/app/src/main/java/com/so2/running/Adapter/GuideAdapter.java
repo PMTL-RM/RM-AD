@@ -1,4 +1,4 @@
-package com.so2.running;
+package com.so2.running.Adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -7,17 +7,14 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-/**
- * Created by 罗峰 on 2016/8/17.
- */
-public class ViewPagerAdapter extends PagerAdapter{
+public class GuideAdapter extends PagerAdapter{
 
     private List<View> views;
     private Context context;
 
 
 
-    public ViewPagerAdapter(List<View> views, Context context) {
+    public GuideAdapter(List<View> views, Context context) {
         this.views = views;
         this.context = context;
     }

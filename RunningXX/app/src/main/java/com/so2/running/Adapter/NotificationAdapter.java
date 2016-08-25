@@ -1,4 +1,4 @@
-package com.so2.running;
+package com.so2.running.Adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.so2.running.Fragment.NotificationListItem;
+import com.so2.running.R;
 
 import java.io.IOException;
 import java.util.ArrayList;

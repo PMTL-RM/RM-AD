@@ -1,8 +1,6 @@
-package com.so2.running;
+package com.so2.running.Fragment;
 
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
+
+import com.so2.running.Adapter.FriendsAdapter;
+import com.so2.running.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,35 +27,35 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class Fragment2 extends android.app.Fragment {
-    Fragment2ListItem item2 = new Fragment2ListItem();
-    Button returnbutton ;
+public class FriendsList extends android.app.Fragment {
+    FriendsListItem item2 = new FriendsListItem();
+//    Button returnbutton ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         SharedPreferences preferences = this.getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);
         String name = preferences.getString("name","error");
-        System.out.println("here :::::::"+name);
 
-        ArrayList<Fragment2ListItem> sessionList;
-        View view = inflater.inflate(R.layout.frag2, container, false);
-        final ListView listview = (ListView) view.findViewById(R.id.team_list_view);
+        System.out.println(name);
+        ArrayList<FriendsListItem> sessionList;
+        View view = inflater.inflate(R.layout.fragment_friends, container, false);
+        final ListView listview = (ListView) view.findViewById(R.id.friends_list_view);
 
-        returnbutton = (Button)view.findViewById(R.id.returnbutton);
-
-
-        returnbutton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
-                ft.commit();
-            }
-        });
+//        returnbutton = (Button)view.findViewById(R.id.returnbutton);
+//
+//
+//        returnbutton.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
+//                ft.commit();
+//            }
+//        });
 
         //Set ActionBar title
-        getActivity().setTitle(getString(R.string.title_info));
+        getActivity().setTitle("好友列表");
         // Inflate the layout for this fragment
 
 
@@ -63,27 +63,17 @@ public class Fragment2 extends android.app.Fragment {
 
         //If there are no sessions emtyListFragment is called
         if (sessionList.size() == 0) {
-            view = inflater.inflate(R.layout.frag2_createteam_layout, container, false);
-            ;
+            view = inflater.inflate(R.layout.fragment_team_list_item, container, false);
         }
 
         //Visualize session list
         else {
-            listview.setAdapter(new Fragment2Adapter(getActivity(), R.layout.frag2_createteam_layout, sessionList));
+            listview.setAdapter(new FriendsAdapter(getActivity(), R.layout.friends_layout, sessionList));
 
             listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 //Go to session detail
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                    // selected item
-                    final Fragment2ListItem item = (Fragment2ListItem) listview.getItemAtPosition(position);
-                    System.out.println("the position : : "+position);
-                    Fragment2Detail itemDetail = new Fragment2Detail();
-                    itemDetail.setItem(item);
-                    FragmentManager fm = getFragmentManager();
-                    fm.beginTransaction()
-                            .replace(R.id.content_frame, itemDetail)
-                            .commit();
                 }
             });
 
@@ -92,43 +82,37 @@ public class Fragment2 extends android.app.Fragment {
         return view;
     }
 
-    public ArrayList<Fragment2ListItem> getSessionList(String name) {
-        final ArrayList<Fragment2ListItem> sessionList = new ArrayList<>();
+    public ArrayList<FriendsListItem> getSessionList(String name) {
+        final ArrayList<FriendsListItem> sessionList = new ArrayList<>();
 
         OkHttpClient client = new OkHttpClient();
 
-        System.out.println("you should be :::" + name);
 
         Request req = new Request.Builder()
-                .url("http://ncnurunforall-yychiu.rhcloud.com/groups/" + name)
+                .url("http://ncnurunforall-yychiu.rhcloud.com/friendlists/" + name)
                 .build();
         Call call = client.newCall(req);
 
         call.enqueue(new Callback() {
+
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String aFinalString = response.body().string();
                 System.out.println(aFinalString);
-                Fragment2ListItem item;
+                FriendsListItem item;
                 if (response.isSuccessful()) try {
                     final JSONArray array = new JSONArray(aFinalString);
 
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject obj = array.getJSONObject(i);
-                        item = new Fragment2ListItem();
+                        item = new FriendsListItem();
 
-                        item.setUsername(obj.getString("username"));
-                        item.setGroupname(obj.getString("groupname"));
-                        item.setContent(obj.getString("content"));
-                        item.setDate(obj.getString("date"));
-                        item.setTime(obj.getString("time"));
-                        item.setLocation(obj.getString("location"));
-                        item.setPrivacy(obj.getString("privacy"));
+                        item.setName(obj.getString("friend_name"));
 
                         item2 = item;
 
                         sessionList.add(item2);
-                        Log.d("JSON:", item2.getUsername() + "/" + item2.getGroupname() + "/" + item2.getDate()+item2.getTime() + "/" + item2.getContent() + "/" + item2.getLocation()+ "/" + item2.getPrivacy());
+                        Log.d("JSON:",  item2.getName());
                     }
 
                 } catch (JSONException e) {
@@ -145,7 +129,7 @@ public class Fragment2 extends android.app.Fragment {
             }
         });
 
-        if (item2.getUsername() == null) {
+        if (item2.getName() == null) {
             synchronized (this) {
                 try {
                     wait(1000);

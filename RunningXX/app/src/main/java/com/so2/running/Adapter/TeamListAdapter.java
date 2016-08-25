@@ -1,4 +1,4 @@
-package com.so2.running;
+package com.so2.running.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,15 +7,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.so2.running.Fragment.TeamListItem;
+import com.so2.running.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Fragment2Adapter extends ArrayAdapter<Fragment2ListItem> {
+public class TeamListAdapter extends ArrayAdapter<TeamListItem> {
     private LayoutInflater mInflater;
-    private ArrayList<Fragment2ListItem> sessionList;
+    private ArrayList<TeamListItem> sessionList;
 
-    public Fragment2Adapter(Context context, int resource, List<Fragment2ListItem> objects) {
+    public TeamListAdapter(Context context, int resource, List<TeamListItem> objects) {
         super(context, resource, objects);
         sessionList = (ArrayList) objects;
         mInflater = LayoutInflater.from(context);
@@ -26,7 +28,7 @@ public class Fragment2Adapter extends ArrayAdapter<Fragment2ListItem> {
     }
 
     @Override
-    public Fragment2ListItem getItem(int arg0) {
+    public TeamListItem getItem(int arg0) {
         return sessionList.get(arg0);
     }
 
@@ -41,7 +43,7 @@ public class Fragment2Adapter extends ArrayAdapter<Fragment2ListItem> {
         TextView date;
         TextView location;
 
-        convertView = mInflater.inflate(R.layout.frag2_createteam_layout, null);
+        convertView = mInflater.inflate(R.layout.fragment_team_list_item, null);
         groupname = (TextView) convertView.findViewById(R.id.groupname);
         date = (TextView) convertView.findViewById(R.id.date);
         location = (TextView) convertView.findViewById(R.id.location);

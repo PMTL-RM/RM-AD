@@ -1,4 +1,4 @@
-package com.so2.running;
+package com.so2.running.Fragment;
 
 
 import android.content.Context;
@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.so2.running.Adapter.NotificationAdapter;
+import com.so2.running.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +27,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class NotificationFragment extends android.app.Fragment {
+public class Notification extends android.app.Fragment {
     NotificationListItem item2 = new NotificationListItem();
 //    Button returnbutton ;
 
@@ -59,7 +62,7 @@ public class NotificationFragment extends android.app.Fragment {
 
         //If there are no sessions emtyListFragment is called
         if (sessionList.size() == 0) {
-            view = inflater.inflate(R.layout.frag2_createteam_layout, container, false);
+            view = inflater.inflate(R.layout.fragment_team_list_item, container, false);
         }
 
         //Visualize session list

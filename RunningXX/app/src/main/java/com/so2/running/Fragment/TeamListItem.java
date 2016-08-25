@@ -19,10 +19,9 @@
 /**
  * This class contain session data
  */
+package com.so2.running.Fragment;
 
-package com.so2.running;
-
-public class Fragment2ListItem
+public class TeamListItem
 {
 
     private String location;

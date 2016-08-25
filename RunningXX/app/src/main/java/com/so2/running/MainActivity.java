@@ -57,6 +57,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.so2.running.Fragment.UserInterface;
+import com.so2.running.Fragment.FriendsList;
+import com.so2.running.Fragment.Notification;
+import com.so2.running.Fragment.TeamList;
+
 import java.io.File;
 
 public class MainActivity extends ActionBarActivity {
@@ -106,7 +111,7 @@ public class MainActivity extends ActionBarActivity {
             switch (position) {
                //Go to session list
                case 0:
-                  MainActivity.changeFragment(getFragmentManager(), new UserActivity());
+                  MainActivity.changeFragment(getFragmentManager(), new UserInterface());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
                //Go to session list
@@ -121,12 +126,12 @@ public class MainActivity extends ActionBarActivity {
                   break;
                //Go to Teams
                case 2:
-                  MainActivity.changeFragment(getFragmentManager(), new Fragment2());
+                  MainActivity.changeFragment(getFragmentManager(), new TeamList());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
                //Go to Friends
                case 3:
-                  MainActivity.changeFragment(getFragmentManager(), new FriendsFragment());
+                  MainActivity.changeFragment(getFragmentManager(), new FriendsList());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
                //Show import dialog
@@ -285,7 +290,7 @@ public class MainActivity extends ActionBarActivity {
             return true;
          case R.id.action_announcement:
             //startActivity(new Intent(this, MapsActivity.class));
-            MainActivity.changeFragment(getFragmentManager(), new NotificationFragment());
+            MainActivity.changeFragment(getFragmentManager(), new Notification());
             Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
             return true;
       }

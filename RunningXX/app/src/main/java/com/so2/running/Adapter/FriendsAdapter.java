@@ -1,4 +1,4 @@
-package com.so2.running;
+package com.so2.running.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.so2.running.Fragment.FriendsListItem;
+import com.so2.running.R;
 
 import java.util.ArrayList;
 import java.util.List;

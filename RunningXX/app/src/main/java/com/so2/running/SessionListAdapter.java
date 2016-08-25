@@ -10,9 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Studente on 24/02/2015.
- */
+
 public class SessionListAdapter extends ArrayAdapter<SessionListItem>
 {
    private LayoutInflater mInflater;

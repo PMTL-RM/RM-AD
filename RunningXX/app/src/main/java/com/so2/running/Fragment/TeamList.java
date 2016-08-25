@@ -1,7 +1,6 @@
-package com.so2.running;
+package com.so2.running.Fragment;
 
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -16,7 +15,8 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.so2.running.Adapter.TeamListAdapter;
-import com.so2.running.Fragment.TeamListItem;
+import com.so2.running.MainFragment;
+import com.so2.running.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,21 +31,18 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class Search_Result extends Fragment {
+public class TeamList extends android.app.Fragment {
     TeamListItem item2 = new TeamListItem();
     Button returnbutton ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("search", Context.MODE_PRIVATE);
-        String city = preferences.getString("city","error");
-        String zone = preferences.getString("zone","error");
-        String date = preferences.getString("date","error");
-
-        System.out.println("here :::::::"+city+zone+date);
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);
+        String name = preferences.getString("name","error");
+        System.out.println("here :::::::"+name);
 
         ArrayList<TeamListItem> sessionList;
-        View view = inflater.inflate(R.layout.search_result, container, false);
+        View view = inflater.inflate(R.layout.fragment_team_list, container, false);
         final ListView listview = (ListView) view.findViewById(R.id.team_list_view);
 
         returnbutton = (Button)view.findViewById(R.id.returnbutton);
@@ -56,7 +53,7 @@ public class Search_Result extends Fragment {
             @Override
             public void onClick(View v)
             {
-                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new SearchFragment());
+                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
                 ft.commit();
             }
         });
@@ -66,7 +63,7 @@ public class Search_Result extends Fragment {
         // Inflate the layout for this fragment
 
 
-        sessionList = getSessionList(city , zone , date);
+        sessionList = getSessionList(name);
 
         //If there are no sessions emtyListFragment is called
         if (sessionList.size() == 0) {
@@ -85,7 +82,7 @@ public class Search_Result extends Fragment {
                     // selected item
                     final TeamListItem item = (TeamListItem) listview.getItemAtPosition(position);
                     System.out.println("the position : : "+position);
-                    Search_Result_Detail itemDetail = new Search_Result_Detail();
+                    TeamListDetail itemDetail = new TeamListDetail();
                     itemDetail.setItem(item);
                     FragmentManager fm = getFragmentManager();
                     fm.beginTransaction()
@@ -99,15 +96,15 @@ public class Search_Result extends Fragment {
         return view;
     }
 
-    public ArrayList<TeamListItem> getSessionList(String city , String zone , String date) {
+    public ArrayList<TeamListItem> getSessionList(String name) {
         final ArrayList<TeamListItem> sessionList = new ArrayList<>();
 
         OkHttpClient client = new OkHttpClient();
 
-        System.out.println("the vaules you give in Search_Result.java are  :::::" + city+zone+date);
+        System.out.println("you should be :::" + name);
 
         Request req = new Request.Builder()
-                .url("http://ncnurunforall-yychiu.rhcloud.com/groups/privacy/" + city +"/"+zone +"/"+date )
+                .url("http://ncnurunforall-yychiu.rhcloud.com/groups/" + name)
                 .build();
         Call call = client.newCall(req);
 
@@ -130,6 +127,7 @@ public class Search_Result extends Fragment {
                         item.setDate(obj.getString("date"));
                         item.setTime(obj.getString("time"));
                         item.setLocation(obj.getString("location"));
+                        item.setPrivacy(obj.getString("privacy"));
 
                         item2 = item;
 
