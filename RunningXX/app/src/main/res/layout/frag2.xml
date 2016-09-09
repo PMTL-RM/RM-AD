@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#bfd9eb"
-   >
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    >
 
     <ListView
-        android:id="@+id/session_list_view"
+        android:id="@+id/team_list_view"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:choiceMode="singleChoice"
         android:textColor="@color/DimGray"
         android:divider="@color/White"
-        android:dividerHeight="10dp"
+        android:dividerHeight="20dp"
         />
 
     <Button

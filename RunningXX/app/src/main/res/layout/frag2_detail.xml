@@ -12,19 +12,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="創團人 : "
+            android:text="人名 : "
+            android:textColor="@color/Black"
             android:id="@+id/textView3"
             android:layout_above="@+id/textView6"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="45dp"
             android:textSize="25dp" />
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/name"
+            android:id="@+id/content"
             android:textSize="20dp"
+            android:textColor="@color/Black"
             android:layout_alignBottom="@+id/textView6"
             android:layout_toEndOf="@+id/textView6" />
 
@@ -32,39 +35,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/name2"
-            android:background="#bfd9eb"
+            android:id="@+id/name"
             android:textSize="20dp"
+            android:textColor="@color/Black"
             android:layout_alignBottom="@+id/textView3"
             android:layout_toEndOf="@+id/textView3" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/Black"
             android:text="詳細內容 : "
             android:id="@+id/textView6"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
             android:textSize="25dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="privacy : "
-            android:id="@+id/textView11"
-            android:layout_marginTop="48dp"
-            android:layout_below="@+id/textView6"
-            android:layout_alignParentStart="true"
-            android:textSize="25dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/privacy"
-            android:layout_alignBottom="@+id/textView11"
-            android:layout_toEndOf="@+id/textView11"
-            android:textSize="20dp" />
     </RelativeLayout>
 
     <Button
@@ -72,7 +57,8 @@
         android:layout_height="wrap_content"
         android:text="返回"
         android:id="@+id/returnbutton"
+        android:background="#ff8040"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
