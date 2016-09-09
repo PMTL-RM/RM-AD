@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#bfd9eb"
+              android:background="@color/White"
    >
 
     <ListView
@@ -13,7 +13,7 @@
         android:choiceMode="singleChoice"
         android:textColor="@color/DimGray"
         android:divider="@color/White"
-        android:dividerHeight="10dp"
+        android:dividerHeight="20dp"
         />
 
     <Button

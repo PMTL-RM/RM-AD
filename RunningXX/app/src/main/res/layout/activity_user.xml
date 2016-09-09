@@ -6,7 +6,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.so2.running.UserActivity"
     android:theme="@style/Theme.AppCompat.Light"
-    android:background="#bfd9eb"
     >
 
     <TableLayout
@@ -153,7 +152,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Share Dialog"
-                android:background="#ff8040"
                 android:id="@+id/btnShare"
                 android:layout_column="1" />
 
@@ -164,7 +162,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#ff8040"
+
         android:text="返回"
         android:id="@+id/returnbutton"
         android:layout_alignParentBottom="true"
