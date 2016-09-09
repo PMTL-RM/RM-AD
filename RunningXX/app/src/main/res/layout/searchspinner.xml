@@ -8,6 +8,6 @@
     android:paddingLeft="8dip"
     android:singleLine="true"
     android:textColor="#8B008B"
-    android:textSize="32sp"
+    android:textSize="25dp"
     android:textStyle="bold" >
 </TextView>

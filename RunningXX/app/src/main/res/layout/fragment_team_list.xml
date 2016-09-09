@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White"
+    android:background="#bfd9eb"
     >
 
     <ListView
@@ -13,7 +13,7 @@
         android:choiceMode="singleChoice"
         android:textColor="@color/DimGray"
         android:divider="@color/White"
-        android:dividerHeight="20dp"
+        android:dividerHeight="10dp"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/returnbutton"
         android:layout_below="@+id/textView8" />
@@ -25,6 +25,7 @@
         android:layout_height="35dp"
         android:text="團名"
         android:id="@+id/textView8"
+        android:textColor="#FFFFFF"
         android:textSize="25dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
@@ -35,6 +36,7 @@
         android:layout_height="wrap_content"
         android:text="地點"
         android:id="@+id/textView9"
+        android:textColor="#FFFFFF"
         android:textSize="25dp"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/textView8"
@@ -44,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="時間"
+        android:textColor="#FFFFFF"
         android:id="@+id/textView10"
         android:textSize="25dp"
         android:layout_alignParentTop="true"
@@ -53,8 +56,10 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:background="#ff8040"
         android:text="返回"
+        android:textSize="25dp"
         android:id="@+id/returnbutton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"

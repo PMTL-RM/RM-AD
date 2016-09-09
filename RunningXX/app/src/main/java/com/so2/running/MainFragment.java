@@ -36,6 +36,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,9 +59,9 @@ public class MainFragment extends Fragment {
 
    Handler handler;
 
-   private Button newSessionButton;
-   private Button sessionListButton;
-   private Button team_button;
+   private ImageView newSessionButton;
+   private ImageView sessionListButton;
+   private ImageView createteamButton;
    //   private boolean isGPSFix = false;
 //   private long lastUpdateMillis;   //used to verify GPS availability
 //   private Location lastLocation;   //used to verify GPS availability
@@ -85,7 +86,7 @@ public class MainFragment extends Fragment {
 
       weatherIcon.setTypeface(weatherFont);
 
-      newSessionButton = (Button) view.findViewById(R.id.newSessionButton);
+      newSessionButton = (ImageView) view.findViewById(R.id.newSessionButton);
       newSessionButton.setOnClickListener(new View.OnClickListener()
       {
          @Override
@@ -104,7 +105,7 @@ public class MainFragment extends Fragment {
       });
 
       //Go to session list
-      sessionListButton = (Button) view.findViewById(R.id.sessionListButton);
+      sessionListButton = (ImageView) view.findViewById(R.id.sessionListButton);
       sessionListButton.setOnClickListener(new View.OnClickListener()
       {
          @Override
@@ -119,8 +120,8 @@ public class MainFragment extends Fragment {
       });
 
       //Go to session list
-      team_button = (Button) view.findViewById(R.id.button);
-      team_button.setOnClickListener(new View.OnClickListener()
+      createteamButton = (ImageView) view.findViewById(R.id.createteamButton);
+      createteamButton.setOnClickListener(new View.OnClickListener()
       {
          @Override
          public void onClick(View v)
