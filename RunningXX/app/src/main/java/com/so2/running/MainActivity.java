@@ -42,8 +42,8 @@ import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -57,14 +57,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.so2.running.Fragment.UserInterface;
 import com.so2.running.Fragment.FriendsList;
 import com.so2.running.Fragment.Notification;
 import com.so2.running.Fragment.TeamList;
+import com.so2.running.Fragment.UserInterface;
 
 import java.io.File;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
    public static final String FRAGMENT_TAG = "single";
    final Context context = this;
    private DrawerLayout mDrawerLayout;

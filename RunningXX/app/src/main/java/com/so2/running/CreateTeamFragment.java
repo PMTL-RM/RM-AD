@@ -4,7 +4,7 @@ package com.so2.running;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.app.DialogFragment;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,9 +26,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -45,15 +50,18 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-public class CreateTeamFragment extends DialogFragment {
+public class CreateTeamFragment extends Fragment implements View.OnClickListener {
 
     private View view;
     private ImageButton privacy_button;
-    Button button,image_button ;
+    Button button,image_button, addfriend;
     ImageButton timebutton ,datebutton,myImage;
     EditText editText  , editText1 , editText2 ;
-    TextView privacy, date, time;
+    TextView privacy, date, time, friend_txv;
     String choice;
+
+    private ListView lv;
+
 
     ImageView viewImage;
 
@@ -119,6 +127,11 @@ public class CreateTeamFragment extends DialogFragment {
         datebutton = (ImageButton)view.findViewById(R.id.datebutton);
         timebutton = (ImageButton)view.findViewById(R.id.timebutton);
         privacy_button = (ImageButton)view.findViewById(R.id.privacy_button);
+        friend_txv = (TextView)view.findViewById(R.id.friend_txv);
+
+
+        addfriend = (Button)view.findViewById(R.id.addfriend);
+        addfriend.setOnClickListener(this);
 
 
         editText = (EditText)view.findViewById(R.id.editText);
@@ -241,9 +254,6 @@ public class CreateTeamFragment extends DialogFragment {
                 } else {
                     Log.e("APp", "Error");
                 }
-
-
-
             }
 
         });
@@ -359,4 +369,112 @@ public class CreateTeamFragment extends DialogFragment {
     }
 
 
+
+    @Override
+    public void onClick(View view) {
+        showMultiChoiceItems();
+    }
+
+    private void showMultiChoiceItems() {
+
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);
+        String name = preferences.getString("name","error");
+
+        final String[] province = getFriend_Name(name);
+
+
+        AlertDialog builder = new AlertDialog.Builder(getActivity())
+                .setTitle("请选择你的省份：")
+                .setMultiChoiceItems(province,
+
+                        new boolean[]{false, false, false, false, false},
+
+                        new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                // TODO Auto-generated method stub
+                            }
+                        })
+
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String s = "您选择了：";
+                        // 扫描所有的列表项，如果当前列表项被选中，将列表项的文本追加到s变量中。
+                        for (int i = 0; i < province.length; i++) {
+                            if (lv.getCheckedItemPositions().get(i)) {
+                                s += i + ":" + lv.getAdapter().getItem(i) + " ";
+                            }
+                        }
+
+                        // 用户至少选择了一个列表项
+                        if (lv.getCheckedItemPositions().size() > 0) {
+                            new AlertDialog.Builder(getActivity()).setMessage(s).show();
+                            System.out.println(lv.getCheckedItemPositions().size());
+                        }
+
+                        // 用户未选择任何列表项
+                        else if (lv.getCheckedItemPositions().size() <= 0) {
+                            new AlertDialog.Builder(getActivity()).setMessage("您未选择任何省份").show();
+                        }
+                        friend_txv.setText(s);
+                    }
+                }).setNegativeButton("取消", null).create();
+        lv = builder.getListView();
+        builder.show();
+    }
+
+    public String[] getFriend_Name(String name) {
+        final String[][] friend_name = new String[1][1];
+
+        OkHttpClient client = new OkHttpClient();
+
+
+        Request req = new Request.Builder()
+                .url("http://ncnurunforall-yychiu.rhcloud.com/friendlists/" + name)
+                .build();
+        Call call = client.newCall(req);
+
+        call.enqueue(new Callback() {
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String aFinalString = response.body().string();
+                System.out.println(aFinalString);
+
+                if (response.isSuccessful()) try {
+                    final JSONArray array = new JSONArray(aFinalString);
+                    friend_name[0] = new String[array.length()];
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject obj = array.getJSONObject(i);
+                        friend_name[0][i] = obj.getString("friend_name");
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                else {
+                    Log.e("APp", "Error");
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                //告知使用者連線失敗
+            }
+
+        });
+        if (friend_name[0][0] == null) {
+            synchronized (this) {
+                try {
+                    wait(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            onStart();
+        }
+        return friend_name[0];
+    }
 }
