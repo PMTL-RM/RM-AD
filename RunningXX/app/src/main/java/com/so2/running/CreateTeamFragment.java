@@ -384,7 +384,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
 
 
         AlertDialog builder = new AlertDialog.Builder(getActivity())
-                .setTitle("请选择你的省份：")
+                .setTitle("想新增的好友：")
                 .setMultiChoiceItems(province,
 
                         new boolean[]{false, false, false, false, false},
@@ -396,28 +396,29 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                             }
                         })
 
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String s = "您选择了：";
+                        String s = "新增了：";
+                        String friends = "";
                         // 扫描所有的列表项，如果当前列表项被选中，将列表项的文本追加到s变量中。
                         for (int i = 0; i < province.length; i++) {
                             if (lv.getCheckedItemPositions().get(i)) {
-                                s += i + ":" + lv.getAdapter().getItem(i) + " ";
+                                friends += lv.getAdapter().getItem(i) + " ";
                             }
                         }
 
                         // 用户至少选择了一个列表项
                         if (lv.getCheckedItemPositions().size() > 0) {
-                            new AlertDialog.Builder(getActivity()).setMessage(s).show();
+                            new AlertDialog.Builder(getActivity()).setMessage(s+friends).show();
                             System.out.println(lv.getCheckedItemPositions().size());
                         }
 
                         // 用户未选择任何列表项
                         else if (lv.getCheckedItemPositions().size() <= 0) {
-                            new AlertDialog.Builder(getActivity()).setMessage("您未选择任何省份").show();
+                            new AlertDialog.Builder(getActivity()).setMessage("您未選取任何好友！").show();
                         }
-                        friend_txv.setText(s);
+                        friend_txv.setText(new StringBuilder().append(s).append(friends).toString());
                     }
                 }).setNegativeButton("取消", null).create();
         lv = builder.getListView();
@@ -468,7 +469,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
         if (friend_name[0][0] == null) {
             synchronized (this) {
                 try {
-                    wait(1000);
+                    wait(1500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
