@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.so2.running.UserActivity"
+    tools:context="com.so2.running.Fragment.UserInterface"
     android:theme="@style/Theme.AppCompat.Light"
-    android:background="#bfd9eb"
+    android:background="@color/White"
     >
 
     <TableLayout
@@ -27,7 +27,7 @@
                 android:id="@+id/imgPhoto"
                 android:scaleType="fitCenter"
                 android:layout_weight="1"
-                android:background="#86a9f3" />
+                android:background="@color/Tan" />
         </TableRow>
 
 
@@ -150,10 +150,13 @@
 
             <Button
                 style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:text="Share Dialog"
-                android:background="#ff8040"
+                android:textSize="20dp"
+                android:layout_marginTop="0dp"
+                android:textColor="@color/White"
+                android:background="#000000"
                 android:id="@+id/btnShare"
                 android:layout_column="1" />
 
@@ -162,11 +165,15 @@
     </TableLayout>
 
     <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="#ff8040"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:background="#000000"
+        android:textSize="25dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:text="返回"
         android:id="@+id/returnbutton"
+        android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

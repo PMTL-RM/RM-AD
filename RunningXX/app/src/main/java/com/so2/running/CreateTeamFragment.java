@@ -54,8 +54,8 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
 
     private View view;
     private ImageButton privacy_button;
-    Button button,image_button, addfriend;
-    ImageButton timebutton ,datebutton,myImage;
+    Button button,image_button;
+    ImageButton timebutton ,datebutton,myImage, addfriend;
     EditText editText  , editText1 , editText2 ;
     TextView privacy, date, time, friend_txv;
     String choice;
@@ -130,7 +130,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
         friend_txv = (TextView)view.findViewById(R.id.friend_txv);
 
 
-        addfriend = (Button)view.findViewById(R.id.addfriend);
+        addfriend = (ImageButton)view.findViewById(R.id.addfriend);
         addfriend.setOnClickListener(this);
 
 
@@ -188,9 +188,9 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
             }
         });
 
-        image_button =(Button)view.findViewById(R.id.btnSelectPhoto);
+//        image_button =(Button)view.findViewById(R.id.btnSelectPhoto);
         viewImage=(ImageView)view.findViewById(R.id.viewImage);
-        image_button.setOnClickListener(new View.OnClickListener() {
+        viewImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectImage();
@@ -236,7 +236,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                 .build();
 
         Request request = new Request.Builder()
-              .url(url)
+                .url(url)
                 .post(formBody)
                 .build();
 

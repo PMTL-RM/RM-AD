@@ -42,8 +42,8 @@ import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -57,14 +57,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.so2.running.Fragment.UserInterface;
 import com.so2.running.Fragment.FriendsList;
 import com.so2.running.Fragment.Notification;
 import com.so2.running.Fragment.TeamList;
-import com.so2.running.Fragment.UserInterface;
 
 import java.io.File;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ActionBarActivity {
    public static final String FRAGMENT_TAG = "single";
    final Context context = this;
    private DrawerLayout mDrawerLayout;
@@ -91,12 +91,12 @@ public class MainActivity extends AppCompatActivity {
       ActionBar actionBar = getSupportActionBar();
       actionBar.setDisplayHomeAsUpEnabled(true);
       actionBar.setElevation(0);
-      actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.Black)));
+      actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.Tan)));
 
       //Set NavigationDrawer
       mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
       mDrawerList = (ListView) findViewById(R.id.left_drawer);
-      mDrawerList.setBackgroundResource(R.color.Black);
+      mDrawerList.setBackgroundResource(R.color.Tan);
       itemList = getResources().getStringArray(R.array.item_list);
 
       //Set the content of the activity with the MainFagment
@@ -486,4 +486,3 @@ public class MainActivity extends AppCompatActivity {
    }
 
 }
-

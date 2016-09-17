@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FriendsList"
-    android:background="#bfd9eb">
+    android:background="#ffffff">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -13,6 +13,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/friends_list_view"
         android:layout_gravity="center"
-        android:divider="#FFFFFF"
-        android:dividerHeight="10dp"/>
+        android:divider="#bebebe"
+        android:dividerHeight="1dp"/>
 </RelativeLayout>

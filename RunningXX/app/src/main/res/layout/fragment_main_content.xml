@@ -11,12 +11,12 @@
 
 
    <ImageView
-      android:id="@+id/sessionListButton"
-      android:src="@drawable/sessionlist"
-      android:layout_width="100dp"
-      android:layout_height="100dp"
-      android:layout_marginTop="490dp"
-      android:layout_marginLeft="20dp" />
+       android:id="@+id/sessionListButton"
+       android:src="@drawable/sessionlist"
+       android:layout_width="100dp"
+       android:layout_height="100dp"
+       android:layout_marginTop="490dp"
+       android:layout_marginLeft="20dp" />
 
    <ImageView
        android:layout_width="100dp"
