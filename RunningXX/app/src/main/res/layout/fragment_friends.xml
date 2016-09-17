@@ -3,7 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FriendsList"
     android:background="#ffffff">
 
     <!-- TODO: Update blank fragment layout -->
@@ -15,4 +14,17 @@
         android:layout_gravity="center"
         android:divider="#bebebe"
         android:dividerHeight="1dp"/>
+
+    <Button
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:background="#000000"
+        android:layout_marginBottom="15dp"
+        android:text="返回"
+        android:textColor="@color/White"
+        android:textSize="25dp"
+        android:id="@+id/returnbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
 </RelativeLayout>
