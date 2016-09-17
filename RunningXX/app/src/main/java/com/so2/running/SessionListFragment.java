@@ -20,16 +20,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class SessionListFragment extends Fragment
-{
+public class SessionListFragment extends Fragment {
 
 //   private boolean isGPSFix = false;
 //   private long lastUpdateMillis;
 //   private Location lastLocation;
 
    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                            Bundle savedInstanceState)
-   {
+                            Bundle savedInstanceState) {
       getActivity().setTitle(getString(R.string.title_session_list));
 
       View view = inflater.inflate(R.layout.fragment_session_list, container, false);
@@ -38,8 +36,7 @@ public class SessionListFragment extends Fragment
       ArrayList<SessionListItem> sessionList = getSessionList();
 
       //If there are no sessions emtyListFragment is called
-      if (sessionList.size() == 0)
-      {
+      if (sessionList.size() == 0) {
          FragmentManager fm = getFragmentManager();
          fm.beginTransaction()
                  .replace(R.id.content_frame, new EmptyListFragment())
@@ -47,15 +44,12 @@ public class SessionListFragment extends Fragment
       }
 
       //Visualize session list
-      else
-      {
+      else {
          lv.setAdapter(new SessionListAdapter(getActivity(), R.layout.session_listview_item, sessionList));
 
-         lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
-         {
+         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             //Go to session detail
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                // selected item
                final SessionListItem item = (SessionListItem) lv.getItemAtPosition(position);
@@ -67,11 +61,9 @@ public class SessionListFragment extends Fragment
             }
          });
 
-         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
-         {
+         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             //Show single item options
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id)
-            {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                final AlertDialog.Builder itemOptionDialog = new AlertDialog.Builder(getActivity());
                final SessionListItem item = (SessionListItem) lv.getItemAtPosition(position);
                itemOptionDialog.setTitle(R.string.itemOptionsDialogTitle)
@@ -80,8 +72,7 @@ public class SessionListFragment extends Fragment
                           public void onClick(DialogInterface dialog, int which) {
                              RunDbHelper helper = new RunDbHelper(getActivity());
 
-                             switch (which)
-                             {
+                             switch (which) {
                                 case 0:
                                    //Export session
                                    String exportPath = Environment.getExternalStorageDirectory() + "/Running/";
@@ -108,41 +99,34 @@ public class SessionListFragment extends Fragment
 
          Button newSessionButton = (Button) view.findViewById(R.id.newSessionButton2);
 
-         newSessionButton.setOnClickListener(new View.OnClickListener()
-         {
+         newSessionButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                //Verify GPS availability
-               if (((MainActivity)getActivity()).getGPSFix())
-               {
+               if (((MainActivity) getActivity()).getGPSFix()) {
                   DialogFragment newFragment = new NewSessionDialog();
                   newFragment.show(getFragmentManager(), "New Training");
                } else {
+                  //DialogFragment newFragment = new NewSessionDialog();
+                  //newFragment.show(getFragmentManager(), "New Training");
                   Toast.makeText(getActivity(), R.string.gpsNoFix, Toast.LENGTH_SHORT).show();
                }
             }
          });
 
 //         final LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-//         GpsStatus.Listener gpsListener = new GpsStatus.Listener()
-//         {
+//         GpsStatus.Listener gpsListener = new GpsStatus.Listener() {
 //            @Override
-//            public void onGpsStatusChanged(int event)
-//            {
-//               switch (event)
-//               {
+//            public void onGpsStatusChanged(int event) {
+//               switch (event) {
 //                  case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
-//                     if (lastLocation != null)
-//                     {
+//                     if (lastLocation != null) {
 //                        isGPSFix = (SystemClock.elapsedRealtime() - lastUpdateMillis < 3000);
 //                     }
 //
 //                     if (isGPSFix) {
 //                        // A fix has been acquired.
-//                     }
-//                     else
-//                     {
+//                     } else {
 //                        // The fix has been lost.
 //                     }
 //                     break;
@@ -155,10 +139,8 @@ public class SessionListFragment extends Fragment
 //            }
 //         };
 //
-//         final LocationListener locationListener = new LocationListener()
-//         {
-//            public void onLocationChanged(Location newLocation)
-//            {
+//         final LocationListener locationListener = new LocationListener() {
+//            public void onLocationChanged(Location newLocation) {
 //               lastUpdateMillis = SystemClock.elapsedRealtime();
 //               lastLocation = newLocation;
 //            }
@@ -175,6 +157,16 @@ public class SessionListFragment extends Fragment
 //
 //         };
 //
+//         if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    ActivityCompat#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for ActivityCompat#requestPermissions for more details.
+//            return null;
+//         }
 //         locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
 //         locationManager.addGpsStatusListener(gpsListener);
 

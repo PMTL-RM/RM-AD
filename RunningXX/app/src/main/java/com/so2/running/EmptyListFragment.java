@@ -25,13 +25,7 @@ package com.so2.running;
 
 import android.app.DialogFragment;
 import android.app.Fragment;
-import android.content.Context;
-import android.location.GpsStatus;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +63,8 @@ public class EmptyListFragment extends Fragment {
             }
             else
             {
+               //DialogFragment newFragment = new NewSessionDialog();
+               //newFragment.show(getFragmentManager(), "New Training");
                Toast.makeText(getActivity(), R.string.gpsNoFix, Toast.LENGTH_SHORT).show();
             }
          }

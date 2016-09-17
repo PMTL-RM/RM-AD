@@ -1,25 +1,3 @@
-/*
-                    RUNNING
-   Copyright (C) 2015  Alessandro Mereu, Maurizio Romano, Matteo Enrico Serpi
-
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/**
- * This fragment contains the home page
- */
-
 package com.so2.running;
 
 import android.app.DialogFragment;
@@ -34,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -62,7 +39,7 @@ public class MainFragment extends Fragment {
    private ImageView newSessionButton;
    private ImageView sessionListButton;
    private ImageView createteamButton;
-   //   private boolean isGPSFix = false;
+//   private boolean isGPSFix = false;
 //   private long lastUpdateMillis;   //used to verify GPS availability
 //   private Location lastLocation;   //used to verify GPS availability
    private View view;
@@ -78,39 +55,35 @@ public class MainFragment extends Fragment {
 
       view = inflater.inflate(R.layout.fragment_main_content, container, false);
 
-      cityField = (TextView)view.findViewById(R.id.city_field);
-      updatedField = (TextView)view.findViewById(R.id.updated_field);
-      detailsField = (TextView)view.findViewById(R.id.details_field);
-      currentTemperatureField = (TextView)view.findViewById(R.id.current_temperature_field);
-      weatherIcon = (TextView)view.findViewById(R.id.weather_icon);
+      cityField = (TextView) view.findViewById(R.id.city_field);
+      updatedField = (TextView) view.findViewById(R.id.updated_field);
+      detailsField = (TextView) view.findViewById(R.id.details_field);
+      currentTemperatureField = (TextView) view.findViewById(R.id.current_temperature_field);
+      weatherIcon = (TextView) view.findViewById(R.id.weather_icon);
 
       weatherIcon.setTypeface(weatherFont);
 
       newSessionButton = (ImageView) view.findViewById(R.id.newSessionButton);
-      newSessionButton.setOnClickListener(new View.OnClickListener()
-      {
+      newSessionButton.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
             //verify GPS availability
-            if (((MainActivity)getActivity()).getGPSFix())
-            {
+            if (((MainActivity) getActivity()).getGPSFix()) {
                DialogFragment newFragment = new NewSessionDialog();
                newFragment.show(getFragmentManager(), "New Training");
-            }
-            else
-            {
-               Toast.makeText(getActivity(), R.string.gpsNoFix, Toast.LENGTH_SHORT).show();
+            } else {
+               DialogFragment newFragment = new NewSessionDialog();
+               newFragment.show(getFragmentManager(), "New Training");
+               //Toast.makeText(getActivity(), R.string.gpsNoFix, Toast.LENGTH_SHORT).show();
             }
          }
       });
 
       //Go to session list
       sessionListButton = (ImageView) view.findViewById(R.id.sessionListButton);
-      sessionListButton.setOnClickListener(new View.OnClickListener()
-      {
+      sessionListButton.setOnClickListener(new View.OnClickListener() {
          @Override
-         public void onClick(View v)
-         {
+         public void onClick(View v) {
             FragmentManager sessionsFragmentManager = getFragmentManager();
             sessionsFragmentManager.popBackStackImmediate(null, sessionsFragmentManager.POP_BACK_STACK_INCLUSIVE);
             sessionsFragmentManager.beginTransaction()
@@ -121,11 +94,9 @@ public class MainFragment extends Fragment {
 
       //Go to session list
       createteamButton = (ImageView) view.findViewById(R.id.createteamButton);
-      createteamButton.setOnClickListener(new View.OnClickListener()
-      {
+      createteamButton.setOnClickListener(new View.OnClickListener() {
          @Override
-         public void onClick(View v)
-         {
+         public void onClick(View v) {
             FragmentManager sessionsFragmentManager = getFragmentManager();
             sessionsFragmentManager.popBackStackImmediate(null, sessionsFragmentManager.POP_BACK_STACK_INCLUSIVE);
             sessionsFragmentManager.beginTransaction()
@@ -134,8 +105,7 @@ public class MainFragment extends Fragment {
          }
       });
 
-      weatherIcon.setOnClickListener(new View.OnClickListener()
-      {
+      weatherIcon.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
             showInputDialog();
@@ -144,24 +114,18 @@ public class MainFragment extends Fragment {
 
 //      //verify GPS availability
 //      final LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-//      GpsStatus.Listener gpsListener = new GpsStatus.Listener()
-//      {
+//      GpsStatus.Listener gpsListener = new GpsStatus.Listener() {
 //         @Override
-//         public void onGpsStatusChanged(int event)
-//         {
-//            switch (event)
-//            {
+//         public void onGpsStatusChanged(int event) {
+//            switch (event) {
 //               case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
-//                  if (lastLocation != null)
-//                  {
+//                  if (lastLocation != null) {
 //                     isGPSFix = (SystemClock.elapsedRealtime() - lastUpdateMillis < 3000);
 //                  }
 //
 //                  if (isGPSFix) {
 //                     // A fix has been acquired.
-//                  }
-//                  else
-//                  {
+//                  } else {
 //                     // The fix has been lost.
 //                  }
 //                  break;
@@ -174,10 +138,8 @@ public class MainFragment extends Fragment {
 //         }
 //      };
 //
-//      final LocationListener locationListener = new LocationListener()
-//      {
-//         public void onLocationChanged(Location newLocation)
-//         {
+//      final LocationListener locationListener = new LocationListener() {
+//         public void onLocationChanged(Location newLocation) {
 //            lastUpdateMillis = SystemClock.elapsedRealtime();
 //            lastLocation = newLocation;
 //         }
@@ -192,6 +154,16 @@ public class MainFragment extends Fragment {
 //         }
 //      };
 //
+//      if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//         // TODO: Consider calling
+//         //    ActivityCompat#requestPermissions
+//         // here to request the missing permissions, and then overriding
+//         //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//         //                                          int[] grantResults)
+//         // to handle the case where the user grants the permission. See the documentation
+//         // for ActivityCompat#requestPermissions for more details.
+//         return null;
+//      }
 //      locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
 //      locationManager.addGpsStatusListener(gpsListener);
 
