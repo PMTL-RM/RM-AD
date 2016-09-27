@@ -109,6 +109,8 @@ public class Notification extends android.app.Fragment {
 
                         item.setContent(obj.getString("content"));
                         item.setFriend_name(obj.getString("user_name"));
+                        item.setType(obj.getString("ViewType"));
+                        item.setGroupName(obj.getString("groupname"));
 
                         item2 = item;
 

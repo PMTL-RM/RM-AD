@@ -40,6 +40,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -59,6 +60,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
     EditText editText  , editText1 , editText2 ;
     TextView privacy, date, time, friend_txv;
     String choice;
+    String friends = "";
 
     private ListView lv;
 
@@ -161,8 +163,10 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
             public void onClick(View v) {
                 // TODO -> set up a php server on eu5.org just to test if we can create successful post requests
                 String url = "http://ncnurunforall-yychiu.rhcloud.com/groups";
+                String url2 = "http://ncnurunforall-yychiu.rhcloud.com/notices";
                 try {
                     doPostRequest(url);
+                    doNotificationPostRequest(url2);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -233,6 +237,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                 .add("date", date.getText().toString())
                 .add("privacy", privacy.getText().toString())
                 .add("username", name)
+                .add("creatername",name)
                 .build();
 
         Request request = new Request.Builder()
@@ -258,6 +263,51 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
 
         });
     }
+
+
+    void doNotificationPostRequest(String url) throws IOException {
+        String[] selectedfriends = friends.split(" ");
+        SharedPreferences preferences = getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);       //目前使用者的名字
+        String user_name = preferences.getString("name","error");
+        for(String d : selectedfriends) {
+            if(Objects.equals(d, "")){
+                break;
+            }
+            OkHttpClient client = new OkHttpClient();
+
+            RequestBody formBody = new FormBody.Builder()
+                    .add("user_name", user_name)
+                    .add("notice_name", d)
+                    .add("content", user_name + " 想邀請你加入" + editText.getText().toString() + "團!")
+                    .add("groupname",editText.getText().toString())
+                    .add("ViewType", "2")
+                    .build();
+
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(formBody)
+                    .build();
+
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    // Error
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        String res = response.body().string();
+                        handlePostResponse(res);
+                    } else {
+                        Log.e("APp", "Error");
+                    }
+                }
+
+            });
+        }
+    }
+
 
     void handlePostResponse(String response) {
         Log.i("OkHttpPost", response);
@@ -400,7 +450,6 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String s = "新增了：";
-                        String friends = "";
                         // 扫描所有的列表项，如果当前列表项被选中，将列表项的文本追加到s变量中。
                         for (int i = 0; i < province.length; i++) {
                             if (lv.getCheckedItemPositions().get(i)) {

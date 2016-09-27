@@ -42,6 +42,14 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
     public int getCount() {
         return sessionList.size();
     }
+    @Override
+    public int getItemViewType(int position) {return Integer.parseInt(sessionList.get(position).getType());}
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
 
     @Override
     public NotificationListItem getItem(int arg0) {
@@ -54,39 +62,62 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-
-        TextView content;
-        final Button decide_button ;
-
-        convertView = mInflater.inflate(R.layout.notification_list_item, null);
-
-        content = (TextView) convertView.findViewById(R.id.name);
-        decide_button = (Button) convertView.findViewById(R.id.decide_button);
-
-        content.setText(sessionList.get(position).getContent());
         final String friend_name = sessionList.get(position).getFriend_name();
 
-        System.out.println("asd asda asdd asds ::::"+friend_name);
 
-        decide_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String url = "http://ncnurunforall-yychiu.rhcloud.com/friendlists/"+ friend_name+"/"+user_name;
-                String url1 = "http://ncnurunforall-yychiu.rhcloud.com/notices/"+friend_name+"/"+ user_name;
-                String url2 = "http://ncnurunforall-yychiu.rhcloud.com/friendlists/";
-                try {
-                    doPatchFriendListRequest(url);
-                    doPatchNoticeRequest(url1);
-                    doPostFriendListRequest_Reverse(url2 , position);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Toast.makeText(getContext(), "加好友成功", Toast.LENGTH_SHORT).show();
-                decide_button.setEnabled(false);
+        if (convertView == null) {   // TODO Auto-generated method stub
+
+            switch (getItemViewType(position)) {
+                case 1:
+                    convertView = mInflater.inflate(R.layout.notification_list_item, null);
+
+                    final Button decide_button ;
+                    decide_button = (Button) convertView.findViewById(R.id.decide_button);
+                    decide_button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String url = "http://ncnurunforall-yychiu.rhcloud.com/friendlists/"+ friend_name+"/"+user_name;
+                            String url1 = "http://ncnurunforall-yychiu.rhcloud.com/notices/"+friend_name+"/"+ user_name;
+                            String url2 = "http://ncnurunforall-yychiu.rhcloud.com/friendlists/";
+                            try {
+                                doPatchFriendListRequest(url);
+                                doPatchNoticeRequest(url1);
+                                doPostFriendListRequest_Reverse(url2 , position);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            Toast.makeText(getContext(), "加好友成功", Toast.LENGTH_SHORT).show();
+                            decide_button.setEnabled(false);
+                        }
+                    });
+
+                    break;
+                case 2:
+                    convertView = mInflater.inflate(R.layout.notification_list_item_team, null);
+                    final Button decide_addteam_button;
+                    decide_addteam_button = (Button) convertView.findViewById(R.id.decide_addteam_button) ;
+                    decide_addteam_button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String url1 = "http://ncnurunforall-yychiu.rhcloud.com/notices/"+friend_name+"/"+ user_name;
+                            String url2 = "http://ncnurunforall-yychiu.rhcloud.com/groups/";
+                            try {
+                                doPatchNoticeRequest(url1);
+                                doAddTeamPostRequest(url2 ,position);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            Toast.makeText(getContext(), "加入團成功", Toast.LENGTH_SHORT).show();
+                            decide_addteam_button.setEnabled(false);
+                        }
+                    });
+                    break;
             }
-        });
 
+            TextView content;
+            content = (TextView) convertView.findViewById(R.id.name);
+            content.setText(sessionList.get(position).getContent());
+        }
         return convertView;
     }
 
@@ -158,6 +189,38 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
         });
     }
 
+
+    void doAddTeamPostRequest(String url , int position) throws IOException {
+        OkHttpClient client2 = new OkHttpClient();
+
+        RequestBody formBody = new FormBody.Builder()
+                .add("groupname",sessionList.get(position).getGroupName() )
+                .add("username", user_name)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(formBody)
+                .build();
+
+        client2.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // Error
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String res = response.body().string();
+                    handlePostResponse(res);
+                } else {
+                    Log.e("APp", "Error");
+                }
+            }
+
+        });
+    }
 
     void doPatchNoticeRequest(String url) throws IOException {
         OkHttpClient client = new OkHttpClient();

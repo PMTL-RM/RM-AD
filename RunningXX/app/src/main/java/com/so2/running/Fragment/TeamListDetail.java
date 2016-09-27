@@ -39,14 +39,17 @@ public class TeamListDetail extends Fragment {
 
         //Get textview from view
         TextView name = (TextView) view.findViewById(R.id.name);
-        TextView content = (TextView) view.findViewById(R.id.name);
+        TextView content = (TextView) view.findViewById(R.id.content);
         TextView privacy = (TextView) view.findViewById(R.id.privacy);
-
+        TextView location = (TextView) view.findViewById(R.id.location);
+        TextView date = (TextView) view.findViewById(R.id.date);
 
         //Set data
         name.setText(item.getUsername());
         content.setText(item.getContent());
         privacy.setText(item.getPrivacy());
+        location.setText(item.getLocation());
+        date.setText(String.format("%s%s", item.getDate(), item.getTime()));
 
 
 

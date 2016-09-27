@@ -212,6 +212,7 @@ public class Creater_Detail extends Fragment {
                 .add("user_name", user_name)
                 .add("notice_name", notice_name)
                 .add("content",user_name+" 想加你為好友")
+                .add("ViewType","1")
                 .build();
 
         Request request = new Request.Builder()
