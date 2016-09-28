@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_container"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/groupimage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@color/Black"
+        />
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/groupname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="140dp"
+        android:singleLine="true"
+        android:ellipsize="middle"
+        android:text="name"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp"
+        android:textColor="@color/Black"
+        android:textSize="22sp"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="加入"
+        android:textColor="@color/White"
+        android:background="@color/Tan"
+        android:id="@+id/confirm"
+        android:layout_marginLeft="95dp"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="40dp"
+        android:text="拒絕"
+        android:padding="3sp"
+        android:textColor="@color/Black"
+        android:background="@color/White"
+        android:id="@+id/delete"
+        />
+
+
+    <!--&lt;!&ndash;<TextView xmlns:android="http://schemas.android.com/apk/res/android"&ndash;&gt;-->
+    <!--android:id="@+id/container_icon"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:text =">"-->
+    <!--android:textSize="20sp"-->
+    <!--android:textColor="@color/Black"-->
+    <!--/>-->
+
+    <!--<TextView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:id="@+id/date"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:singleLine="true"-->
+    <!--android:ellipsize="middle"-->
+    <!--android:text="date"-->
+    <!--android:textColor="#BEBEBE"-->
+    <!--android:layout_marginTop="48dp"-->
+    <!--android:layout_marginLeft="220dp"-->
+    <!--android:textSize="18sp"-->
+    <!--/>-->
+
+    <!--<TextView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:id="@+id/location"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:singleLine="true"-->
+    <!--android:ellipsize="middle"-->
+    <!--android:text="location"-->
+    <!--android:layout_marginLeft="100dp"-->
+    <!--android:layout_marginTop="48dp"-->
+    <!--android:textColor="#BEBEBE"-->
+    <!--android:textSize="18sp"-->
+
+    <!--/>-->
+
+    <!--<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/container_icon"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_alignParentRight="true"
+              android:layout_centerVertical="true"
+              android:layout_margin="10dp"
+              android:elevation="0dp"
+              android:src="@drawable/ic_arrow"
+       /> -->
+</RelativeLayout>

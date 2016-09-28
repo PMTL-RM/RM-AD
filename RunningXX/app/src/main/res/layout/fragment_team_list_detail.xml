@@ -4,12 +4,25 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     >
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/WhiteSmoke"
+        android:id="@+id/viewImage"
+        android:padding="3sp"
+        android:layout_marginTop="0dp"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
+
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,16 +32,16 @@
             android:textColor="@color/Black"
             android:layout_centerHorizontal="true" />
 
-        <ImageView
-            android:layout_width="180dp"
-            android:layout_height="120dp"
-            android:background="@color/WhiteSmoke"
-            android:id="@+id/viewImage"
-            android:padding="3sp"
-            android:layout_marginTop="75dp"
-            android:layout_marginLeft="195dp"
+        <!--<ImageView-->
+            <!--android:layout_width="180dp"-->
+            <!--android:layout_height="120dp"-->
+            <!--android:background="@color/WhiteSmoke"-->
+            <!--android:id="@+id/viewImage"-->
+            <!--android:padding="3sp"-->
+            <!--android:layout_marginTop="105dp"-->
+            <!--android:layout_marginLeft="195dp"-->
 
-            />
+            <!--/>-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,7 +56,6 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/date"
-            android:background="#bfd9eb"
             android:textSize="20dp"
             android:textColor="@color/Black"
             android:layout_marginTop="75dp"
@@ -123,22 +135,21 @@
             android:layout_marginLeft="100dp"
             android:layout_marginTop="155dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/Name"
-            android:textSize="20dp"
-            android:layout_marginTop="110dp"
-            android:layout_marginLeft="100dp"
-            android:textColor="@color/Black"
-            />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="New Text"-->
+            <!--android:id="@+id/Name"-->
+            <!--android:textSize="20dp"-->
+            <!--android:layout_marginTop="110dp"-->
+            <!--android:layout_marginLeft="100dp"-->
+            <!--android:textColor="@color/Black"-->
+            <!--/>-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/location"
-            android:background="#bfd9eb"
             android:textColor="@color/Black"
             android:textSize="20dp"
             android:layout_marginTop="115dp"
@@ -168,6 +179,8 @@
 
 
     </RelativeLayout>
+    </ScrollView>
+
 
     <Button
         android:layout_width="380dp"

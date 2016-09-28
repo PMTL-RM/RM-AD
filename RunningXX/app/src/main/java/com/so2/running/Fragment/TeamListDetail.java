@@ -54,6 +54,7 @@ public class TeamListDetail extends Fragment {
 
 
 
+
         //Set ActionBar title
         getActivity().setTitle("詳細資料");
 

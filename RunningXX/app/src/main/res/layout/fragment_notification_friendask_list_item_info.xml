@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.so2.running.Fragment.UserInterface"
+    android:theme="@style/Theme.AppCompat.Light"
+    android:background="@color/White"
+    >
+
+    <ImageView
+        android:scaleType="matrix"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgPhoto"
+        android:background="@drawable/userpg" />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/userPhoto"
+        android:scaleType="fitCenter"
+        android:layout_alignBottom="@+id/imgPhoto"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/ivanhead" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:text="KempLin"
+        android:textSize="20dp"
+        android:textColor="@color/White"
+        android:layout_alignTop="@+id/userPhoto"
+        android:layout_marginTop="100dp"
+        android:layout_alignLeft="@+id/userPhoto"
+        android:layout_marginLeft="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loctxt"
+        android:text="居住地:"
+        android:textSize="25dp"
+        android:textColor="@color/Black"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_marginTop="95dp"
+        android:layout_marginLeft="15dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loc"
+        android:text="高雄"
+        android:textSize="25dp"
+        android:textColor="@color/Black"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_toRightOf="@+id/loctxt"
+        android:layout_marginTop="95dp"
+        android:layout_marginLeft="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/birthtxt"
+        android:text="生日:"
+        android:textSize="25dp"
+        android:textColor="@color/Black"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_marginTop="135dp"
+        android:layout_marginLeft="15dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/birth"
+        android:text="1995/07/10"
+        android:textSize="25dp"
+        android:textColor="@color/Black"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_toRightOf="@+id/birthtxt"
+        android:layout_marginTop="135dp"
+        android:layout_marginLeft="10dp"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gendertxt"
+        android:text="性別:"
+        android:textSize="25dp"
+        android:textColor="@color/Black"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_marginTop="175dp"
+        android:layout_marginLeft="15dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gender"
+        android:text="男"
+        android:textSize="25dp"
+        android:textColor="@color/Black"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_toRightOf="@+id/gendertxt"
+        android:layout_marginTop="175dp"
+        android:layout_marginLeft="10dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/distancetxt"
+        android:text="距離:"
+        android:textSize="25dp"
+        android:textColor="@color/Black"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_marginTop="215dp"
+        android:layout_marginLeft="15dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/distance"
+        android:text="5487"
+        android:textSize="25dp"
+        android:textColor="@color/Black"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_toRightOf="@+id/birthtxt"
+        android:layout_marginTop="215dp"
+        android:layout_marginLeft="10dp"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/km"
+        android:text="km"
+        android:layout_toRightOf="@+id/distance"
+        android:textSize="25dp"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_marginTop="215dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/Black"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/introxt"
+        android:text="關於我:"
+        android:textSize="25dp"
+        android:textColor="@color/Black"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_marginTop="255dp"
+        android:layout_marginLeft="15dp"
+        />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt"
+        android:text="寄給你一則交友邀請"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textColor="@color/Black"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="0dp"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="確認"
+        android:textColor="@color/White"
+        android:background="@color/Tan"
+        android:id="@+id/confirm"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_marginLeft="95dp"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="35dp"
+        android:text="刪除"
+        android:padding="3sp"
+        android:textColor="@color/Black"
+        android:background="@color/White"
+        android:id="@+id/delete"
+        />
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="3dp"
+        android:background="@color/WhiteSmoke"
+        android:layout_below="@+id/imgPhoto"
+        android:layout_marginTop="90dp"
+        android:layout_centerHorizontal="true"/>
+
+    <!--<TextView-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/txtName"-->
+    <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+    <!--android:text="Name"-->
+    <!--android:layout_gravity="center_vertical" />-->
+
+
+
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/imageView2"-->
+    <!--android:src="@drawable/shapes"-->
+    <!--android:layout_below="@+id/txtName"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_alignParentStart="true" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+    <!--android:text="Gender"-->
+    <!--android:id="@+id/txtGender"-->
+    <!--android:layout_alignBottom="@+id/imageView2"-->
+    <!--android:layout_toRightOf="@+id/imageView2"-->
+    <!--android:layout_toEndOf="@+id/imageView2" />-->
+
+
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/imageView5"-->
+    <!--android:src="@drawable/sweet" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+    <!--android:text="Birthday"-->
+    <!--android:id="@+id/txtBd" />-->
+
+
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/imageView"-->
+    <!--android:layout_below="@+id/txtGender"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:src="@drawable/social" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+    <!--android:text="URL"-->
+    <!--android:id="@+id/txtURL"-->
+    <!--android:layout_alignTop="@+id/imageView"-->
+    <!--android:layout_toRightOf="@+id/imageView"-->
+    <!--android:layout_toEndOf="@+id/imageView" />-->
+
+
+
+    <!--<com.facebook.share.widget.ShareButton-->
+    <!--android:id="@+id/fb_share_button"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"   />-->
+
+    <!--<com.facebook.share.widget.LikeView-->
+    <!--android:id="@+id/likeView"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"/>-->
+
+
+
+    <!--<Button-->
+    <!--style="?android:attr/buttonStyleSmall"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:text="Share Dialog"-->
+    <!--android:textSize="20dp"-->
+    <!--android:layout_marginTop="0dp"-->
+    <!--android:textColor="@color/White"-->
+    <!--android:background="#000000"-->
+    <!--android:id="@+id/btnShare"-->
+    <!--android:layout_column="1" />-->
+
+
+
+
+
+    <!--<Button-->
+    <!--android:layout_width="380dp"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:background="#000000"-->
+    <!--android:textSize="25dp"-->
+    <!--android:textColor="#FFFFFF"-->
+    <!--android:textColorHint="#FFFFFF"-->
+    <!--android:text="返回"-->
+    <!--android:id="@+id/returnbutton"-->
+    <!--android:layout_marginBottom="10dp"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_centerHorizontal="true" />-->
+
+</RelativeLayout>
