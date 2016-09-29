@@ -57,6 +57,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.so2.running.Fragment.JoinedTeam;
 import com.so2.running.Fragment.UserInterface;
 import com.so2.running.Fragment.FriendsList;
 import com.so2.running.Fragment.Notification;
@@ -129,13 +130,18 @@ public class MainActivity extends ActionBarActivity {
                   MainActivity.changeFragment(getFragmentManager(), new TeamList());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
-               //Go to Friends
+               //Go to JoinedTeams
                case 3:
+                  MainActivity.changeFragment(getFragmentManager(), new JoinedTeam());
+                  mDrawerLayout.closeDrawer(mDrawerList);
+                  break;
+               //Go to Friends
+               case 4:
                   MainActivity.changeFragment(getFragmentManager(), new FriendsList());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
                //Show import dialog
-               case 4:
+               case 5:
                   AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
                   alertBuilder
                           .setTitle(getString(R.string.importDialogTitle))
@@ -153,24 +159,24 @@ public class MainActivity extends ActionBarActivity {
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
                //Show export dialog
-               case 5:
+               case 6:
                   MainActivity.alertExportDialogBehavior(context);
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
 
                //Go to settings
-               case 6:
+               case 7:
                   MainActivity.changeFragment(getFragmentManager(), new ApplicationSettingsFragment());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
 
                //Go to info
-               case 7:
+               case 8:
                   MainActivity.changeFragment(getFragmentManager(), new InfoFragment());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
                //Go to Back
-               case 8:
+               case 9:
                   MainActivity.changeFragment(getFragmentManager(), new MainFragment());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;

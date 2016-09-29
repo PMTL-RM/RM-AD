@@ -2,7 +2,6 @@ package com.so2.running.Fragment;
 
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.share.widget.ShareDialog;
-import com.so2.running.MainFragment;
 import com.so2.running.R;
 import com.squareup.picasso.Picasso;
 
@@ -45,15 +43,15 @@ public class UserInterface extends Fragment {
 
 
 
-        returnbutton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
-                ft.commit();
-            }
-        });
+//        returnbutton.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
+//                ft.commit();
+//            }
+//        });
 
         //Another way to share content
 /*        btnShare = (Button) view.findViewById(R.id.btnShare);
