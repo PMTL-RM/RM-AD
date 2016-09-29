@@ -8,7 +8,7 @@
     <ListView
         android:id="@+id/team_list_view"
         android:layout_width="fill_parent"
-        android:background="FFFFFF"
+        android:background="#FFFFFF"
         android:layout_height="match_parent"
         android:choiceMode="singleChoice"
         android:dividerHeight="1dp"

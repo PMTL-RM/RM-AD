@@ -3,7 +3,6 @@ package com.so2.running.Fragment;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +14,6 @@ import android.widget.TextView;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.share.model.ShareLinkContent;
-import com.facebook.share.widget.LikeView;
-import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 import com.so2.running.MainFragment;
 import com.so2.running.R;
@@ -41,11 +37,11 @@ public class UserInterface extends Fragment {
         returnbutton = (Button)view.findViewById(R.id.returnbutton);
         shareDialog = new ShareDialog(this);
 
-        imageView = (ImageView) view.findViewById(R.id.imgPhoto);
-        txtName = (TextView) view.findViewById(R.id.txtName);
-        txtURL = (TextView) view.findViewById(R.id.txtURL);
+        imageView = (ImageView) view.findViewById(R.id.userPhoto);
+        txtName = (TextView) view.findViewById(R.id.name);
+/*        txtURL = (TextView) view.findViewById(R.id.txtURL);
         txtGender = (TextView) view.findViewById(R.id.txtGender);
-        txtBd = (TextView) view.findViewById(R.id.txtBd);
+        txtBd = (TextView) view.findViewById(R.id.txtBd);*/
 
 
 
@@ -60,7 +56,7 @@ public class UserInterface extends Fragment {
         });
 
         //Another way to share content
-        btnShare = (Button) view.findViewById(R.id.btnShare);
+/*        btnShare = (Button) view.findViewById(R.id.btnShare);
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,10 +72,11 @@ public class UserInterface extends Fragment {
                     shareDialog.show(linkContent);
                 }
             }
-        });
+        });*/
 
 
         GetUserInfo();
+/*
 
         //Like
         LikeView likeView = (LikeView) view.findViewById(R.id.likeView);
@@ -90,12 +87,13 @@ public class UserInterface extends Fragment {
                 "http://so2.com",
                 LikeView.ObjectType.OPEN_GRAPH);
 
+*/
 
 
         //Share Dialog
         //You cannot preset the shared link in design time, if you do so, the fb share button will
         //look disabled. You need to set in the code as below
-        ShareButton fbShareButton = (ShareButton) view.findViewById(R.id.fb_share_button);
+/*        ShareButton fbShareButton = (ShareButton) view.findViewById(R.id.fb_share_button);
         ShareLinkContent content = new ShareLinkContent.Builder()
                 .setContentTitle("Hello Guys")
                 .setContentDescription(
@@ -104,7 +102,7 @@ public class UserInterface extends Fragment {
                 .setImageUrl(Uri.parse("https://scontent-sin1-1.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/12936641_845624472216348_1810921572759298872_n.jpg?oh=72421b8fa60d05e68c6fedbb824adfbf&oe=577949AA"))
 
                 .build();
-        fbShareButton.setShareContent(content);
+        fbShareButton.setShareContent(content);*/
         return view;
     }
 
