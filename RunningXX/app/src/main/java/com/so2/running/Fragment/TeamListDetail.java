@@ -24,20 +24,21 @@ public class TeamListDetail extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_team_list_detail, container, false);
-        returnbutton = (Button)view.findViewById(R.id.returnbutton);
+        //returnbutton = (Button)view.findViewById(R.id.returnbutton);
 
 
-        returnbutton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new TeamList());
-                ft.commit();
-            }
-        });
+//        returnbutton.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new TeamList());
+//                ft.commit();
+//            }
+//        });
 
         //Get textview from view
+        TextView groupname = (TextView) view.findViewById(R.id.groupname);
         TextView name = (TextView) view.findViewById(R.id.name);
         TextView content = (TextView) view.findViewById(R.id.content);
         TextView privacy = (TextView) view.findViewById(R.id.privacy);
@@ -45,7 +46,7 @@ public class TeamListDetail extends Fragment {
         TextView date = (TextView) view.findViewById(R.id.date);
 
         //Set data
-        name.setText(item.getUsername());
+        groupname.setText(item.getGroupname());
         content.setText(item.getContent());
         privacy.setText(item.getPrivacy());
         location.setText(item.getLocation());

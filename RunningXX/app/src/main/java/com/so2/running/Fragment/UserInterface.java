@@ -37,6 +37,8 @@ public class UserInterface extends Fragment {
 
         imageView = (ImageView) view.findViewById(R.id.userPhoto);
         txtName = (TextView) view.findViewById(R.id.name);
+        txtBd = (TextView) view.findViewById(R.id.birth);
+        txtGender = (TextView) view.findViewById(R.id.gender);
 /*        txtURL = (TextView) view.findViewById(R.id.txtURL);
         txtGender = (TextView) view.findViewById(R.id.txtGender);
         txtBd = (TextView) view.findViewById(R.id.txtBd);*/
@@ -122,7 +124,7 @@ public class UserInterface extends Fragment {
                             String id = object.getString("id");
 
                             txtName.setText(name);
-                            txtURL.setText(id);
+//                            txtURL.setText(id);
                             txtGender.setText(gender);
                             txtBd.setText(birthday);
                             if (object.has("picture")) {

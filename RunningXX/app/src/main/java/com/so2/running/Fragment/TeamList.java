@@ -43,7 +43,7 @@ public class TeamList extends android.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_team_list, container, false);
         final ListView listview = (ListView) view.findViewById(R.id.team_list_view);
 
-        returnbutton = (Button)view.findViewById(R.id.returnbutton);
+//        returnbutton = (Button)view.findViewById(R.id.returnbutton);
 
 
 //        returnbutton.setOnClickListener(new View.OnClickListener()

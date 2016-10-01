@@ -6,9 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgpic"
     tools:context=".MainActivity">
-
+   <ImageView
+       android:id="@+id/bg"
+       android:src="@drawable/mainbg"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:scaleType="centerCrop"/>
 
    <ImageView
        android:id="@+id/sessionListButton"
