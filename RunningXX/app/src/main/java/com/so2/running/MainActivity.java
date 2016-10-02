@@ -57,7 +57,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.so2.running.Fragment.JoinedTeam;
+import com.so2.running.Fragment.JoinedTeamList;
 import com.so2.running.Fragment.UserInterface;
 import com.so2.running.Fragment.FriendsList;
 import com.so2.running.Fragment.Notification;
@@ -132,7 +132,7 @@ public class MainActivity extends ActionBarActivity {
                   break;
                //Go to JoinedTeams
                case 3:
-                  MainActivity.changeFragment(getFragmentManager(), new JoinedTeam());
+                  MainActivity.changeFragment(getFragmentManager(), new JoinedTeamList());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
                //Go to Friends
