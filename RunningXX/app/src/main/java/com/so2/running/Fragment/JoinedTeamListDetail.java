@@ -27,6 +27,7 @@ public class JoinedTeamListDetail extends Fragment {
 
 
         //Get textview from view
+        TextView groupname = (TextView) view.findViewById(R.id.groupname);
         TextView name = (TextView) view.findViewById(R.id.name);
         TextView content = (TextView) view.findViewById(R.id.content);
         TextView privacy = (TextView) view.findViewById(R.id.privacy);
@@ -34,6 +35,7 @@ public class JoinedTeamListDetail extends Fragment {
         TextView date = (TextView) view.findViewById(R.id.date);
 
         //Set data
+        groupname.setText(item.getGroupname());
         name.setText(item.getCreatername());
         content.setText(item.getContent());
         privacy.setText(item.getPrivacy());

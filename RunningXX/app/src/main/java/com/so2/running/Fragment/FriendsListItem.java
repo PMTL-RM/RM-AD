@@ -3,7 +3,7 @@ package com.so2.running.Fragment;
 public class FriendsListItem
 {
 
-    private String name;
+    private String name , birthday , sex , email;
 
 
     public String getName() {
@@ -12,6 +12,30 @@ public class FriendsListItem
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 

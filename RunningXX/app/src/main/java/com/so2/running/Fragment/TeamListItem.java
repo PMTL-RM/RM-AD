@@ -31,6 +31,7 @@ public class TeamListItem
     private String time;
     private String content;
     private String privacy;
+    private String creatername;
 
 
     public String getLocation() {
@@ -77,6 +78,12 @@ public class TeamListItem
 
     public void setPrivacy(String privacy) {
         this.privacy = privacy;
+    }
+
+    public String getCreatername() {return creatername;}
+
+    public void setCreatername(String creatername) {
+        this.creatername = creatername;
     }
 
 

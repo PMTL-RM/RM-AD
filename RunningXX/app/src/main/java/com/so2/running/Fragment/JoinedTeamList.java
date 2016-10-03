@@ -65,7 +65,7 @@ public class JoinedTeamList extends android.app.Fragment {
 
         //If there are no sessions emtyListFragment is called
         if (sessionList.size() == 0) {
-            view = inflater.inflate(R.layout.fragment_team_list_item, container, false);
+            view = inflater.inflate(R.layout.fragment_notification_null, container, false);
             ;
         }
 

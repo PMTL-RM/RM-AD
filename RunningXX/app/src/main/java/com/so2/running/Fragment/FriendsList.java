@@ -1,6 +1,7 @@
 package com.so2.running.Fragment;
 
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -63,7 +64,7 @@ public class FriendsList extends android.app.Fragment {
 
         //If there are no sessions emtyListFragment is called
         if (sessionList.size() == 0) {
-            view = inflater.inflate(R.layout.fragment_team_list_item, container, false);
+            view = inflater.inflate(R.layout.fragment_notification_null, container, false);
         }
 
         //Visualize session list
@@ -73,7 +74,15 @@ public class FriendsList extends android.app.Fragment {
             listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 //Go to session detail
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                    // selected item
+                    final FriendsListItem item = (FriendsListItem) listview.getItemAtPosition(position);
+                    System.out.println("the position : : "+position);
+                    FriendsListDetail itemDetail = new FriendsListDetail();
+                    itemDetail.setItem(item);
+                    FragmentManager fm = getFragmentManager();
+                    fm.beginTransaction()
+                            .replace(R.id.content_frame, itemDetail)
+                            .commit();
                 }
             });
 
@@ -99,15 +108,76 @@ public class FriendsList extends android.app.Fragment {
             public void onResponse(Call call, Response response) throws IOException {
                 final String aFinalString = response.body().string();
                 System.out.println(aFinalString);
-                FriendsListItem item;
+                final FriendsListItem item = new FriendsListItem();
                 if (response.isSuccessful()) try {
                     final JSONArray array = new JSONArray(aFinalString);
 
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject obj = array.getJSONObject(i);
-                        item = new FriendsListItem();
 
                         item.setName(obj.getString("friend_name"));
+
+
+
+
+
+
+                        OkHttpClient client2 = new OkHttpClient();
+
+
+                        Request req1 = new Request.Builder()
+                                .url("http://ncnurunforall-yychiu.rhcloud.com/users/" + item.getName())
+                                .build();
+                        Call call2 = client2.newCall(req1);
+
+                        call2.enqueue(new Callback() {
+
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                final String aFinalString = response.body().string();
+                                System.out.println(aFinalString);
+                                if (response.isSuccessful()) try {
+                                    final JSONArray array = new JSONArray(aFinalString);
+
+                                    for (int i = 0; i < array.length(); i++) {
+                                        JSONObject obj = array.getJSONObject(i);
+                                        item.setBirthday(obj.getString("birthday"));
+                                        item.setEmail(obj.getString("email"));
+                                        item.setSex(obj.getString("gender"));
+
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                else {
+                                    Log.e("APp", "Error");
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+                                //告知使用者連線失敗
+                            }
+                        });
+
+                        if (item.getEmail() == null) {
+                            synchronized (this) {
+                                try {
+                                    wait(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            onStart();
+                        }
+
+
+
+
+
+
+
 
                         item2 = item;
 
@@ -132,7 +202,7 @@ public class FriendsList extends android.app.Fragment {
         if (item2.getName() == null) {
             synchronized (this) {
                 try {
-                    wait(1000);
+                    wait(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
