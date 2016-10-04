@@ -66,12 +66,16 @@ public class Search_Result_Detail extends Fragment {
         TextView name = (TextView) view.findViewById(R.id.name);
         TextView content = (TextView) view.findViewById(R.id.content);
         TextView privacy = (TextView) view.findViewById(R.id.privacy);
+        TextView date = (TextView) view.findViewById(R.id.date);
+        TextView location = (TextView) view.findViewById(R.id.location);
 
 
         //Set data
         name.setText(item.getUsername());
         content.setText(item.getContent());
         privacy.setText(item.getPrivacy());
+        date.setText(item.getDate());
+        location.setText(item.getLocation());
 
         String creater_name = item.getUsername();
 
