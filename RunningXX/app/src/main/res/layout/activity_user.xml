@@ -184,6 +184,22 @@
         android:layout_height="wrap_content"
         android:id="@+id/abcimg" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="編輯內容"
+        android:id="@+id/edit_button"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="400dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="新增你的個人簡介吧"
+        android:id="@+id/about_me"
+        android:textSize="20dp"
+        android:layout_alignBottom="@+id/introtxt"
+        android:layout_toEndOf="@+id/gender" />
     <!--<TextView-->
         <!--android:layout_width="0dp"-->
         <!--android:layout_height="wrap_content"-->

@@ -134,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                                             .add("birthday",birthday)
                                             .add("gender",gender)
                                             .add("email",email)
+                                            .add("intro","新增你的個人簡介吧!")
                                             .build();
 
                                     Request request = new Request.Builder()
