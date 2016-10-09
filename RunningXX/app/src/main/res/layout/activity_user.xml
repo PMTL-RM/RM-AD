@@ -43,7 +43,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/name"
-        android:text="Kemp Lin"
         android:textSize="20dp"
         android:textColor="@color/White"
         android:layout_alignTop="@+id/userPhoto"
@@ -51,29 +50,7 @@
         android:layout_alignLeft="@+id/userPhoto"
         android:layout_marginLeft="10dp"
         />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/loctxt"
-        android:text="居住地:"
-        android:textSize="25dp"
-        android:textColor="@color/Black"
-        android:layout_below="@+id/imgPhoto"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/loc"
-        android:text="高雄"
-        android:textSize="25dp"
-        android:textColor="@color/Black"
-        android:layout_below="@+id/imgPhoto"
-        android:layout_toRightOf="@+id/loctxt"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp"
-        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,7 +66,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/birth"
-        android:text="1995/07/10"
         android:textSize="25dp"
         android:textColor="@color/Black"
         android:layout_below="@+id/imgPhoto"
@@ -113,7 +89,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/gender"
-        android:text="男"
         android:textSize="25dp"
         android:textColor="@color/Black"
         android:layout_below="@+id/imgPhoto"
@@ -136,7 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/distance"
-        android:text="5487"
+        android:text="0"
         android:textSize="25dp"
         android:textColor="@color/Black"
         android:layout_below="@+id/imgPhoto"
@@ -195,11 +170,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="新增你的個人簡介吧"
         android:id="@+id/about_me"
         android:textSize="20dp"
         android:layout_alignBottom="@+id/introtxt"
-        android:layout_toEndOf="@+id/gender" />
+        android:layout_toEndOf="@+id/introtxt" />
     <!--<TextView-->
         <!--android:layout_width="0dp"-->
         <!--android:layout_height="wrap_content"-->

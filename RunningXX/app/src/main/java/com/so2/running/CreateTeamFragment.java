@@ -266,7 +266,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
 
 
     void doNotificationPostRequest(String url) throws IOException {
-        String[] selectedfriends = friends.split(" ");
+        String[] selectedfriends = friends.split(",");
         SharedPreferences preferences = getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);       //目前使用者的名字
         String user_name = preferences.getString("name","error");
         for(String d : selectedfriends) {
@@ -453,7 +453,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                         // 扫描所有的列表项，如果当前列表项被选中，将列表项的文本追加到s变量中。
                         for (int i = 0; i < province.length; i++) {
                             if (lv.getCheckedItemPositions().get(i)) {
-                                friends += lv.getAdapter().getItem(i) + " ";
+                                friends += lv.getAdapter().getItem(i) + ",";
                             }
                         }
 

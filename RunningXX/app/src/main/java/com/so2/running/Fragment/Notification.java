@@ -62,7 +62,7 @@ public class Notification extends android.app.Fragment {
 
         //If there are no sessions emtyListFragment is called
         if (sessionList.size() == 0) {
-            view = inflater.inflate(R.layout.fragment_notification_null, container, false);
+            view = inflater.inflate(R.layout.null_scene, container, false);
         }
 
         //Visualize session list
