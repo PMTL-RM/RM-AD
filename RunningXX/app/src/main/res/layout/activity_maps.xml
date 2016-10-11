@@ -5,7 +5,8 @@
     tools:context="com.so2.running.MapsActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"  >
+    android:orientation="vertical"
+    android:id="@+id/content">
 
     <EditText
         android:layout_width="match_parent"
@@ -55,13 +56,20 @@
             android:layout_height="wrap_content"
             android:text="0 min"
             android:id="@+id/tvDuration" />
+
     </LinearLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Screen Shot"
+        android:id="@+id/screenShot" />
 
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
 </LinearLayout>
