@@ -37,6 +37,7 @@ public class FriendsList extends android.app.Fragment {
         SharedPreferences preferences = this.getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);
         String name = preferences.getString("name","error");
 
+        System.out.println(name);
         ArrayList<FriendsListItem> sessionList;
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
         final ListView listview = (ListView) view.findViewById(R.id.friends_list_view);
@@ -63,7 +64,7 @@ public class FriendsList extends android.app.Fragment {
 
         //If there are no sessions emtyListFragment is called
         if (sessionList.size() == 0) {
-            view = inflater.inflate(R.layout.null_scene, container, false);
+            view = inflater.inflate(R.layout.fragment_notification_null, container, false);
         }
 
         //Visualize session list
@@ -84,6 +85,7 @@ public class FriendsList extends android.app.Fragment {
                             .commit();
                 }
             });
+
             return view;
         }
         return view;

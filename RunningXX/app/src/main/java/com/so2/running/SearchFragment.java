@@ -110,10 +110,10 @@ public class SearchFragment extends Fragment {
         });
 
 
-        datebutton = (ImageButton)view.findViewById(R.id.datebutton);
+//        datebutton = (ImageButton)view.findViewById(R.id.datebutton);
         date = (TextView)view.findViewById(R.id.date);
 
-        datebutton.setOnClickListener(new View.OnClickListener() {
+        date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog(v);

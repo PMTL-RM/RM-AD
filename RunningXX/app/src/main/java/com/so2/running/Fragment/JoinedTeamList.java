@@ -37,6 +37,7 @@ public class JoinedTeamList extends android.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         SharedPreferences preferences = this.getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);
         String name = preferences.getString("name","error");
+        System.out.println("here :::::::"+name);
 
         ArrayList<JoinedTeamListItem> sessionList;
         View view = inflater.inflate(R.layout.fragment_team_list, container, false);
@@ -56,7 +57,7 @@ public class JoinedTeamList extends android.app.Fragment {
 //        });
 
         //Set ActionBar title
-        getActivity().setTitle("加入的團");
+        getActivity().setTitle(getString(R.string.title_info));
         // Inflate the layout for this fragment
 
 
@@ -64,7 +65,8 @@ public class JoinedTeamList extends android.app.Fragment {
 
         //If there are no sessions emtyListFragment is called
         if (sessionList.size() == 0) {
-            view = inflater.inflate(R.layout.null_scene, container, false);
+            view = inflater.inflate(R.layout.fragment_notification_null, container, false);
+            ;
         }
 
         //Visualize session list
@@ -74,6 +76,7 @@ public class JoinedTeamList extends android.app.Fragment {
             listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 //Go to session detail
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                     // selected item
                     final JoinedTeamListItem item = (JoinedTeamListItem) listview.getItemAtPosition(position);
                     System.out.println("the position : : "+position);
@@ -85,6 +88,7 @@ public class JoinedTeamList extends android.app.Fragment {
                             .commit();
                 }
             });
+
             return view;
         }
         return view;
@@ -95,87 +99,34 @@ public class JoinedTeamList extends android.app.Fragment {
 
         OkHttpClient client = new OkHttpClient();
 
+        System.out.println("you should be :::" + name);
 
         Request req = new Request.Builder()
                 .url("http://ncnurunforall-yychiu.rhcloud.com/groups/joined/" + name)
                 .build();
         Call call = client.newCall(req);
-        call.enqueue(new Callback() {
 
+        call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String aFinalString = response.body().string();
                 System.out.println(aFinalString);
-                final JoinedTeamListItem item = new JoinedTeamListItem();
+                JoinedTeamListItem item;
                 if (response.isSuccessful()) try {
                     final JSONArray array = new JSONArray(aFinalString);
 
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject obj = array.getJSONObject(i);
+                        item = new JoinedTeamListItem();
 
+                        item.setUsername(obj.getString("username"));
                         item.setGroupname(obj.getString("groupname"));
-
-                        System.out.println(item.getGroupname());
-
-                        OkHttpClient client2 = new OkHttpClient();
-
-
-                        Request req1 = new Request.Builder()
-                                .url("http://ncnurunforall-yychiu.rhcloud.com/groups/joined/info/" + item.getGroupname())
-                                .build();
-                        Call call2 = client2.newCall(req1);
-
-                        call2.enqueue(new Callback() {
-
-                            @Override
-                            public void onResponse(Call call, Response response) throws IOException {
-                                final String aFinalString = response.body().string();
-                                System.out.println(aFinalString);
-                                if (response.isSuccessful()) try {
-                                    final JSONArray array = new JSONArray(aFinalString);
-
-                                    for (int i = 0; i < array.length(); i++) {
-                                        JSONObject obj = array.getJSONObject(i);
-                                        item.setUsername(obj.getString("username"));
-                                        item.setContent(obj.getString("content"));
-                                        item.setDate(obj.getString("date"));
-                                        item.setTime(obj.getString("time"));
-                                        item.setLocation(obj.getString("location"));
-                                        item.setPrivacy(obj.getString("privacy"));
-                                        item.setCreatername(obj.getString("creatername"));
-
-                                    }
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                                else {
-                                    Log.e("APp", "Error");
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call call, IOException e) {
-                                //告知使用者連線失敗
-                            }
-                        });
-
-                        if (item.getCreatername() == null) {
-                            synchronized (this) {
-                                try {
-                                    wait(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            onStart();
-                        }
-
-
-
-
-
-
+                        item.setContent(obj.getString("content"));
+                        item.setDate(obj.getString("date"));
+                        item.setTime(obj.getString("time"));
+                        item.setLocation(obj.getString("location"));
+                        item.setPrivacy(obj.getString("privacy"));
+                        item.setCreatername(obj.getString("creatername"));
 
 
                         item2 = item;
@@ -201,7 +152,7 @@ public class JoinedTeamList extends android.app.Fragment {
         if (item2.getUsername() == null) {
             synchronized (this) {
                 try {
-                    wait(2000);
+                    wait(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

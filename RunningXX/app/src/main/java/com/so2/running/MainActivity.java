@@ -57,11 +57,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.so2.running.Fragment.FriendsList;
 import com.so2.running.Fragment.JoinedTeamList;
+import com.so2.running.Fragment.UserInterface;
+import com.so2.running.Fragment.FriendsList;
 import com.so2.running.Fragment.Notification;
 import com.so2.running.Fragment.TeamList;
-import com.so2.running.Fragment.UserInterface;
 
 import java.io.File;
 
@@ -112,11 +112,7 @@ public class MainActivity extends ActionBarActivity {
             switch (position) {
                //Go to session list
                case 0:
-                  FragmentManager sessionsFragmentManager0 = getFragmentManager();
-                  sessionsFragmentManager0.popBackStackImmediate(null, sessionsFragmentManager0.POP_BACK_STACK_INCLUSIVE);
-                  sessionsFragmentManager0.beginTransaction()
-                          .replace(R.id.content_frame, new UserInterface())
-                          .commit();
+                  MainActivity.changeFragment(getFragmentManager(), new UserInterface());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
                //Go to session list
@@ -131,29 +127,17 @@ public class MainActivity extends ActionBarActivity {
                   break;
                //Go to Teams
                case 2:
-                  FragmentManager sessionsFragmentManager2 = getFragmentManager();
-                  sessionsFragmentManager2.popBackStackImmediate(null, sessionsFragmentManager2.POP_BACK_STACK_INCLUSIVE);
-                  sessionsFragmentManager2.beginTransaction()
-                          .replace(R.id.content_frame, new TeamList())
-                          .commit();
+                  MainActivity.changeFragment(getFragmentManager(), new TeamList());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
                //Go to JoinedTeams
                case 3:
-                  FragmentManager sessionsFragmentManager3 = getFragmentManager();
-                  sessionsFragmentManager3.popBackStackImmediate(null, sessionsFragmentManager3.POP_BACK_STACK_INCLUSIVE);
-                  sessionsFragmentManager3.beginTransaction()
-                          .replace(R.id.content_frame, new JoinedTeamList())
-                          .commit();
+                  MainActivity.changeFragment(getFragmentManager(), new JoinedTeamList());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
                //Go to Friends
                case 4:
-                  FragmentManager sessionsFragmentManager4 = getFragmentManager();
-                  sessionsFragmentManager4.popBackStackImmediate(null, sessionsFragmentManager4.POP_BACK_STACK_INCLUSIVE);
-                  sessionsFragmentManager4.beginTransaction()
-                          .replace(R.id.content_frame, new FriendsList())
-                          .commit();
+                  MainActivity.changeFragment(getFragmentManager(), new FriendsList());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
                //Show import dialog
@@ -188,11 +172,7 @@ public class MainActivity extends ActionBarActivity {
 
                //Go to info
                case 8:
-                  FragmentManager sessionsFragmentManager8 = getFragmentManager();
-                  sessionsFragmentManager8.popBackStackImmediate(null, sessionsFragmentManager8.POP_BACK_STACK_INCLUSIVE);
-                  sessionsFragmentManager8.beginTransaction()
-                          .replace(R.id.content_frame, new InfoFragment())
-                          .commit();
+                  MainActivity.changeFragment(getFragmentManager(), new InfoFragment());
                   mDrawerLayout.closeDrawer(mDrawerList);
                   break;
                //Go to Back
@@ -393,20 +373,20 @@ public class MainActivity extends ActionBarActivity {
    //Back button override
    public void onBackPressed()
    {
-//      FragmentManager fm = getFragmentManager();
-//
-//      if(fm.getBackStackEntryCount()>0)
-//      {
-//         fm.popBackStackImmediate(null, fm.POP_BACK_STACK_INCLUSIVE);
-//
-//         fm.beginTransaction()
-//                 .replace(R.id.content_frame, new SessionListFragment())
-//                 .commit();
-//      }
-//      else
-//      {
-//         super.onBackPressed();
-//      }
+      /*FragmentManager fm = getFragmentManager();
+
+      if(fm.getBackStackEntryCount()>0)
+      {
+         fm.popBackStackImmediate(null, fm.POP_BACK_STACK_INCLUSIVE);
+
+         fm.beginTransaction()
+                 .replace(R.id.content_frame, new SessionListFragment())
+                 .commit();
+      }
+      else
+      {
+         super.onBackPressed();
+      }*/
       AlertDialog.Builder builder = new AlertDialog.Builder(this);
       builder.setTitle(R.string.app_name);
       builder.setMessage("回上頁將會清除目前作業資料，確定返回上一頁？");

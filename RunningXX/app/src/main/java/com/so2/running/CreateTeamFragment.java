@@ -126,8 +126,8 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
 
         button = (Button)view.findViewById(R.id.button);
 
-        datebutton = (ImageButton)view.findViewById(R.id.datebutton);
-        timebutton = (ImageButton)view.findViewById(R.id.timebutton);
+//        datebutton = (ImageButton)view.findViewById(R.id.datebutton);
+//        timebutton = (ImageButton)view.findViewById(R.id.timebutton);
         privacy_button = (ImageButton)view.findViewById(R.id.privacy_button);
         friend_txv = (TextView)view.findViewById(R.id.friend_txv);
 
@@ -172,13 +172,13 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                 }
             }
         });
-        datebutton.setOnClickListener(new View.OnClickListener() {
+        date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog(v);
             }
         });
-        timebutton.setOnClickListener(new View.OnClickListener() {
+        time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showTimePickerDialog(v);
