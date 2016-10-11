@@ -19,24 +19,30 @@
        android:src="@drawable/sessionlist"
        android:layout_width="100dp"
        android:layout_height="100dp"
-       android:layout_marginTop="490dp"
-       android:layout_marginLeft="20dp" />
+       android:layout_alignParentBottom="true"
+       android:layout_toLeftOf="@+id/newSessionButton"
+       android:layout_marginRight="25dp"
+       android:layout_marginBottom="5dp"
+       />
 
    <ImageView
        android:layout_width="100dp"
        android:layout_height="100dp"
        android:id="@+id/newSessionButton"
-       android:background="@drawable/newsession"
-       android:layout_marginTop="490dp"
-       android:layout_marginLeft="160dp" />
+       android:src="@drawable/newsession"
+       android:layout_alignParentBottom="true"
+       android:layout_centerHorizontal="true"
+       android:layout_marginBottom="5dp"/>
 
    <ImageView
        android:id="@+id/createteamButton"
        android:layout_width="100dp"
        android:layout_height="100dp"
-       android:background="@drawable/createteam"
-       android:layout_marginTop="490dp"
-       android:layout_marginLeft="290dp"
+       android:src="@drawable/createteam"
+       android:layout_alignParentBottom="true"
+       android:layout_toRightOf="@+id/newSessionButton"
+       android:layout_marginLeft="25dp"
+       android:layout_marginBottom="5dp"
        />
 
    <TextView
@@ -86,4 +92,3 @@
 
 
 </RelativeLayout>
-
