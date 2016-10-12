@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:text="創團人: "
             android:textColor="@color/Black"
-            android:layout_marginTop="155dp"
+            android:layout_marginTop="195dp"
             android:id="@+id/textView3"
             android:textSize="25dp"
             />
@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="隱私: "
-            android:layout_marginTop="195dp"
+            android:layout_marginTop="235dp"
             android:id="@+id/textView4"
             android:textColor="@color/Black"
             android:textSize="25dp"
@@ -99,7 +99,7 @@
             android:textColor="@color/Black"
             android:textSize="20dp"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="195dp" />
+            android:layout_marginTop="235dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
             android:textColor="@color/Black"
             android:textSize="20dp"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="235dp" />
+            android:layout_marginTop="275dp" />
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
@@ -117,16 +117,38 @@
             android:id="@+id/check"
             android:textSize="20dp"
             android:layout_marginLeft="150dp"
-            android:layout_marginTop="235dp" />
+            android:layout_marginTop="275dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="參加者: "
-            android:layout_marginTop="235dp"
+            android:layout_marginTop="275dp"
             android:id="@+id/textView5"
             android:textSize="25dp"
             android:textColor="@color/Black"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="路徑："
+            android:textColor="#000000"
+            android:textSize="25dp"
+            android:id="@+id/textView8"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginTop="155dp"
+            android:layout_marginLeft="0dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <ImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/path"
+            android:text="87人"
+            android:id="@+id/path"
+            android:textSize="20dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="155dp" />
 
 
         <TextView
@@ -137,7 +159,7 @@
             android:textSize="20dp"
             android:textColor="@color/Black"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="155dp" />
+            android:layout_marginTop="195dp" />
 
         <!--<TextView-->
             <!--android:layout_width="wrap_content"-->
@@ -166,7 +188,7 @@
             android:layout_height="wrap_content"
             android:text="詳細內容 : "
             android:id="@+id/textView6"
-            android:layout_marginTop="275dp"
+            android:layout_marginTop="315dp"
             android:textColor="@color/Black"
             android:textSize="25dp" />
         <TextView
@@ -178,7 +200,7 @@
             android:id="@+id/content"
             android:textSize="20dp"
             android:layout_marginLeft="0dp"
-            android:layout_marginTop="315dp" />
+            android:layout_marginTop="355dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -186,7 +208,7 @@
             android:text="編輯內容"
             android:id="@+id/edit_button"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="515dp"/>
+            android:layout_marginTop="555dp"/>
 
 
     </RelativeLayout>

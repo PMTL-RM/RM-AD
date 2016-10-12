@@ -20,14 +20,25 @@
 
 
     <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="60dp"-->
-        <!--android:background="#ff8040"-->
-        <!--android:text="返回"-->
-        <!--android:textSize="25dp"-->
-        <!--android:id="@+id/returnbutton"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_alignParentEnd="true" />-->
-
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:background="#ff8040"-->
+    <!--android:text="返回"-->
+    <!--android:textSize="25dp"-->
+    <!--android:id="@+id/returnbutton"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_alignParentEnd="true" />-->
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@drawable/returnbutton"
+        android:layout_marginBottom="15dp"
+        android:text="返回"
+        android:textColor="@color/White"
+        android:textSize="25dp"
+        android:id="@+id/returnbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
 </RelativeLayout>

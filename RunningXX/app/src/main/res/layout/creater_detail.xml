@@ -138,7 +138,7 @@
             android:id="@+id/addfriend"
             android:layout_marginLeft="240dp"
             android:layout_marginTop="150dp"
-            android:background="@color/Tan"
+            android:background="@drawable/returnbutton"
 
             />
     </RelativeLayout>

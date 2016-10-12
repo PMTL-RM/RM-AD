@@ -7,7 +7,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/txt"
-        android:text="沒有通知"
+        android:text="尚無資料"
         android:textSize="25dp"
         android:textColor="@color/Black"
         android:gravity="center" />
