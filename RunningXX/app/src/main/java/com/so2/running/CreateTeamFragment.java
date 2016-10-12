@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,6 +32,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.so2.running.Fragment.TeamList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,7 +59,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
     private View view;
     private ImageButton privacy_button;
     Button button,image_button;
-    ImageButton timebutton ,datebutton,myImage, addfriend;
+    ImageButton timebutton ,datebutton,myImage, addfriend,path;
     EditText editText  , editText1 , editText2 ;
     TextView privacy, date, time, friend_txv;
     String choice;
@@ -170,6 +173,12 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                FragmentManager sessionsFragmentManager = getFragmentManager();
+                sessionsFragmentManager.popBackStackImmediate(null, sessionsFragmentManager.POP_BACK_STACK_INCLUSIVE);
+                sessionsFragmentManager.beginTransaction()
+                        .replace(R.id.content_frame, new TeamList())
+                        .commit();
+                Toast.makeText(getActivity(),"CreateTeam Succesful",Toast.LENGTH_SHORT).show();
             }
         });
         date.setOnClickListener(new View.OnClickListener() {
@@ -198,6 +207,14 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 selectImage();
+            }
+        });
+
+        path = (ImageButton)view.findViewById(R.id.path);
+        path.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MapsActivity.class));
             }
         });
 
