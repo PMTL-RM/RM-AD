@@ -46,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/so2/running/Fragment2.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.109375">
-              <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+              <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -2564,6 +2564,7 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_team_list_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/search_result_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/frag2_detail.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/so2/running/Fragment2.java" />
       </list>
     </option>
   </component>
@@ -3547,7 +3548,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/so2/running/Fragment2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.109375">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
           <folding />
         </state>
       </provider>

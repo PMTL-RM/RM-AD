@@ -25,7 +25,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class Fragment2 extends android.app.Fragment {
+public class    Fragment2 extends android.app.Fragment {
     Fragment2ListItem item2 = new Fragment2ListItem();
 
 
