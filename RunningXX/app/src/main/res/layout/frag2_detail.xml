@@ -53,11 +53,11 @@
     </RelativeLayout>
 
     <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:text="返回"
         android:id="@+id/returnbutton"
-        android:background="#ff8040"
+        android:background="@drawable/returnbutton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
