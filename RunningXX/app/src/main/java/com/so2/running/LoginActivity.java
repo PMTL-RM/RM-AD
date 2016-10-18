@@ -133,6 +133,7 @@ public class LoginActivity extends AppCompatActivity {
                                             .add("birthday",birthday)
                                             .add("gender",gender)
                                             .add("email",email)
+                                            .add("url",object.getJSONObject("picture").getJSONObject("data").getString("url"))
                                             .build();
 
                                     Request request = new Request.Builder()
@@ -162,7 +163,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         });
                 Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,email,birthday,gender");
+                parameters.putString("fields", "id,name,email,birthday,gender,picture.type(large)");
                 request1.setParameters(parameters);
                 request1.executeAsync();
 

@@ -150,7 +150,6 @@ public class UserInterface extends Fragment implements View.OnClickListener{
                             String id = object.getString("id");
 
                             txtName.setText(name);
-//                            txtURL.setText(id);
                             txtGender.setText(gender);
                             txtBd.setText(birthday);
                             if (object.has("picture")) {

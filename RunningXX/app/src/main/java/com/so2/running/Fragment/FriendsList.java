@@ -142,6 +142,7 @@ public class FriendsList extends android.app.Fragment {
                                         item.setBirthday(obj.getString("birthday"));
                                         item.setEmail(obj.getString("email"));
                                         item.setSex(obj.getString("gender"));
+                                        item.setUrl(obj.getString("url"));
 
                                     }
 
