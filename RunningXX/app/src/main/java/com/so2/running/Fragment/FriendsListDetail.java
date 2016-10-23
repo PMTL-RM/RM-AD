@@ -13,12 +13,11 @@ import com.so2.running.R;
 import com.squareup.picasso.Picasso;
 
 public class FriendsListDetail extends Fragment{
-    View view;
     FriendsListItem item;
     Button returnbutton ;
     TextView content ;
     String Username , Creatername , Groupname ;
-    ImageView userPhoto ;
+    ImageView imageView ;
     public void setItem (FriendsListItem item)
     {
         this.item = item;
@@ -27,7 +26,7 @@ public class FriendsListDetail extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.friend_detail, container, false);
+        final View view = inflater.inflate(R.layout.friend_detail, container, false);
         //returnbutton = (Button)view.findViewById(R.id.returnbutton);
 
 
@@ -45,25 +44,25 @@ public class FriendsListDetail extends Fragment{
 
 
         //Get textview from view
-        TextView name = (TextView) view.findViewById(R.id.name);
+        TextView uname = (TextView) view.findViewById(R.id.uname);
         TextView email = (TextView) view.findViewById(R.id.email);
         TextView birth = (TextView) view.findViewById(R.id.birth);
         TextView gender = (TextView) view.findViewById(R.id.gender);
-        userPhoto = (ImageView) view.findViewById(R.id.userPhoto);
+        imageView = (ImageView) view.findViewById(R.id.userPhoto);
+        final String url = item.getUrl();
+        Picasso.with(view.getContext()).load(url.trim()).resize(50, 50).error(R.drawable.bg).centerInside().into(imageView);
+
 
 
         //Set data
-        name.setText(item.getName());
+        uname.setText(item.getName());
         email.setText(item.getEmail());
         birth.setText(item.getBirthday());
         gender.setText(item.getSex());
 
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Picasso.with(userPhoto.getContext()).load(item.getUrl()).into(userPhoto);
-            }
-        });
+
+
+
 
         //Set ActionBar title
         getActivity().setTitle("詳細資料");
