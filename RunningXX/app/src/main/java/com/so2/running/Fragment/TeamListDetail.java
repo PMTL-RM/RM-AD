@@ -58,7 +58,7 @@ public class TeamListDetail extends Fragment  implements View.OnClickListener{
 
         //Get textview from view
         TextView groupname = (TextView) view.findViewById(R.id.groupname);
-        TextView name = (TextView) view.findViewById(R.id.name);
+        TextView name = (TextView) view.findViewById(R.id.uname);
 
         TextView privacy = (TextView) view.findViewById(R.id.privacy);
         TextView location = (TextView) view.findViewById(R.id.location);

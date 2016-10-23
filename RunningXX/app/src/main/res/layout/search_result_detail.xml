@@ -114,7 +114,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
-            android:id="@+id/name"
+            android:id="@+id/uname"
             android:textSize="20dp"
             android:textColor="#000088"
             android:layout_marginLeft="100dp"

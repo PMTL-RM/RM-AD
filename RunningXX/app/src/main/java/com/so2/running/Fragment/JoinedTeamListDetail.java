@@ -28,7 +28,7 @@ public class JoinedTeamListDetail extends Fragment {
 
         //Get textview from view
         TextView groupname = (TextView) view.findViewById(R.id.groupname);
-        TextView name = (TextView) view.findViewById(R.id.name);
+        TextView name = (TextView) view.findViewById(R.id.uname);
         TextView content = (TextView) view.findViewById(R.id.content);
         TextView privacy = (TextView) view.findViewById(R.id.privacy);
         TextView location = (TextView) view.findViewById(R.id.location);

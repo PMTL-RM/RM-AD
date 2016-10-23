@@ -43,7 +43,7 @@ dependencies {
     compile 'com.android.support:design:24.2.0'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
-    compile 'com.squareup.picasso:picasso:2.4.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.google.android.gms:play-services:9.2.1'
     compile 'com.android.support:multidex:1.0.0'
@@ -51,4 +51,5 @@ dependencies {
     compile 'com.google.android.gms:play-services-auth:9.2.1'
     compile 'com.google.android.gms:play-services-gcm:9.2.1'
     compile 'com.mostafagazar:customshapeimageview:1.0.4'
+
 }

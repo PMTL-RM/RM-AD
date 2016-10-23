@@ -178,7 +178,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                 sessionsFragmentManager.beginTransaction()
                         .replace(R.id.content_frame, new TeamList())
                         .commit();
-                Toast.makeText(getActivity(),"CreateTeam Succesful",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"CreateTeam Successful !",Toast.LENGTH_SHORT).show();
             }
         });
         date.setOnClickListener(new View.OnClickListener() {

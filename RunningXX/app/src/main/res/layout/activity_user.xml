@@ -33,7 +33,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/name"
+        android:id="@+id/uname"
         android:textSize="20dp"
         android:textColor="@color/White"
         android:layout_alignTop="@+id/userPhoto"
@@ -141,7 +141,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/name" />
+        android:layout_toStartOf="@+id/uname" />
 
 
 
@@ -174,7 +174,8 @@
         android:layout_marginLeft="15dp"
         android:scaleType="centerCrop"
         android:layout_above="@+id/birthtxt"
-        android:layout_alignStart="@+id/birthtxt" />
+        android:layout_alignStart="@+id/birthtxt"
+        android:adjustViewBounds="false" />
     <!--<TextView-->
         <!--android:layout_width="0dp"-->
         <!--android:layout_height="wrap_content"-->

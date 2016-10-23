@@ -115,7 +115,7 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
             }
 
             TextView content;
-            content = (TextView) convertView.findViewById(R.id.name);
+            content = (TextView) convertView.findViewById(R.id.uname);
             content.setText(sessionList.get(position).getContent());
         }
         return convertView;

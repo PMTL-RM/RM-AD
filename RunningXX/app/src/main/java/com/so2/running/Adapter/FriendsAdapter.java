@@ -1,6 +1,7 @@
 package com.so2.running.Adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,14 +39,15 @@ public class FriendsAdapter extends ArrayAdapter<FriendsListItem> {
         return arg0;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    @NonNull
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         // TODO Auto-generated method stub
 
         TextView name;
 
         convertView = mInflater.inflate(R.layout.friends_layout, null);
 
-        name = (TextView) convertView.findViewById(R.id.name);
+        name = (TextView) convertView.findViewById(R.id.uname);
 
 
         name.setText(sessionList.get(position).getName());

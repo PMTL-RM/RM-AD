@@ -66,7 +66,7 @@ public class Creater_Detail extends Fragment {
 
         view = inflater.inflate(R.layout.creater_detail, container, false);
         returnbutton = (Button)view.findViewById(R.id.returnbutton);
-        create_name = (TextView) view.findViewById(R.id.name);
+        create_name = (TextView) view.findViewById(R.id.uname);
         email = (TextView) view.findViewById(R.id.email);
         gender = (TextView) view.findViewById(R.id.gender);
         addfriend = (Button) view.findViewById(R.id.addfriend);

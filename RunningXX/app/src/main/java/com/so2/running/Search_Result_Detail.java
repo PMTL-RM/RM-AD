@@ -63,7 +63,7 @@ public class Search_Result_Detail extends Fragment {
         });
 
         //Get textview from view
-        TextView name = (TextView) view.findViewById(R.id.name);
+        TextView name = (TextView) view.findViewById(R.id.uname);
         TextView content = (TextView) view.findViewById(R.id.content);
         TextView privacy = (TextView) view.findViewById(R.id.privacy);
         TextView date = (TextView) view.findViewById(R.id.date);

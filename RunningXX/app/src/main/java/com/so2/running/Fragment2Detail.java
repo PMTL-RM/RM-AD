@@ -59,7 +59,7 @@ public class Fragment2Detail extends Fragment {
         });
 
         //Get textview from view
-        TextView name = (TextView) view.findViewById(R.id.name);
+        TextView name = (TextView) view.findViewById(R.id.uname);
         TextView content = (TextView) view.findViewById(R.id.content);
 
 

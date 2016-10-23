@@ -3,9 +3,7 @@ package com.so2.running.Fragment;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +18,6 @@ import android.widget.Toast;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.share.widget.ShareDialog;
 import com.so2.running.R;
 import com.squareup.picasso.Picasso;
 
@@ -43,21 +40,15 @@ public class UserInterface extends Fragment implements View.OnClickListener{
     TextView txtName, txtURL, txtGender,txtBd , about_me;
     Button btnShare , returnbutton , edit_button;
 
-    private ShareDialog shareDialog;
-    private View view;
-
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);
-        String name = preferences.getString("name","error");
 
-        view = inflater.inflate(R.layout.activity_user, container, false);
+        View view = inflater.inflate(R.layout.activity_user, container, false);
 
-        returnbutton = (Button)view.findViewById(R.id.returnbutton);
-        shareDialog = new ShareDialog(this);
+        returnbutton = (Button) view.findViewById(R.id.returnbutton);
 
         imageView = (ImageView) view.findViewById(R.id.userPhoto);
-        txtName = (TextView) view.findViewById(R.id.name);
+        txtName = (TextView) view.findViewById(R.id.uname);
         txtBd = (TextView) view.findViewById(R.id.birth);
         txtGender = (TextView) view.findViewById(R.id.gender);
         about_me = (TextView) view.findViewById(R.id.about_me);
@@ -154,7 +145,7 @@ public class UserInterface extends Fragment implements View.OnClickListener{
                             txtBd.setText(birthday);
                             if (object.has("picture")) {
                                 String profilePicUrl = object.getJSONObject("picture").getJSONObject("data").getString("url");
-                                Picasso.with(imageView.getContext()).load(profilePicUrl).into(imageView);
+                                Picasso.with(imageView.getContext()).load(profilePicUrl).resize(50, 50).centerCrop().into(imageView);
                             }
 
                             doGetIntroRequest(name);

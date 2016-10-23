@@ -3,21 +3,27 @@
     android:orientation="horizontal" android:layout_width="fill_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@drawable/returnbutton"
+        android:layout_marginBottom="15dp"
+        android:text="返回"
+        android:textColor="@color/White"
+        android:textSize="25dp"
+        android:id="@+id/returnbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="0dp"
-        android:paddingTop="16dp">
-
-        <com.meg7.widget.CircleImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/userPhoto"
-            android:layout_marginBottom="30dp"
-            android:layout_marginLeft="15dp"
-            android:scaleType="centerCrop"
-            android:layout_above="@+id/birthtxt"
-            android:layout_alignStart="@+id/birthtxt" />
+        android:paddingTop="16dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
@@ -39,17 +45,6 @@
             android:layout_marginTop="15dp"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/name"
-            android:text="KempLin"
-            android:textSize="20dp"
-            android:textColor="@color/White"
-            android:layout_alignTop="@+id/userPhoto"
-            android:layout_marginTop="100dp"
-            android:layout_alignLeft="@+id/userPhoto"
-            android:layout_marginLeft="10dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,6 +108,30 @@
             android:src="@drawable/userpg"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/uname"
+            android:text="1111"
+            android:textSize="20dp"
+            android:textColor="?android:attr/textColorPrimaryDisableOnly"
+            android:layout_marginLeft="10dp"
+            android:visibility="visible"
+            android:layout_above="@+id/birthtxt"
+            android:layout_toStartOf="@+id/birth" />
+
+        <com.meg7.widget.CircleImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:id="@+id/userPhoto"
+            android:layout_marginLeft="15dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="false"
+            android:layout_marginBottom="14dp"
+            android:layout_above="@+id/uname"
+            android:layout_alignStart="@+id/uname"
+            android:layout_marginStart="20dp" />
         <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
@@ -133,17 +152,4 @@
         <!--android:textSize="20dp" />-->
 
     </RelativeLayout>
-
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:background="@drawable/returnbutton"
-        android:layout_marginBottom="15dp"
-        android:text="返回"
-        android:textColor="@color/White"
-        android:textSize="25dp"
-        android:id="@+id/returnbutton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        />
 </RelativeLayout>
