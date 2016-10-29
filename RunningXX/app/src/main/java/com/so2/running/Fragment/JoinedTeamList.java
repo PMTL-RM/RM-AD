@@ -143,6 +143,7 @@ public class JoinedTeamList extends android.app.Fragment {
                                         item.setLocation(obj.getString("location"));
                                         item.setPrivacy(obj.getString("privacy"));
                                         item.setCreatername(obj.getString("creatername"));
+                                        item.setImagename(obj.getString("imagename"));
 
                                     }
 

@@ -130,6 +130,7 @@ public class Search_Result extends Fragment {
                         item.setDate(obj.getString("date"));
                         item.setTime(obj.getString("time"));
                         item.setLocation(obj.getString("location"));
+                        item.setImagename(obj.getString("imagename"));
 
                         item2 = item;
 

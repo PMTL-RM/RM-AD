@@ -26,14 +26,20 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,8 +61,9 @@ public class Creater_Detail extends Fragment {
     Button returnbutton , addfriend ;
     TextView create_name , email , gender ;
     String name;
-    String name1 , email1 , gender1;
+    String name1 , email1 , gender1 , url;
     String username , friendname ;
+    ImageView imageView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,6 +77,7 @@ public class Creater_Detail extends Fragment {
         email = (TextView) view.findViewById(R.id.email);
         gender = (TextView) view.findViewById(R.id.gender);
         addfriend = (Button) view.findViewById(R.id.addfriend);
+        imageView = (ImageView) view.findViewById(R.id.userPhoto);
 
         returnbutton.setOnClickListener(new View.OnClickListener()
         {
@@ -116,6 +124,7 @@ public class Creater_Detail extends Fragment {
                     name1 = obj.getString("name");
                     email1 = obj.getString("email");
                     gender1 = obj.getString("gender") ;
+                    url = obj.getString("url");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -149,6 +158,21 @@ public class Creater_Detail extends Fragment {
         create_name.setText(name1);
         email.setText(email1);
         gender.setText(gender1);
+        Picasso.with(view.getContext()).load(url.trim()).resize(50, 50).error(R.drawable.bg).centerInside().into(new Target() {
+            @Override
+            public void onBitmapLoaded (final Bitmap bitmap, Picasso.LoadedFrom from){
+                /* Save the bitmap or do something with it here */
+
+                //Set it in the ImageView
+                imageView.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {}
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {}
+        });
 
         try {
             doGetRequest();

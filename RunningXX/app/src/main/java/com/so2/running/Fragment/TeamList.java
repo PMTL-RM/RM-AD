@@ -37,7 +37,6 @@ public class TeamList extends android.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         SharedPreferences preferences = this.getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);
         String name = preferences.getString("name","error");
-        System.out.println("here :::::::"+name);
 
         ArrayList<TeamListItem> sessionList;
         View view = inflater.inflate(R.layout.fragment_team_list, container, false);
@@ -57,7 +56,7 @@ public class TeamList extends android.app.Fragment {
 //        });
 
         //Set ActionBar title
-        getActivity().setTitle(getString(R.string.title_info));
+        getActivity().setTitle("創辦的團");
         // Inflate the layout for this fragment
 
 
@@ -127,6 +126,7 @@ public class TeamList extends android.app.Fragment {
                         item.setLocation(obj.getString("location"));
                         item.setPrivacy(obj.getString("privacy"));
                         item.setCreatername(obj.getString("creatername"));
+                        item.setImagename(obj.getString("imagename"));
 
                         item2 = item;
 

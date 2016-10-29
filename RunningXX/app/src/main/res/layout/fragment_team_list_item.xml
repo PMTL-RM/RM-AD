@@ -14,7 +14,6 @@
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:background="@color/Black"
         />
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/groupname"
@@ -33,18 +32,6 @@
         />
 
 
-    <!--<TextView xmlns:android="http://schemas.android.com/apk/res/android"-->
-    android:id="@+id/container_icon"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:layout_alignParentRight="true"
-    android:layout_centerHorizontal="true"
-    android:layout_centerVertical="true"
-    android:text =">"
-    android:textSize="20sp"
-    android:textColor="@color/Black"
-    />
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/date"
@@ -73,14 +60,4 @@
 
         />
 
-    <!--<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/container_icon"
-              android:layout_width="wrap_content"
-              android:layout_height="match_parent"
-              android:layout_alignParentRight="true"
-              android:layout_centerVertical="true"
-              android:layout_margin="10dp"
-              android:elevation="0dp"
-              android:src="@drawable/ic_arrow"
-       /> -->
 </RelativeLayout>

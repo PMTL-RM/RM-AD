@@ -15,8 +15,8 @@
             android:id="@+id/imgPhoto"
             android:src="@drawable/userpg" />
           <com.meg7.widget.CircleImageView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:id="@+id/userPhoto"
             android:layout_alignBottom="@+id/imgPhoto"
             android:layout_marginBottom="30dp"

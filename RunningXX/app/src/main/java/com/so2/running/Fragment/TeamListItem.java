@@ -32,6 +32,8 @@ public class TeamListItem
     private String content;
     private String privacy;
     private String creatername;
+    private String imagename;
+
 
 
     public String getLocation() {
@@ -82,9 +84,11 @@ public class TeamListItem
 
     public String getCreatername() {return creatername;}
 
-    public void setCreatername(String creatername) {
-        this.creatername = creatername;
-    }
+    public void setCreatername(String creatername) {this.creatername = creatername;}
+
+    public String getImagename() {return imagename;}
+
+    public void setImagename(String imagename) {this.imagename = imagename;}
 
 
 }

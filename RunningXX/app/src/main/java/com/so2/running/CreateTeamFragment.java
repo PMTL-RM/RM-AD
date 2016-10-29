@@ -39,7 +39,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -48,13 +47,15 @@ import java.util.Objects;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-public class CreateTeamFragment extends Fragment implements View.OnClickListener {
+    public class CreateTeamFragment extends Fragment implements View.OnClickListener {
 
     private View view;
     private ImageButton privacy_button;
@@ -64,7 +65,8 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
     TextView privacy, date, time, friend_txv;
     String choice;
     String friends = "";
-
+    Bitmap bitmap;
+    File file;
     private ListView lv;
 
 
@@ -112,7 +114,13 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
         context = activity;
     }
 
-    public void showTimePickerDialog(View v) {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+
+        }
+        public void showTimePickerDialog(View v) {
         TimePickerFragment newFragment = new TimePickerFragment();
         newFragment.show(getFragmentManager(), "timePicker");
     }
@@ -120,7 +128,6 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
         DatePickerFragment newFragment = new DatePickerFragment();
         newFragment.show(getFragmentManager(), "datePicker");
     }
-
 
 
     @Override
@@ -159,6 +166,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
         sp2 = (Spinner) view.findViewById(R.id.type2);
         sp2.setAdapter(adapter2);
 
+
         final AlertDialog mutiItemDialog = getMutiItemDialog(new String[]{"隱私","公開"});
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -167,9 +175,12 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                 // TODO -> set up a php server on eu5.org just to test if we can create successful post requests
                 String url = "http://ncnurunforall-yychiu.rhcloud.com/groups";
                 String url2 = "http://ncnurunforall-yychiu.rhcloud.com/notices";
+                String url3 = "http://ncnurunforall-yychiu.rhcloud.com/images";
                 try {
                     doPostRequest(url);
                     doNotificationPostRequest(url2);
+                    doImagePostRequest(url3);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -255,6 +266,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                 .add("privacy", privacy.getText().toString())
                 .add("username", name)
                 .add("creatername",name)
+                .add("imagename",file.getName())
                 .build();
 
         Request request = new Request.Builder()
@@ -389,30 +401,21 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                     }
                 }
                 try {
-                    Bitmap bitmap;
                     BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
 
-                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
-                            bitmapOptions);
+                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(), bitmapOptions);
 
                     viewImage.setImageBitmap(bitmap);
 
-                    String path = android.os.Environment
-                            .getExternalStorageDirectory()
-                            + File.separator
-                            + "Phoenix" + File.separator + "default";
+                    String path = android.os.Environment.getExternalStorageDirectory() + File.separator ;
                     f.delete();
                     OutputStream outFile = null;
-                    File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
+                    file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
                     try {
                         outFile = new FileOutputStream(file);
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
                         outFile.flush();
                         outFile.close();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -420,18 +423,20 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                     e.printStackTrace();
                 }
             } else if (requestCode == 2) {
-
                 Uri selectedImage = data.getData();
                 String[] filePath = { MediaStore.Images.Media.DATA };
                 Cursor c = getActivity().getContentResolver().query(selectedImage,filePath, null, null, null);
+                assert c != null;
                 c.moveToFirst();
                 int columnIndex = c.getColumnIndex(filePath[0]);
                 String picturePath = c.getString(columnIndex);
                 c.close();
-                Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
+                bitmap = (BitmapFactory.decodeFile(picturePath));
                 //Log.w("path of image from gallery......******************.........", picturePath+"");
-                viewImage.setImageBitmap(thumbnail);
+                viewImage.setImageBitmap(bitmap);
+                file = new File(picturePath);
             }
+            System.out.println("THE IMAGE NAME HERE IS ::::"+file.getName());
         }
     }
 
@@ -543,5 +548,37 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
             onStart();
         }
         return friend_name[0];
+    }
+
+
+    void doImagePostRequest(String url) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody formBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("avatar", file.getName(), RequestBody.create(MediaType.parse("image/png"), file))
+                .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .post(formBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // Error
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String res = response.body().string();
+                    handlePostResponse(res);
+                } else {
+                    Log.e("APp", "Error");
+                }
+            }
+        });
     }
 }
