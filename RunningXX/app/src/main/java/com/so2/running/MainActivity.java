@@ -60,6 +60,7 @@ import android.widget.Toast;
 import com.so2.running.Fragment.FriendsList;
 import com.so2.running.Fragment.JoinedTeamList;
 import com.so2.running.Fragment.Notification;
+import com.so2.running.Fragment.SearchFriendFragment;
 import com.so2.running.Fragment.TeamList;
 import com.so2.running.Fragment.UserInterface;
 
@@ -301,23 +302,18 @@ public class MainActivity extends ActionBarActivity {
       switch (item.getItemId()){
 //         case R.id.action_location:
 //            startActivity(new Intent(this, MapsActivity.class));
-//            //MainActivity.changeFragment(getFragmentManager(), new ManagementTeamActivity());
 //            Toast.makeText(getApplicationContext(),"Fuck you",Toast.LENGTH_SHORT).show();
 //            return true;
          case R.id.action_search:
             MainActivity.changeFragment(getFragmentManager(), new SearchFragment());
             //startActivity(new Intent(this, SearchFragment.class));
-            Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
             return true;
          case R.id.action_friend:
-            startActivity(new Intent(this, ManagementTeamActivity.class));
-            //MainActivity.changeFragment(getFragmentManager(), new ManagementTeamActivity());
-            Toast.makeText(getApplicationContext(),"Fuck you",Toast.LENGTH_SHORT).show();
+            MainActivity.changeFragment(getFragmentManager(), new SearchFriendFragment());
             return true;
          case R.id.action_announcement:
             //startActivity(new Intent(this, MapsActivity.class));
             MainActivity.changeFragment(getFragmentManager(), new Notification());
-            Toast.makeText(getApplicationContext(),"Settings option selected",Toast.LENGTH_SHORT).show();
             return true;
       }
       return false;

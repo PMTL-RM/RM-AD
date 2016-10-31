@@ -78,9 +78,6 @@ public class FriendsList extends android.app.Fragment {
                     System.out.println("the position : : "+position);
                     FriendsListDetail itemDetail = new FriendsListDetail();
                     itemDetail.setItem(item);
-
-
-
                     FragmentManager fm = getFragmentManager();
                     fm.beginTransaction()
                             .replace(R.id.content_frame, itemDetail)

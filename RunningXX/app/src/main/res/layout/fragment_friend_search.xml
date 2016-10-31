@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="搜尋"
+        android:textColor="@color/White"
+        android:background="@drawable/returnbutton"
+        android:id="@+id/result"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="25dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="63dp"
+        android:id="@+id/searchname"
+        android:hint="輸入名稱" />
+
+    <!--<ImageButton-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="   選擇日期"-->
+    <!--android:layout_marginLeft="260dp"-->
+    <!--android:id="@+id/datebutton"-->
+    <!--android:background="#00000000"-->
+    <!--android:src="@drawable/ic_date_range_black_24dp"-->
+    <!--android:layout_marginTop="355dp" />-->
+</RelativeLayout>
