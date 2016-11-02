@@ -1,21 +1,3 @@
-/*
-                    RUNNING
-   Copyright (C) 2015  Alessandro Mereu, Maurizio Romano, Matteo Enrico Serpi
-
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 /**
  * This class implements all the functionality of the training session
  */
@@ -35,6 +17,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
+import android.os.Vibrator;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.MotionEvent;
 import android.view.View;
@@ -104,6 +87,8 @@ public class RunSessionActivity extends Activity {
          {
             if(paused) {
                mChrono.resumeChronometer();
+               //mChrono.stopChronometer();
+               //vibrator.cancel();
                mService.setStarted(true);
                started = true;
                paused = false;
@@ -123,6 +108,8 @@ public class RunSessionActivity extends Activity {
             else
             {
                mChrono.pauseChronometer();
+               //mChrono.stopChronometer();
+               //vibrator.cancel();
                mService.setPaused(true);
                started = false;
                paused = true;
@@ -310,6 +297,7 @@ public class RunSessionActivity extends Activity {
       started = false;
       paused = true;
       mService.setPaused(true);
+      final Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
       AlertDialog.Builder alertBuilder = new AlertDialog.Builder(context);
       alertBuilder
@@ -341,6 +329,7 @@ public class RunSessionActivity extends Activity {
                     {
                        //TODO: gestire l'errore
                     }
+                    mChrono.stopChronometer();
                     finish();
                  }
               })

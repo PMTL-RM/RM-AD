@@ -1,6 +1,4 @@
 package com.so2.running;
-
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
