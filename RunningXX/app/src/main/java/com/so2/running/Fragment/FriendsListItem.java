@@ -14,9 +14,7 @@ public class FriendsListItem
         this.name = name;
     }
 
-    public String getBirthday() {
-        return birthday;
-    }
+    public String getBirthday() {return birthday;}
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;

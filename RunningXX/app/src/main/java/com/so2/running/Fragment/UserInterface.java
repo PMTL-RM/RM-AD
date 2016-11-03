@@ -4,6 +4,8 @@ package com.so2.running.Fragment;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +22,7 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.so2.running.R;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -145,7 +148,20 @@ public class UserInterface extends Fragment implements View.OnClickListener{
                             txtBd.setText(birthday);
                             if (object.has("picture")) {
                                 String profilePicUrl = object.getJSONObject("picture").getJSONObject("data").getString("url");
-                                Picasso.with(imageView.getContext()).load(profilePicUrl).resize(50, 50).centerCrop().into(imageView);
+                                Picasso.with(getActivity()).load(profilePicUrl.trim()).resize(50, 50).error(R.drawable.bg).centerInside().into(new Target() {
+                                    @Override
+                                    public void onBitmapLoaded (final Bitmap bitmap, Picasso.LoadedFrom from){
+
+                                        //Set it in the ImageView
+                                        imageView.setImageBitmap(bitmap);
+                                    }
+
+                                    @Override
+                                    public void onPrepareLoad(Drawable placeHolderDrawable) {}
+
+                                    @Override
+                                    public void onBitmapFailed(Drawable errorDrawable) {}
+                                });
                             }
 
                             doGetIntroRequest(name);

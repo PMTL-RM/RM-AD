@@ -104,19 +104,21 @@ public class FriendsList extends android.app.Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                String [] strArray;
                 final String aFinalString = response.body().string();
                 System.out.println(aFinalString);
                 final FriendsListItem item = new FriendsListItem();
                 if (response.isSuccessful()) try {
                     final JSONArray array = new JSONArray(aFinalString);
+                    strArray = new String[array.length()];
+                    System.out.println("strarray length     "+strArray.length);
 
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject obj = array.getJSONObject(i);
 
                         item.setName(obj.getString("friend_name"));
-
-
-
+                        strArray[i] = item.getName();
+                        System.out.println("my friend name is "+strArray[i]);
 
 
 
@@ -124,7 +126,7 @@ public class FriendsList extends android.app.Fragment {
 
 
                         Request req1 = new Request.Builder()
-                                .url("http://ncnurunforall-yychiu.rhcloud.com/users/" + item.getName())
+                                .url("http://ncnurunforall-yychiu.rhcloud.com/users/" + strArray[i])
                                 .build();
                         Call call2 = client2.newCall(req1);
 
@@ -132,19 +134,22 @@ public class FriendsList extends android.app.Fragment {
 
                             @Override
                             public void onResponse(Call call, Response response) throws IOException {
-                                final String aFinalString = response.body().string();
-                                System.out.println(aFinalString);
+                                final String aFinalString2 = response.body().string();
+                                final FriendsListItem item3 = new FriendsListItem();
+                                System.out.println(aFinalString2);
                                 if (response.isSuccessful()) try {
-                                    final JSONArray array = new JSONArray(aFinalString);
+                                    final JSONArray array = new JSONArray(aFinalString2);
 
-                                    for (int i = 0; i < array.length(); i++) {
-                                        JSONObject obj = array.getJSONObject(i);
-                                        item.setBirthday(obj.getString("birthday"));
-                                        item.setEmail(obj.getString("email"));
-                                        item.setSex(obj.getString("gender"));
-                                        item.setUrl(obj.getString("url"));
-                                        item.setName(obj.getString("name"));
-                                    }
+                                        JSONObject obj = array.getJSONObject(0);
+                                        item3.setBirthday(obj.getString("birthday"));
+                                        item3.setEmail(obj.getString("email"));
+                                        item3.setSex(obj.getString("gender"));
+                                        item3.setUrl(obj.getString("url"));
+                                        item3.setName(obj.getString("name"));
+
+                                        item2 = item3;
+                                        sessionList.add(item2);
+
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -171,17 +176,6 @@ public class FriendsList extends android.app.Fragment {
                             onStart();
                         }
 
-
-
-
-
-
-
-
-                        item2 = item;
-
-                        sessionList.add(item2);
-                        Log.d("JSON:",  item2.getName());
                     }
 
                 } catch (JSONException e) {
@@ -201,7 +195,7 @@ public class FriendsList extends android.app.Fragment {
         if (item2.getName() == null) {
             synchronized (this) {
                 try {
-                    wait(2000);
+                    wait(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
