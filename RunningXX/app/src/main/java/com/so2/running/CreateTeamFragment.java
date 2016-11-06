@@ -1,6 +1,7 @@
 package com.so2.running;
 
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -10,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,6 +19,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,6 +72,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
     Bitmap bitmap;
     File file;
     private ListView lv;
+    public static int REQUEST_STORAGE_PERMISSION = 122;
 
 
     ImageView viewImage;
@@ -117,7 +122,6 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
     }
     public void showTimePickerDialog(View v) {
@@ -222,6 +226,12 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                 selectImage();
             }
         });
+
+        if (checkStoragePermission()) {
+            viewImage.isClickable();
+        } else {
+            requestStoragePermission();
+        }
 
         path = (ImageButton)view.findViewById(R.id.path);
         path.setOnClickListener(new View.OnClickListener() {
@@ -601,6 +611,34 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                 }
             }
         });
+    }
+
+
+
+
+
+    private boolean checkStoragePermission() {
+        return ActivityCompat.checkSelfPermission(this.getActivity(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestStoragePermission() {
+        ActivityCompat.requestPermissions(this.getActivity(),
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                REQUEST_STORAGE_PERMISSION);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_STORAGE_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                viewImage.isClickable();
+            } else {
+                viewImage.isClickable();
+
+            }
+        }
     }
 }
 
