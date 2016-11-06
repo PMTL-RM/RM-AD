@@ -1,8 +1,12 @@
 package com.so2.running;
 
 import android.Manifest;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -12,6 +16,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ProgressDialog progressDialog;
     private Button screenShot;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,12 +71,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         etOrigin = (EditText) findViewById(R.id.etOrigin);
         etDestination = (EditText) findViewById(R.id.etDestination);
 
+
         btnFindPath.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String Start = etOrigin.getText().toString();
+                String End = etDestination.getText().toString();
+                savepath(Start,End);
+                setResult(RESULT_FIRST_USER, getIntent());
+
                 sendRequest();
             }
         });
+
         screenShot = (Button)findViewById(R.id.screenShot);
         screenShot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +92,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 //shareIt();
             }
         });
+    }
+
+    public  void savepath(String s,String e){
+        final SharedPreferences preferences = this.getSharedPreferences("path", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.putString("start",s);
+        editor.putString("end",e);
+        editor.apply();
+        String s1 = preferences.getString("start","error");
+        String e1 = preferences.getString("end","error");
+        Toast.makeText(this," From "+s+" to "+ e, Toast.LENGTH_SHORT).show();
+
     }
 
     private void sendRequest() {
@@ -214,7 +240,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         intent.setDataAndType(uri, "image/*");
         startActivity(intent);
     }
-//    private void shareIt() {
+    //    private void shareIt() {
 //        Uri uri = Uri.fromFile(imagePath);
 //        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 //        sharingIntent.setType("image/*");
@@ -225,11 +251,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //
 //        startActivity(Intent.createChooser(sharingIntent, "Share via"));
 //    }
-public Bitmap screenShot(View view) {
-    Bitmap bitmap = Bitmap.createBitmap(view.getWidth(),
-            view.getHeight(), Bitmap.Config.ARGB_8888);
-    Canvas canvas = new Canvas(bitmap);
-    view.draw(canvas);
-    return bitmap;
-}
+    public Bitmap screenShot(View view) {
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(),
+                view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+        return bitmap;
+    }
+
 }

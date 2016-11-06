@@ -55,14 +55,14 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-    public class CreateTeamFragment extends Fragment implements View.OnClickListener {
+public class CreateTeamFragment extends Fragment implements View.OnClickListener {
 
     private View view;
     private ImageButton privacy_button;
     Button button,image_button;
     ImageButton timebutton ,datebutton,myImage, addfriend,path;
     EditText editText  , editText1 , editText2 ;
-    TextView privacy, date, time, friend_txv;
+    TextView privacy, date, time, friend_txv,start,end;
     String choice;
     String friends = "";
     Bitmap bitmap;
@@ -114,13 +114,13 @@ import okhttp3.Response;
         context = activity;
     }
 
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
 
-        }
-        public void showTimePickerDialog(View v) {
+    }
+    public void showTimePickerDialog(View v) {
         TimePickerFragment newFragment = new TimePickerFragment();
         newFragment.show(getFragmentManager(), "timePicker");
     }
@@ -153,6 +153,8 @@ import okhttp3.Response;
         privacy = (TextView)view.findViewById(R.id.privacy);
         date = (TextView)view.findViewById(R.id.date);
         time = (TextView)view.findViewById(R.id.time);
+        start = (TextView)view.findViewById(R.id.start);
+        end = (TextView)view.findViewById(R.id.end);
 
         adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item, type);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -225,12 +227,24 @@ import okhttp3.Response;
         path.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), MapsActivity.class));
+                startActivityForResult(new Intent(getActivity(), MapsActivity.class),1);
             }
         });
 
 
         return view;
+    }
+
+    public  void getpath()
+    {
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("path", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+        String s = preferences.getString("start","error");
+        String e= preferences.getString("end","error");
+        start.setText(String.valueOf(s));
+        end.setText(String.valueOf(e));
+        editor.clear();
+
     }
     public AlertDialog getMutiItemDialog(final String[] items) {
         Builder builder = new Builder(getActivity());
@@ -256,6 +270,8 @@ import okhttp3.Response;
         String name = preferences.getString("name","error");
         System.out.println("this name in dopostrequest ::::"+name);
         OkHttpClient client = new OkHttpClient();
+        String s=start.getText().toString();
+        String e=end.getText().toString();
 
         RequestBody formBody = new FormBody.Builder()
                 .add("groupname", editText.getText().toString())
@@ -264,10 +280,13 @@ import okhttp3.Response;
                 .add("time", time.getText().toString())
                 .add("date", date.getText().toString())
                 .add("privacy", privacy.getText().toString())
+                .add("start", start.getText().toString())
+                .add("end", end.getText().toString())
                 .add("username", name)
                 .add("creatername",name)
                 .add("imagename",file.getName())
                 .build();
+        Toast.makeText(getActivity(),s+e, Toast.LENGTH_SHORT).show();
 
         Request request = new Request.Builder()
                 .url(url)
@@ -438,6 +457,8 @@ import okhttp3.Response;
             }
             System.out.println("THE IMAGE NAME HERE IS ::::"+file.getName());
         }
+        if (resultCode==1 && resultCode == MapsActivity.RESULT_FIRST_USER)
+            getpath();
     }
 
 
@@ -582,3 +603,8 @@ import okhttp3.Response;
         });
     }
 }
+
+
+
+
+

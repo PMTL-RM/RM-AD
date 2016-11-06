@@ -33,7 +33,9 @@ public class TeamListItem
     private String privacy;
     private String creatername;
     private String imagename;
-
+    private String start;
+    private String end;
+    private String url;
 
 
     public String getLocation() {
@@ -90,5 +92,20 @@ public class TeamListItem
 
     public void setImagename(String imagename) {this.imagename = imagename;}
 
+    public String getStart() {return start;}
+
+    public void setStart(String start) {this.start = start;}
+
+    public String getEnd() {return end;}
+
+    public void setEnd(String end) {this.end = end;}
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
 }

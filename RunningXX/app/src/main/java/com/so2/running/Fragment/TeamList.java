@@ -124,17 +124,23 @@ public class TeamList extends android.app.Fragment {
                         item.setDate(obj.getString("date"));
                         item.setTime(obj.getString("time"));
                         item.setLocation(obj.getString("location"));
+                        item.setStart(obj.getString("start"));
+                        item.setEnd(obj.getString("end"));
                         item.setPrivacy(obj.getString("privacy"));
                         item.setCreatername(obj.getString("creatername"));
                         item.setImagename(obj.getString("imagename"));
+                        item.setUrl(obj.getString("imagename"));
 
                         item2 = item;
 
                         sessionList.add(item2);
-                        Log.d("JSON:", item2.getUsername() + "/" + item2.getGroupname() + "/" + item2.getDate()+item2.getTime() + "/" + item2.getContent() + "/" + item2.getLocation()+ "/" + item2.getPrivacy());
+                        Log.d("JSON:", item2.getUsername() + "/" + item2.getGroupname() + "/" + item2.getDate()+item2.getTime() + "/" + item2.getContent() + "/" + item2.getLocation()+ "/" + item2.getPrivacy()+"/"+item2.getStart()+"/"+item2.getEnd());
+
                     }
 
                 } catch (JSONException e) {
+
+
                     e.printStackTrace();
                 }
                 else {

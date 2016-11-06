@@ -144,7 +144,7 @@ public class JoinedTeamList extends android.app.Fragment {
                                         item.setPrivacy(obj.getString("privacy"));
                                         item.setCreatername(obj.getString("creatername"));
                                         item.setImagename(obj.getString("imagename"));
-
+                                        item.setUrl(obj.getString("imagename"));
                                     }
 
                                 } catch (JSONException e) {

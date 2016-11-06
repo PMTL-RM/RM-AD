@@ -1,8 +1,10 @@
 package com.so2.running;
 
-import android.Manifest;
+import android.*;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -54,6 +56,7 @@ public class PathActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_path);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -63,7 +66,7 @@ public class PathActivity extends FragmentActivity implements OnMapReadyCallback
 
         btnFindPath = (Button) findViewById(R.id.btnFindPath);
         etOrigin = (TextView) findViewById(R.id.etOrigin);
-        etDestination = (EditText) findViewById(R.id.etDestination);
+        etDestination = (TextView) findViewById(R.id.etDestination);
 
         btnFindPath.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,14 +74,20 @@ public class PathActivity extends FragmentActivity implements OnMapReadyCallback
                 sendRequest();
             }
         });
-        screenShot = (Button)findViewById(R.id.screenShot);
-        screenShot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                takeScreenshot();
-                //shareIt();
-            }
-        });
+        getpath();
+
+    }
+
+    public  void getpath()
+    {
+        SharedPreferences preferences = this.getSharedPreferences("getpath", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+        String s = preferences.getString("start","error");
+        String e= preferences.getString("end","error");
+        etOrigin.setText(String.valueOf(s));
+        etDestination.setText(String.valueOf(e));
+        editor.clear();
+
     }
 
     private void sendRequest() {
@@ -109,7 +118,7 @@ public class PathActivity extends FragmentActivity implements OnMapReadyCallback
                 .title("Hello")
                 .position(ncnu)));
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -179,42 +188,9 @@ public class PathActivity extends FragmentActivity implements OnMapReadyCallback
             polylinePaths.add(mMap.addPolyline(polylineOptions));
         }
     }
-    public void takeScreenshot() {
-        Date now = new Date();
-        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
 
-        try {
-            // image naming and path  to include sd card  appending name you choose for file
-            String mPath = Environment.getExternalStorageDirectory().toString() + "/Pictures" + now + ".jpg";
 
-            // create bitmap screen capture
-            View v1 = getWindow().getDecorView().getRootView();
-            v1.setDrawingCacheEnabled(true);
-            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
-            v1.setDrawingCacheEnabled(false);
-
-            File imageFile = new File(mPath);
-
-            FileOutputStream outputStream = new FileOutputStream(imageFile);
-            int quality = 100;
-            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
-            outputStream.flush();
-            outputStream.close();
-
-            openScreenshot(imageFile);
-        } catch (Throwable e) {
-            // Several error may come out with file handling or OOM
-            e.printStackTrace();
-        }
-    }
-    private void openScreenshot(File imageFile) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        Uri uri = Uri.fromFile(imageFile);
-        intent.setDataAndType(uri, "image/*");
-        startActivity(intent);
-    }
-//    private void shareIt() {
+    //    private void shareIt() {
 //        Uri uri = Uri.fromFile(imagePath);
 //        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 //        sharingIntent.setType("image/*");
@@ -225,11 +201,5 @@ public class PathActivity extends FragmentActivity implements OnMapReadyCallback
 //
 //        startActivity(Intent.createChooser(sharingIntent, "Share via"));
 //    }
-public Bitmap screenShot(View view) {
-    Bitmap bitmap = Bitmap.createBitmap(view.getWidth(),
-            view.getHeight(), Bitmap.Config.ARGB_8888);
-    Canvas canvas = new Canvas(bitmap);
-    view.draw(canvas);
-    return bitmap;
-}
+
 }

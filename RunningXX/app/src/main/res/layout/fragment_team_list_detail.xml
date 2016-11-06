@@ -103,7 +103,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="87人"
+            android:text=""
             android:id="@+id/join"
             android:textColor="@color/Black"
             android:textSize="20dp"
@@ -113,7 +113,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:background="@drawable/people"
-            android:text="87人"
+            android:text=""
             android:id="@+id/check"
             android:textSize="20dp"
             android:layout_marginLeft="150dp"
@@ -216,14 +216,22 @@
             android:layout_marginLeft="0dp"
             android:layout_marginTop="355dp" />
 
-
-
     </RelativeLayout>
     </ScrollView>
 
+    <com.meg7.widget.CircleImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/img"
+        android:layout_marginLeft="15dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="false"
+        android:layout_alignBottom="@+id/viewImage"
+        android:layout_alignParentStart="true" />
+
 
     <!--<Button-->
-        <!--android:layout_width="380dp"-->
+        <!--android:layout_width="100dp"-->
         <!--android:layout_height="50dp"-->
         <!--android:text="返回"-->
         <!--android:id="@+id/returnbutton"-->
@@ -232,6 +240,6 @@
         <!--android:background="@color/Black"-->
         <!--android:textSize="25dp"-->
         <!--android:textColor="@color/White"-->
-        <!--android:layout_centerHorizontal="true"/>-->
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

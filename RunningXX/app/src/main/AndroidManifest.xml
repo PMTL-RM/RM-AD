@@ -89,6 +89,9 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
+        <activity
+            android:name=".PathActivity"
+            android:label="@string/title_activity_path"></activity>
     </application>
 
 </manifest>

@@ -2,7 +2,13 @@ package com.so2.running.Fragment;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,10 +16,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.so2.running.MapsActivity;
+
+
+import com.so2.running.PathActivity;
 import com.so2.running.R;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.io.IOException;
 
@@ -29,6 +43,7 @@ public class TeamListDetail extends Fragment  implements View.OnClickListener{
     View view;
     TeamListItem item;
     Button returnbutton ;
+    ImageButton path;
     TextView content ;
     String Username , Creatername , Groupname ;
     public void setItem (TeamListItem item)
@@ -40,7 +55,7 @@ public class TeamListDetail extends Fragment  implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_team_list_detail_creater, container, false);
-        //returnbutton = (Button)view.findViewById(R.id.returnbutton);
+        returnbutton = (Button)view.findViewById(R.id.returnbutton);
 
 
 //        returnbutton.setOnClickListener(new View.OnClickListener()
@@ -63,14 +78,50 @@ public class TeamListDetail extends Fragment  implements View.OnClickListener{
         TextView privacy = (TextView) view.findViewById(R.id.privacy);
         TextView location = (TextView) view.findViewById(R.id.location);
         TextView date = (TextView) view.findViewById(R.id.date);
+        final TextView start = (TextView) view.findViewById(R.id.start);
+        TextView end = (TextView) view.findViewById(R.id.end);
         Button edit_button = (Button)view.findViewById(R.id.edit_button);
         content = (TextView) view.findViewById(R.id.content);
+        final ImageView img = (ImageView)view.findViewById(R.id.img);
+
+        Log.d("JSON:", item.getUsername() + "/" + item.getGroupname() + "/" + item.getDate()+item.getTime() + "/" + item.getContent() + "/" + item.getLocation()+ "/" + item.getPrivacy()+"/"+item.getStart()+"/"+item.getEnd());
         //Set data
         name.setText(item.getCreatername());
         groupname.setText(item.getGroupname());
         content.setText(item.getContent());
         privacy.setText(item.getPrivacy());
         location.setText(item.getLocation());
+        start.setText(item.getStart());
+        end.setText(item.getEnd());
+
+        final String url ="http://ncnurunforall-yychiu.rhcloud.com/images/"+ item.getUrl();
+        Picasso.with(view.getContext()).load(url.trim()).resize(50, 50).error(R.drawable.bg).centerInside().into(new Target() {
+            @Override
+            public void onBitmapLoaded (final Bitmap bitmap, Picasso.LoadedFrom from){
+                /* Save the bitmap or do something with it here */
+
+                //Set it in the ImageView
+                img.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {}
+
+            @Override
+            public void onBitmapFailed(Drawable errorDrawable) {}
+        });
+
+
+
+        final SharedPreferences preferences = getActivity().getSharedPreferences("getpath", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.putString("start",item.getStart());
+        editor.putString("end",item.getEnd());
+        editor.apply();
+
+//        start.setText(item.getStart());
+//        end.setText(item.getEnd());
         date.setText(String.format("%s%s", item.getDate(), item.getTime()));
 
         Username = item.getCreatername(); //只有創團的人可以編輯內容 所以在username==creatername的document更新
@@ -78,6 +129,15 @@ public class TeamListDetail extends Fragment  implements View.OnClickListener{
 
 
         edit_button.setOnClickListener(this);
+        path = (ImageButton)view.findViewById(R.id.path);
+        path.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),PathActivity.class);
+                startActivity(intent)   ;
+//                startActivity(new Intent(getActivity(),PathActivity.class))
+            }
+        });
 
 
 
@@ -90,6 +150,8 @@ public class TeamListDetail extends Fragment  implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {showAlertDialog();}
+
+
 
     private void showAlertDialog() {
 

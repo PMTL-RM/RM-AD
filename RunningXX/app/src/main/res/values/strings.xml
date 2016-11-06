@@ -117,6 +117,7 @@
     <string name="comprobar">123</string>
     <string name="message">456</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_path">Map</string>
 
 
     <string name="triple_icon_description">Triple Icon</string>
