@@ -1,7 +1,6 @@
 package com.so2.running;
 
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -16,6 +15,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -73,6 +73,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
     File file;
     private ListView lv;
     public static int REQUEST_STORAGE_PERMISSION = 122;
+    private final String PERMISSION_WRITE_STORAGE = "android.permission.WRITE_EXTERNAL_STORAGE";
 
 
     ImageView viewImage;
@@ -223,15 +224,18 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
         viewImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!hasPermission()) {
+                    if (needCheckPermission()) {
+                        //如果須要檢查權限，由於這個步驟要等待使用者確認，
+                        //所以不能立即執行儲存的動作，
+                        //必須在 onRequestPermissionsResult 回應中才執行
+                        return;
+                    }
+                }
                 selectImage();
             }
         });
 
-        if (checkStoragePermission()) {
-            viewImage.isClickable();
-        } else {
-            requestStoragePermission();
-        }
 
         path = (ImageButton)view.findViewById(R.id.path);
         path.setOnClickListener(new View.OnClickListener() {
@@ -614,35 +618,29 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
     }
 
 
-
-
-
-    private boolean checkStoragePermission() {
-        return ActivityCompat.checkSelfPermission(this.getActivity(),
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-    }
-
-    private void requestStoragePermission() {
-        ActivityCompat.requestPermissions(this.getActivity(),
-                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                REQUEST_STORAGE_PERMISSION);
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_STORAGE_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                viewImage.isClickable();
+                selectImage();
             } else {
-                viewImage.isClickable();
+                selectImage();
 
             }
         }
     }
+    private boolean hasPermission() {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || (ActivityCompat.checkSelfPermission(this.getActivity(), PERMISSION_WRITE_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    }
+    private boolean needCheckPermission() {
+        //MarshMallow(API-23)之後要在 Runtime 詢問權限
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            String[] perms = {PERMISSION_WRITE_STORAGE};
+            int permsRequestCode = 200;
+            requestPermissions(perms, permsRequestCode);
+            return true;
+        }
+        return false;
+    }
 }
-
-
-
-
-
