@@ -140,16 +140,15 @@ public class FriendsList extends android.app.Fragment {
                                 if (response.isSuccessful()) try {
                                     final JSONArray array = new JSONArray(aFinalString2);
 
-                                        JSONObject obj = array.getJSONObject(0);
-                                        item3.setBirthday(obj.getString("birthday"));
-                                        item3.setEmail(obj.getString("email"));
-                                        item3.setSex(obj.getString("gender"));
-                                        item3.setUrl(obj.getString("url"));
-                                        item3.setName(obj.getString("name"));
+                                    JSONObject obj = array.getJSONObject(0);
+                                    item3.setBirthday(obj.getString("birthday"));
+                                    item3.setEmail(obj.getString("email"));
+                                    item3.setSex(obj.getString("gender"));
+                                    item3.setUrl(obj.getString("url"));
+                                    item3.setName(obj.getString("name"));
 
-                                        item2 = item3;
-                                        sessionList.add(item2);
-
+                                    item2 = item3;
+                                    sessionList.add(item2);
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -164,18 +163,6 @@ public class FriendsList extends android.app.Fragment {
                                 //告知使用者連線失敗
                             }
                         });
-
-                        if (item.getEmail() == null) {
-                            synchronized (this) {
-                                try {
-                                    wait(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            onStart();
-                        }
-
                     }
 
                 } catch (JSONException e) {
@@ -191,11 +178,10 @@ public class FriendsList extends android.app.Fragment {
                 //告知使用者連線失敗
             }
         });
-
         if (item2.getName() == null) {
             synchronized (this) {
                 try {
-                    wait(3000);
+                    wait(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

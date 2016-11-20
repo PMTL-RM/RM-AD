@@ -71,6 +71,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
     String friends = "";
     Bitmap bitmap;
     File file;
+    int count = 1;
     private ListView lv;
     public static int REQUEST_STORAGE_PERMISSION = 122;
     private final String PERMISSION_WRITE_STORAGE = "android.permission.WRITE_EXTERNAL_STORAGE";
@@ -299,6 +300,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                 .add("username", name)
                 .add("creatername",name)
                 .add("imagename",file.getName())
+                .add("count", String.valueOf(count))
                 .build();
         Toast.makeText(getActivity(),s+e, Toast.LENGTH_SHORT).show();
 
@@ -511,6 +513,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                         for (int i = 0; i < province.length; i++) {
                             if (lv.getCheckedItemPositions().get(i)) {
                                 friends += lv.getAdapter().getItem(i) + ",";
+                                count++;
                             }
                         }
 

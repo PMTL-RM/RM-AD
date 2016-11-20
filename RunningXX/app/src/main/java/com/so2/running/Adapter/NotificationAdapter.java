@@ -112,6 +112,29 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
                         }
                     });
                     break;
+
+                case 3:
+                    convertView = mInflater.inflate(R.layout.notification_list_item_request_join, null);
+
+                    final Button accept_button ;
+                    accept_button = (Button) convertView.findViewById(R.id.accept_button);
+                    accept_button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String url1 = "http://ncnurunforall-yychiu.rhcloud.com/notices/"+friend_name+"/"+ user_name;
+                            String url2 = "http://ncnurunforall-yychiu.rhcloud.com/groups/";
+                            try {
+                                doPatchNoticeRequest(url1);
+                                doAddTeamPostRequest(url2 , position);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            Toast.makeText(getContext(), friend_name+"加入了", Toast.LENGTH_SHORT).show();
+                            accept_button.setEnabled(false);
+                        }
+                    });
+
+                    break;
             }
 
             TextView content;

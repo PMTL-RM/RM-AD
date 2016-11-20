@@ -36,6 +36,7 @@ public class TeamListItem
     private String start;
     private String end;
     private String url;
+    private String count;
 
 
     public String getLocation() {
@@ -106,6 +107,14 @@ public class TeamListItem
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
     }
 
 }
