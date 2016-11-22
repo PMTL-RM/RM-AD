@@ -125,7 +125,7 @@ public class Search_Result_Detail extends Fragment {
 
 
         //Set ActionBar title
-        getActivity().setTitle("詳細資料");
+        getActivity().setTitle("SearchDetail");
 
 
         return view;

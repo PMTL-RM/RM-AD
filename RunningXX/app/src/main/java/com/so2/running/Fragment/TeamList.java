@@ -56,7 +56,7 @@ public class TeamList extends android.app.Fragment {
 //        });
 
         //Set ActionBar title
-        getActivity().setTitle("創辦的團");
+        getActivity().setTitle("CreateTeam");
         // Inflate the layout for this fragment
 
 

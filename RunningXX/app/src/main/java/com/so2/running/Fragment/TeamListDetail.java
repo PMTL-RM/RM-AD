@@ -2,7 +2,6 @@ package com.so2.running.Fragment;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,9 +19,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.so2.running.MapsActivity;
-
 
 import com.so2.running.PathActivity;
 import com.so2.running.R;
@@ -142,7 +138,7 @@ public class TeamListDetail extends Fragment  implements View.OnClickListener{
 
 
         //Set ActionBar title
-        getActivity().setTitle("詳細資料");
+        getActivity().setTitle("TeamDeatail");
 
 
         return view;

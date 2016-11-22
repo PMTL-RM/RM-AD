@@ -40,7 +40,7 @@ public class    Fragment2 extends android.app.Fragment {
         final ListView listview = (ListView) view.findViewById(R.id.team_list_view);
 
         //Set ActionBar title
-        getActivity().setTitle(getString(R.string.title_info));
+        getActivity().setTitle(getString(R.string.team));
         // Inflate the layout for this fragment
 
 

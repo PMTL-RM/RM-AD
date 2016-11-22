@@ -58,7 +58,7 @@ public class UserInterface extends Fragment implements View.OnClickListener{
         edit_button = (Button) view.findViewById(R.id.edit_button);
 
         edit_button.setOnClickListener(this);
-
+        getActivity().setTitle(getString(R.string.user));
 
 /*        txtURL = (TextView) view.findViewById(R.id.txtURL);
         txtGender = (TextView) view.findViewById(R.id.txtGender);

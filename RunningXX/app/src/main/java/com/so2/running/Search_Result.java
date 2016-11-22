@@ -62,7 +62,7 @@ public class Search_Result extends Fragment {
         });
 
         //Set ActionBar title
-        getActivity().setTitle(getString(R.string.title_info));
+        getActivity().setTitle(getString(R.string.search));
         // Inflate the layout for this fragment
 
 
