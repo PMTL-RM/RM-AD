@@ -33,7 +33,7 @@ public class SearchFriendFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        getActivity().setTitle(getString(R.string.title_info));
+        getActivity().setTitle("搜尋人");
 
         view = inflater.inflate(R.layout.fragment_friend_search, container, false);
 

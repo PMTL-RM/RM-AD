@@ -54,7 +54,7 @@ public class Notification extends android.app.Fragment {
 //        });
 
         //Set ActionBar title
-        getActivity().setTitle(getString(R.string.title_info));
+        getActivity().setTitle("通知");
         // Inflate the layout for this fragment
 
 
