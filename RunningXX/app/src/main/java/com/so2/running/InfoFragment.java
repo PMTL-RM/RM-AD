@@ -37,7 +37,7 @@ public class InfoFragment extends Fragment {
    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
    {
       //Set ActionBar title
-      getActivity().setTitle(getString(R.string.title_info));
+      getActivity().setTitle("87");
       //getActivity().onBackPressed();
 
       view = inflater.inflate(R.layout.fragment_info, container, false);
