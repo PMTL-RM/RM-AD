@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="#bfd9eb">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="人名 : "
+            android:textColor="@color/Black"
+            android:id="@+id/textView3"
+            android:layout_above="@+id/textView6"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="45dp"
+            android:textSize="25dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/content"
+            android:textSize="20dp"
+            android:textColor="@color/Black"
+            android:layout_alignBottom="@+id/textView6"
+            android:layout_toEndOf="@+id/textView6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/uname"
+            android:textSize="20dp"
+            android:textColor="@color/Black"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_toEndOf="@+id/textView3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/Black"
+            android:text="詳細內容 : "
+            android:id="@+id/textView6"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:textSize="25dp" />
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="返回"
+        android:id="@+id/returnbutton"
+        android:background="@drawable/returnbutton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

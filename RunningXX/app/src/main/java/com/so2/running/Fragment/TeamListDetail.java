@@ -51,6 +51,7 @@ public class TeamListDetail extends Fragment  implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_team_list_detail_creater, container, false);
+
         returnbutton = (Button)view.findViewById(R.id.returnbutton);
 
 
@@ -138,7 +139,7 @@ public class TeamListDetail extends Fragment  implements View.OnClickListener{
 
 
         //Set ActionBar title
-        getActivity().setTitle("TeamDeatail");
+
 
 
         return view;

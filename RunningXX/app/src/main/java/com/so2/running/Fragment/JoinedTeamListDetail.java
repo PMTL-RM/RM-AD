@@ -1,5 +1,6 @@
 package com.so2.running.Fragment;
 
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.so2.running.MainActivity;
+import com.so2.running.NewSessionDialog;
 import com.so2.running.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -18,7 +21,7 @@ import com.squareup.picasso.Target;
 public class JoinedTeamListDetail extends Fragment {
     View view;
     JoinedTeamListItem item;
-    Button returnbutton ;
+    Button returnbutton, startrun ;
 
     public void setItem (JoinedTeamListItem item)
     {
@@ -38,6 +41,7 @@ public class JoinedTeamListDetail extends Fragment {
         TextView privacy = (TextView) view.findViewById(R.id.privacy);
         TextView location = (TextView) view.findViewById(R.id.location);
         TextView date = (TextView) view.findViewById(R.id.date);
+        Button startrun =(Button) view.findViewById(R.id.startrun);
         final ImageView img = (ImageView)view.findViewById(R.id.img);
 
         //Set data
@@ -47,6 +51,22 @@ public class JoinedTeamListDetail extends Fragment {
         privacy.setText(item.getPrivacy());
         location.setText(item.getLocation());
         date.setText(String.format("%s%s", item.getDate(), item.getTime()));
+
+        startrun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //verify GPS availability
+                if (((MainActivity) getActivity()).getGPSFix()) {
+                    DialogFragment newFragment = new NewSessionDialog();
+                    newFragment.show(getFragmentManager(), "New Training");
+                } else {
+                    DialogFragment newFragment = new NewSessionDialog();
+                    newFragment.show(getFragmentManager(), "New Training");
+                    //Toast.makeText(getActivity(), R.string.gpsNoFix, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
         final String url ="http://ncnurunforall-yychiu.rhcloud.com/images/"+ item.getUrl();
         Picasso.with(view.getContext()).load(url.trim()).resize(50, 50).error(R.drawable.bg).centerInside().into(new Target() {

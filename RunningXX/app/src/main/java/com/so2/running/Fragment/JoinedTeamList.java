@@ -31,7 +31,7 @@ import okhttp3.Response;
 
 public class JoinedTeamList extends android.app.Fragment {
     JoinedTeamListItem item2 = new JoinedTeamListItem();
-    Button returnbutton ;
+    Button returnbutton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
