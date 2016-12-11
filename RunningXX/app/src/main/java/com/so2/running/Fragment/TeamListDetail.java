@@ -52,6 +52,13 @@ public class TeamListDetail extends Fragment  implements View.OnClickListener{
 
         view = inflater.inflate(R.layout.fragment_team_list_detail_creater, container, false);
 
+        final SharedPreferences preferences1 = this.getActivity().getSharedPreferences("group_running", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor1 = preferences1.edit();
+        editor1.clear();
+        editor1.putString("groupname",item.getGroupname());
+        editor1.apply();
+
+
         returnbutton = (Button)view.findViewById(R.id.returnbutton);
 
 

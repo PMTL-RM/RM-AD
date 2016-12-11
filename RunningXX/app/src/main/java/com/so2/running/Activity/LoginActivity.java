@@ -123,6 +123,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                     String url = "http://ncnurunforall-yychiu.rhcloud.com/users";
                                     editor.putString("name",name).apply();
+                                    editor.putString("url",object.getJSONObject("picture").getJSONObject("data").getString("url")).apply();
+
                                     String asd = preferences.getString("name",null);
                                     if (asd != null) {
                                         System.out.println(asd);

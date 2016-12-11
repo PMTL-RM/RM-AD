@@ -184,10 +184,12 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                 String url = "http://ncnurunforall-yychiu.rhcloud.com/groups";
                 String url2 = "http://ncnurunforall-yychiu.rhcloud.com/notices";
                 String url3 = "http://ncnurunforall-yychiu.rhcloud.com/images";
+                String url4 = "http://ncnurunforall-yychiu.rhcloud.com/locations";
                 try {
                     doPostRequest(url);
                     doNotificationPostRequest(url2);
                     doImagePostRequest(url3);
+                    doLocationPostRequest(url4);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -250,8 +252,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
         return view;
     }
 
-    public  void getpath()
-    {
+    public  void getpath(){
         SharedPreferences preferences = this.getActivity().getSharedPreferences("path", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = preferences.edit();
         String s = preferences.getString("start","error");
@@ -617,6 +618,46 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                     Log.e("APp", "Error");
                 }
             }
+        });
+    }
+
+    void doLocationPostRequest(String url) throws IOException {
+        SharedPreferences preferences = getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);
+        String name = preferences.getString("name","error");
+        String img_url = preferences.getString("url","error");
+        System.out.println("this name in doLocationpostrequest ::::"+img_url);
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody formBody = new FormBody.Builder()
+                .add("groupname", editText.getText().toString())
+                .add("name", name)
+                .add("lat", "0")
+                .add("log", "0")
+                .add("url",img_url)
+
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(formBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // Error
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String res = response.body().string();
+                    handlePostResponse(res);
+                } else {
+                    Log.e("APp", "Error");
+                }
+            }
+
         });
     }
 

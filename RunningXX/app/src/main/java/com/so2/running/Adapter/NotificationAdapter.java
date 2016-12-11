@@ -2,6 +2,7 @@ package com.so2.running.Adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,8 +31,9 @@ import okhttp3.Response;
 public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
     private LayoutInflater mInflater;
     private ArrayList<NotificationListItem> sessionList;
-    SharedPreferences preferences = getContext().getSharedPreferences("here", Context.MODE_PRIVATE);       //目前使用者的名字
-    String user_name = preferences.getString("name","error");
+    private SharedPreferences preferences = getContext().getSharedPreferences("here", Context.MODE_PRIVATE);       //目前使用者的名字
+    private String user_name = preferences.getString("name","error");
+    private String img_url = preferences.getString("url","error");
 
     public NotificationAdapter(Context context, int resource, List<NotificationListItem> objects) {
         super(context, resource, objects);
@@ -61,14 +63,15 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
         return arg0;
     }
 
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    @NonNull
+    public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
         final String friend_name = sessionList.get(position).getFriend_name();
 
 
         if (convertView == null) {   // TODO Auto-generated method stub
 
             switch (getItemViewType(position)) {
-                case 1:
+                case 1://加好友
                     convertView = mInflater.inflate(R.layout.notification_list_item, null);
 
                     final Button decide_button ;
@@ -92,7 +95,7 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
                     });
 
                     break;
-                case 2:
+                case 2://加入團
                     convertView = mInflater.inflate(R.layout.notification_list_item_team, null);
                     final Button decide_addteam_button;
                     decide_addteam_button = (Button) convertView.findViewById(R.id.decide_addteam_button) ;
@@ -101,9 +104,11 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
                         public void onClick(View v) {
                             String url1 = "http://ncnurunforall-yychiu.rhcloud.com/notices/"+friend_name+"/"+ user_name;
                             String url2 = "http://ncnurunforall-yychiu.rhcloud.com/groups/";
+                            String url3 = "http://ncnurunforall-yychiu.rhcloud.com/locations/";
                             try {
                                 doPatchNoticeRequest(url1);
                                 doAddTeamPostRequest(url2 ,position);
+                                doAddLocationPostRequest(url3 ,position);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -113,7 +118,7 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
                     });
                     break;
 
-                case 3:
+                case 3://申請加入團
                     convertView = mInflater.inflate(R.layout.notification_list_item_request_join, null);
 
                     final Button accept_button ;
@@ -123,9 +128,11 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
                         public void onClick(View v) {
                             String url1 = "http://ncnurunforall-yychiu.rhcloud.com/notices/"+friend_name+"/"+ user_name;
                             String url2 = "http://ncnurunforall-yychiu.rhcloud.com/groups/";
+                            String url3 = "http://ncnurunforall-yychiu.rhcloud.com/locations/";
                             try {
                                 doPatchNoticeRequest(url1);
                                 doAddTeamPostRequest(url2 , position);
+                                doAddLocationPostRequest(url3 ,position);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -144,7 +151,7 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
         return convertView;
     }
 
-    void doPatchFriendListRequest(String url) throws IOException {
+    private void doPatchFriendListRequest(String url) throws IOException {
         OkHttpClient client = new OkHttpClient();
 
         RequestBody formBody = new FormBody.Builder()
@@ -176,7 +183,7 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
     }
 
 
-    void doPostFriendListRequest_Reverse(String url , int position) throws IOException {
+    private void doPostFriendListRequest_Reverse(String url, int position) throws IOException {
         OkHttpClient client = new OkHttpClient();
 
 
@@ -213,7 +220,7 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
     }
 
 
-    void doAddTeamPostRequest(String url , int position) throws IOException {
+    private void doAddTeamPostRequest(String url, int position) throws IOException {
         OkHttpClient client2 = new OkHttpClient();
 
         RequestBody formBody = new FormBody.Builder()
@@ -245,7 +252,42 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
         });
     }
 
-    void doPatchNoticeRequest(String url) throws IOException {
+    private void doAddLocationPostRequest(String url, int position) throws IOException {
+        OkHttpClient client2 = new OkHttpClient();
+
+        RequestBody formBody = new FormBody.Builder()
+                .add("groupname",sessionList.get(position).getGroupName() )
+                .add("name", user_name)
+                .add("lat","0")
+                .add("log","0")
+                .add("url",img_url)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(formBody)
+                .build();
+
+        client2.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                // Error
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    String res = response.body().string();
+                    handlePostResponse(res);
+                } else {
+                    Log.e("APp", "Error");
+                }
+            }
+
+        });
+    }
+
+    private void doPatchNoticeRequest(String url) throws IOException {
         OkHttpClient client = new OkHttpClient();
 
         RequestBody formBody = new FormBody.Builder()
@@ -275,7 +317,7 @@ public class NotificationAdapter extends ArrayAdapter<NotificationListItem> {
         });
     }
 
-    void handlePostResponse(String response) {
+    private void handlePostResponse(String response) {
         Log.i("OkHttpPost", response);
     }
 

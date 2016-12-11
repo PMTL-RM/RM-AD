@@ -1,7 +1,9 @@
 package com.so2.running.Fragment;
 
-import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -13,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.so2.running.MainActivity;
-import com.so2.running.NewSessionDialog;
+import com.so2.running.MapFragment;
 import com.so2.running.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -32,6 +34,12 @@ public class JoinedTeamListDetail extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_team_list_detail, container, false);
+
+        final SharedPreferences preferences = this.getActivity().getSharedPreferences("group_running", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.putString("groupname",item.getGroupname());
+        editor.apply();
 
 
         //Get textview from view
@@ -57,12 +65,11 @@ public class JoinedTeamListDetail extends Fragment {
             public void onClick(View v) {
                 //verify GPS availability
                 if (((MainActivity) getActivity()).getGPSFix()) {
-                    DialogFragment newFragment = new NewSessionDialog();
-                    newFragment.show(getFragmentManager(), "New Training");
+                    FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MapFragment());
+                    ft.commit();
                 } else {
-                    DialogFragment newFragment = new NewSessionDialog();
-                    newFragment.show(getFragmentManager(), "New Training");
-                    //Toast.makeText(getActivity(), R.string.gpsNoFix, Toast.LENGTH_SHORT).show();
+                    FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MapFragment());
+                    ft.commit();
                 }
             }
         });
