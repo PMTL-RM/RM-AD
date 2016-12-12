@@ -8,6 +8,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
         android:id="@+id/relativeLayout"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
@@ -81,7 +82,6 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/location"
-            android:background="#bfd9eb"
             android:textColor="@color/Black"
             android:textSize="20dp"
             android:layout_marginTop="115dp"
@@ -96,20 +96,11 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/date"
-            android:background="#bfd9eb"
             android:textSize="20dp"
             android:textColor="@color/Black"
             android:layout_alignBaseline="@+id/DATE"
             android:layout_alignBottom="@+id/DATE"
             android:layout_toEndOf="@+id/DATE" />
-
-        <Button
-            android:text="申請加入"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/join_button"
-            android:layout_below="@+id/viewImage"
-            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -129,18 +120,6 @@
             android:textColor="@color/Black"
             android:textSize="25dp"
             android:layout_below="@+id/textView5"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="200dp"
-            android:background="#BEBEBE"
-            android:textColor="@color/Black"
-            android:text="New Text"
-            android:id="@+id/content"
-            android:textSize="20dp"
-            android:layout_marginLeft="0dp"
-            android:layout_below="@+id/textView6"
             android:layout_alignParentStart="true" />
 
         <Button
@@ -163,6 +142,26 @@
             android:layout_alignBaseline="@+id/textView5"
             android:layout_alignBottom="@+id/textView5"
             android:layout_toEndOf="@+id/textView5" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:background="#BEBEBE"
+            android:textColor="@color/Black"
+            android:text="New Text"
+            android:id="@+id/content"
+            android:textSize="20dp"
+            android:layout_marginLeft="0dp"
+            android:layout_below="@+id/textView6"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:text="申請加入"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/join_button"
+            android:layout_below="@+id/viewImage"
+            android:layout_alignParentEnd="true" />
 
 
     </RelativeLayout>

@@ -2,6 +2,7 @@ package com.so2.running.Fragment;
 
 
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.so2.running.Adapter.TeamListAdapter;
+import com.so2.running.MainFragment;
 import com.so2.running.R;
 
 import org.json.JSONArray;
@@ -42,21 +44,21 @@ public class TeamList extends android.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_team_list, container, false);
         final ListView listview = (ListView) view.findViewById(R.id.team_list_view);
 
-//        returnbutton = (Button)view.findViewById(R.id.returnbutton);
+        returnbutton = (Button)view.findViewById(R.id.returnbutton);
 
 
-//        returnbutton.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
-//                ft.commit();
-//            }
-//        });
+        returnbutton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
+                ft.commit();
+            }
+        });
 
         //Set ActionBar title
-        getActivity().setTitle("CreateTeam");
+        getActivity().setTitle("創建的團");
         // Inflate the layout for this fragment
 
 

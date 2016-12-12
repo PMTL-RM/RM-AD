@@ -1,6 +1,7 @@
 package com.so2.running.Fragment;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.so2.running.MainFragment;
 import com.so2.running.R;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -30,18 +32,19 @@ public class FriendsListDetail extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.friend_detail, container, false);
-        //returnbutton = (Button)view.findViewById(R.id.returnbutton);
+        returnbutton = (Button)view.findViewById(R.id.returnbutton);
 
 
-//        returnbutton.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new TeamList());
-//                ft.commit();
-//            }
-//        });
+        returnbutton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                FragmentTransaction ft;
+                ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
+                ft.commit();
+            }
+        });
 
 
 

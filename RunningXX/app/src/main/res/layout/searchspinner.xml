@@ -6,9 +6,9 @@
     android:ellipsize="marquee"
     android:gravity="center"
     android:paddingLeft="8dip"
-    android:background="#00000000"
+    android:background="#FFFFFF"
     android:singleLine="true"
-    android:textColor="#FFFFFF"
+    android:textColor="#000000"
     android:textSize="25dp"
     android:textStyle="bold" >
 </TextView>

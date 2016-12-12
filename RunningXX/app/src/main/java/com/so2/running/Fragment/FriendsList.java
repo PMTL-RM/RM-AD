@@ -2,6 +2,7 @@ package com.so2.running.Fragment;
 
 
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.so2.running.Adapter.FriendsAdapter;
+import com.so2.running.MainFragment;
 import com.so2.running.R;
 
 import org.json.JSONArray;
@@ -30,7 +33,7 @@ import okhttp3.Response;
 
 public class FriendsList extends android.app.Fragment {
     FriendsListItem item2 = new FriendsListItem();
-//    Button returnbutton ;
+    Button returnbutton ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,18 +44,18 @@ public class FriendsList extends android.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_friends, container, false);
         final ListView listview = (ListView) view.findViewById(R.id.friends_list_view);
 
-//        returnbutton = (Button)view.findViewById(R.id.returnbutton);
-//
-//
-//        returnbutton.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
-//                ft.commit();
-//            }
-//        });
+        returnbutton = (Button)view.findViewById(R.id.returnbutton);
+
+
+        returnbutton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
+                ft.commit();
+            }
+        });
 
         //Set ActionBar title
         getActivity().setTitle("好友列表");

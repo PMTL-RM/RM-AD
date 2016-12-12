@@ -216,7 +216,7 @@
                 android:text="87人"
                 android:id="@+id/addfriend"
                 android:textSize="20dp"
-                android:layout_marginLeft="140dp"
+                android:layout_marginLeft="120dp"
                 android:layout_marginTop="320dp" />
             <TextView
                 android:layout_width="wrap_content"
@@ -225,7 +225,7 @@
                 android:text="人"
                 android:textColor="@color/Black"
                 android:layout_marginTop="325dp"
-                android:layout_marginLeft="120dp"/>
+                android:layout_marginLeft="160dp"/>
             <!--<Button-->
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"

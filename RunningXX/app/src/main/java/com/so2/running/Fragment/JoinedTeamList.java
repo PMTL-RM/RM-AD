@@ -2,6 +2,7 @@ package com.so2.running.Fragment;
 
 
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.so2.running.Adapter.JoinedTeamListAdapter;
+import com.so2.running.MainFragment;
 import com.so2.running.R;
 
 import org.json.JSONArray;
@@ -45,15 +47,16 @@ public class JoinedTeamList extends android.app.Fragment {
         returnbutton = (Button)view.findViewById(R.id.returnbutton);
 
 
-//        returnbutton.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                FragmentTransaction ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
-//                ft.commit();
-//            }
-//        });
+        returnbutton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                FragmentTransaction ft;
+                ft = getFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment());
+                ft.commit();
+            }
+        });
 
         //Set ActionBar title
         getActivity().setTitle("加入的團");

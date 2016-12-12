@@ -11,42 +11,59 @@
         android:scaleType="centerCrop"
         android:src="@drawable/userpg"
         android:id="@+id/viewImage"
-
         android:layout_marginTop="0dp"
         />
+
+    <com.meg7.widget.CircleImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/img"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="15dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="false"
+        android:layout_above="@+id/scrollView"
+        android:layout_alignParentStart="true" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_marginTop="9dp"
         android:layout_below="@+id/viewImage"
-        android:id="@+id/scrollView">
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_centerHorizontal="true"></ScrollView>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:paddingBottom="20dp">
+        android:paddingBottom="20dp"
+        android:layout_below="@+id/viewImage"
+        android:layout_alignParentStart="true">
 
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="團名"
             android:id="@+id/groupname"
-            android:textSize="56dp"
+            android:textSize="40dp"
             android:textColor="@color/Black"
             android:layout_centerHorizontal="true" />
 
         <!--<ImageView-->
-            <!--android:layout_width="180dp"-->
-            <!--android:layout_height="120dp"-->
-            <!--android:background="@color/WhiteSmoke"-->
-            <!--android:id="@+id/viewImage"-->
-            <!--android:padding="3sp"-->
-            <!--android:layout_marginTop="105dp"-->
-            <!--android:layout_marginLeft="195dp"-->
+        <!--android:layout_width="180dp"-->
+        <!--android:layout_height="120dp"-->
+        <!--android:background="@color/WhiteSmoke"-->
+        <!--android:id="@+id/viewImage"-->
+        <!--android:padding="3sp"-->
+        <!--android:layout_marginTop="105dp"-->
+        <!--android:layout_marginLeft="195dp"-->
 
-            <!--/>-->
+        <!--/>-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,9 +78,9 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/date"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:textColor="@color/Black"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="77.5dp"
             android:layout_marginLeft="100dp"/>
         <TextView
             android:layout_width="wrap_content"
@@ -98,36 +115,28 @@
             android:text="New Text"
             android:id="@+id/privacy"
             android:textColor="@color/Black"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="235dp" />
+            android:layout_marginTop="237.5dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
             android:id="@+id/join"
             android:textColor="@color/Black"
-            android:textSize="15dp"
+            android:textSize="25dp"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="275dp" />
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/people"
-            android:text="人"
-            android:id="@+id/check"
-            android:textSize="15dp"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="275dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="參加者: "
-            android:layout_marginTop="275dp"
-            android:id="@+id/textView5"
-            android:textSize="25dp"
-            android:textColor="@color/Black"
-            />
+        <!--<ImageView-->
+        <!--android:layout_width="25dp"-->
+        <!--android:layout_height="25dp"-->
+        <!--android:background="@drawable/people"-->
+        <!--android:text="人"-->
+        <!--android:id="@+id/check"-->
+        <!--android:textSize="15dp"-->
+        <!--android:layout_marginLeft="150dp"-->
+        <!--android:layout_marginTop="275dp" />-->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -148,7 +157,7 @@
             android:text=""
             android:id="@+id/path"
             android:textSize="15dp"
-            android:layout_marginLeft="140dp"
+            android:layout_marginLeft="155dp"
             android:layout_marginTop="155dp" />
         <TextView
             android:layout_width="wrap_content"
@@ -157,7 +166,7 @@
             android:id="@+id/start"
             android:text="start"
             android:textColor="#000000"
-            android:layout_marginTop="145dp"
+            android:layout_marginTop="147.5dp"
             android:layout_marginLeft="100dp"/>
 
         <TextView
@@ -167,7 +176,7 @@
             android:text="end"
             android:textColor="#000000"
             android:id="@+id/end"
-            android:layout_marginTop="165dp"
+            android:layout_marginTop="167.5dp"
             android:layout_marginLeft="100dp" />
 
         <TextView
@@ -175,28 +184,28 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/uname"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:textColor="@color/Black"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="195dp" />
+            android:layout_marginTop="197.5dp" />
 
         <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="New Text"-->
-            <!--android:id="@+id/Name"-->
-            <!--android:textSize="20dp"-->
-            <!--android:layout_marginTop="110dp"-->
-            <!--android:layout_marginLeft="100dp"-->
-            <!--android:textColor="@color/Black"-->
-            <!--/>-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="New Text"-->
+        <!--android:id="@+id/Name"-->
+        <!--android:textSize="20dp"-->
+        <!--android:layout_marginTop="110dp"-->
+        <!--android:layout_marginLeft="100dp"-->
+        <!--android:textColor="@color/Black"-->
+        <!--/>-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/location"
             android:textColor="@color/Black"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:layout_marginTop="115dp"
             android:layout_marginLeft="100dp"
             />
@@ -229,30 +238,30 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="555dp"/>
 
-    </RelativeLayout>
-    </ScrollView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="參加者: "
+            android:id="@+id/textView5"
+            android:textSize="25dp"
+            android:textColor="@color/Black"
+            android:layout_alignBaseline="@+id/join"
+            android:layout_alignBottom="@+id/join"
+            android:layout_alignParentStart="true" />
 
-    <com.meg7.widget.CircleImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/img"
-        android:layout_marginLeft="15dp"
-        android:scaleType="centerCrop"
-        android:adjustViewBounds="false"
-        android:layout_above="@+id/scrollView"
-        android:layout_alignParentStart="true" />
+    </RelativeLayout>
 
 
     <!--<Button-->
-        <!--android:layout_width="380dp"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:text="返回"-->
-        <!--android:id="@+id/returnbutton"-->
-        <!--android:layout_marginBottom="10dp"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:background="@color/Black"-->
-        <!--android:textSize="25dp"-->
-        <!--android:textColor="@color/White"-->
-        <!--android:layout_centerHorizontal="true"/>-->
+    <!--android:layout_width="380dp"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:text="返回"-->
+    <!--android:id="@+id/returnbutton"-->
+    <!--android:layout_marginBottom="10dp"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:background="@color/Black"-->
+    <!--android:textSize="25dp"-->
+    <!--android:textColor="@color/White"-->
+    <!--android:layout_centerHorizontal="true"/>-->
 
 </RelativeLayout>

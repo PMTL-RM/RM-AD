@@ -6,14 +6,6 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/friends_list_view"
-        android:layout_gravity="center"
-        android:divider="#bebebe"
-        android:dividerHeight="1dp"/>
-
     <Button
         android:layout_width="100dp"
         android:layout_height="50dp"
@@ -26,4 +18,13 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         />
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/friends_list_view"
+        android:layout_gravity="center"
+        android:divider="#BEBEBE"
+        android:dividerHeight="1dp"
+         />
 </RelativeLayout>

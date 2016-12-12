@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
    xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/White" >
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White" >
 
    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/appLogo"
-              android:layout_width="120dp"
-              android:layout_height="120dp"
-              android:layout_centerHorizontal="true"
-              android:layout_marginTop="60dp"
-              android:scaleType="fitXY"
-              android:src="@drawable/ic_logo"/>
+       android:id="@+id/appLogo"
+       android:layout_width="120dp"
+       android:layout_height="120dp"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="60dp"
+       android:scaleType="fitXY"
+       android:src="@drawable/rx"         />
 
-   <RelativeLayout android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_below="@id/appLogo"
-                   android:layout_marginTop="20dp"
+   <RelativeLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/appLogo"
+       android:layout_marginTop="20dp"
        android:layout_alignLeft="@+id/appLogo"
        android:layout_alignStart="@+id/appLogo"
        android:layout_above="@+id/applicense">
@@ -64,30 +65,14 @@
           android:id="@+id/textView"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:layout_marginBottom="20dp"
           android:text="@string/author4"
           android:textSize="20sp"
+          android:layout_below="@id/author3"
           android:layout_centerVertical="true"
           android:layout_centerHorizontal="true" />
    </RelativeLayout>
 
-   <TextView
-      android:id="@+id/iconCredits"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="20dp"
-      android:text="@string/iconAttribution"
-      android:textSize="10sp"
-      android:layout_alignParentBottom="true"
-      android:layout_centerHorizontal="true"/>
 
-   <TextView
-      android:id="@+id/applicense"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="10dp"
-      android:text="@string/license"
-      android:layout_above="@+id/iconCredits"
-      android:textSize="10sp"
-      android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

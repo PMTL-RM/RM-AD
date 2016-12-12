@@ -238,6 +238,7 @@
         android:scaleType="centerCrop"
         android:adjustViewBounds="false"
         android:layout_alignBottom="@+id/viewImage"
+        android:layout_marginBottom="15dp"
         android:layout_alignParentStart="true" />
 
 
