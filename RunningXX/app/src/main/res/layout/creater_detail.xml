@@ -22,8 +22,7 @@
             android:layout_alignBottom="@+id/imgPhoto"
             android:layout_marginBottom="30dp"
             android:layout_marginLeft="15dp"
-            android:scaleType="centerCrop"
-            android:background="@drawable/ivanhead" />
+            android:scaleType="centerCrop" />
 
         <!--<TextView-->
             <!--android:layout_width="wrap_content"-->
@@ -51,11 +50,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/uname"
-            android:text="KempLin"
+            android:text=""
             android:textSize="20dp"
             android:textColor="@color/White"
             android:layout_alignTop="@+id/userPhoto"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="80dp"
             android:layout_alignLeft="@+id/userPhoto"
             android:layout_marginLeft="10dp" />
         <TextView
