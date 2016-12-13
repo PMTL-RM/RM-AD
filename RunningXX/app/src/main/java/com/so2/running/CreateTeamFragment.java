@@ -510,7 +510,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
                 .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String s = "新增了：";
+                        String s = "";
                         // 扫描所有的列表项，如果当前列表项被选中，将列表项的文本追加到s变量中。
                         for (int i = 0; i < province.length; i++) {
                             if (lv.getCheckedItemPositions().get(i)) {
@@ -580,7 +580,7 @@ public class CreateTeamFragment extends Fragment implements View.OnClickListener
         if (friend_name[0][0] == null) {
             synchronized (this) {
                 try {
-                    wait(1500);
+                    wait(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

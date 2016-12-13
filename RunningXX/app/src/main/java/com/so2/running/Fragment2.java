@@ -131,7 +131,7 @@ public class    Fragment2 extends android.app.Fragment {
         if (item2.getUsername() == null) {
             synchronized (this) {
                 try {
-                    wait(1000);
+                    wait(2500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

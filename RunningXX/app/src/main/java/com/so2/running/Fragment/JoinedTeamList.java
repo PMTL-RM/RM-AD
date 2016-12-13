@@ -154,7 +154,9 @@ public class JoinedTeamList extends android.app.Fragment {
                                     item3.setCreatername(obj.getString("creatername"));
                                     item3.setImagename(obj.getString("imagename"));
                                     item3.setUrl(obj.getString("imagename"));
-
+                                    item3.setCount(obj.getString("count"));
+                                    item3.setStart(obj.getString("start"));
+                                    item3.setEnd(obj.getString("end"));
 
                                     item2 = item3;
                                     Log.d("JSON:", item2.getUsername() + "/" + item2.getGroupname() + "/" + item2.getDate()+item2.getTime() + "/" + item2.getContent() + "/" + item2.getLocation()+ "/" + item2.getPrivacy());
@@ -193,7 +195,7 @@ public class JoinedTeamList extends android.app.Fragment {
         if (item2.getUsername() == null) {
             synchronized (this) {
                 try {
-                    wait(3000);
+                    wait(4500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

@@ -295,7 +295,7 @@ public class UserInterface extends Fragment implements View.OnClickListener{
         if (about_me == null) {
             synchronized (this) {
                 try {
-                    wait(1000);
+                    wait(2500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

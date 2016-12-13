@@ -142,7 +142,7 @@ public class Creater_Detail extends Fragment {
         if ( name1 == null) {
             synchronized (this) {
                 try {
-                    wait(1000);
+                    wait(2500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -306,7 +306,7 @@ public class Creater_Detail extends Fragment {
         if ( friendname == null) {
             synchronized (this) {
                 try {
-                    wait(1000);
+                    wait(2500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

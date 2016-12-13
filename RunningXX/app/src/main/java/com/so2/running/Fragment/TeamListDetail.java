@@ -78,11 +78,12 @@ public class TeamListDetail extends Fragment  implements View.OnClickListener{
         //Get textview from view
         TextView groupname = (TextView) view.findViewById(R.id.groupname);
         TextView name = (TextView) view.findViewById(R.id.uname);
+        TextView join = (TextView) view.findViewById(R.id.join);
 
         TextView privacy = (TextView) view.findViewById(R.id.privacy);
         TextView location = (TextView) view.findViewById(R.id.location);
         TextView date = (TextView) view.findViewById(R.id.date);
-        final TextView start = (TextView) view.findViewById(R.id.start);
+        TextView start = (TextView) view.findViewById(R.id.start);
         TextView end = (TextView) view.findViewById(R.id.end);
         Button edit_button = (Button)view.findViewById(R.id.edit_button);
         content = (TextView) view.findViewById(R.id.content);
@@ -97,6 +98,7 @@ public class TeamListDetail extends Fragment  implements View.OnClickListener{
         location.setText(item.getLocation());
         start.setText(item.getStart());
         end.setText(item.getEnd());
+        join.setText(item.getCount());
 
         final String url ="http://ncnurunforall-yychiu.rhcloud.com/images/"+ item.getUrl();
         Picasso.with(view.getContext()).load(url.trim()).resize(50, 50).error(R.drawable.bg).centerInside().into(new Target() {
@@ -134,7 +136,7 @@ public class TeamListDetail extends Fragment  implements View.OnClickListener{
 
         edit_button.setOnClickListener(this);
         path = (ImageButton)view.findViewById(R.id.path);
-        path.setOnClickListener(new View.OnClickListener() {
+        path.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),PathActivity.class);

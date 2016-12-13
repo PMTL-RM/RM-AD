@@ -184,7 +184,7 @@ public class FriendsList extends android.app.Fragment {
         if (item2.getName() == null) {
             synchronized (this) {
                 try {
-                    wait(2000);
+                    wait(3500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

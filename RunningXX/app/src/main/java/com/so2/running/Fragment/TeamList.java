@@ -132,6 +132,7 @@ public class TeamList extends android.app.Fragment {
                         item.setCreatername(obj.getString("creatername"));
                         item.setImagename(obj.getString("imagename"));
                         item.setUrl(obj.getString("imagename"));
+                        item.setCount(obj.getString("count"));
 
                         item2 = item;
 
@@ -159,7 +160,7 @@ public class TeamList extends android.app.Fragment {
         if (item2.getUsername() == null) {
             synchronized (this) {
                 try {
-                    wait(1000);
+                    wait(2500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

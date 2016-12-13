@@ -49,7 +49,11 @@ public class JoinedTeamListDetail extends Fragment {
         TextView privacy = (TextView) view.findViewById(R.id.privacy);
         TextView location = (TextView) view.findViewById(R.id.location);
         TextView date = (TextView) view.findViewById(R.id.date);
+        TextView start = (TextView) view.findViewById(R.id.starttext);
+        TextView end = (TextView) view.findViewById(R.id.endtext);
+        TextView join = (TextView) view.findViewById(R.id.join);
         Button startrun =(Button) view.findViewById(R.id.startrun);
+
         final ImageView img = (ImageView)view.findViewById(R.id.img);
 
         //Set data
@@ -58,6 +62,9 @@ public class JoinedTeamListDetail extends Fragment {
         content.setText(item.getContent());
         privacy.setText(item.getPrivacy());
         location.setText(item.getLocation());
+        start.setText(item.getStart());
+        end.setText(item.getEnd());
+        join.setText(item.getCount());
         date.setText(String.format("%s%s", item.getDate(), item.getTime()));
 
         startrun.setOnClickListener(new View.OnClickListener() {

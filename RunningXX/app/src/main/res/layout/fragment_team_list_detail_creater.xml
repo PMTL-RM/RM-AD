@@ -31,7 +31,7 @@
         android:id="@+id/scrollView"
         android:layout_marginTop="9dp"
         android:layout_below="@+id/viewImage"
-        android:layout_centerHorizontal="true"></ScrollView>
+        android:layout_centerHorizontal="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -118,15 +118,6 @@
             android:textSize="20dp"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="237.5dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:id="@+id/join"
-            android:textColor="@color/Black"
-            android:textSize="25dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="275dp" />
         <!--<ImageView-->
         <!--android:layout_width="25dp"-->
         <!--android:layout_height="25dp"-->
@@ -241,7 +232,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="參加者: "
+            android:text="參加人數: "
             android:id="@+id/textView5"
             android:textSize="25dp"
             android:textColor="@color/Black"
@@ -249,8 +240,19 @@
             android:layout_alignBottom="@+id/join"
             android:layout_alignParentStart="true" />
 
-    </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/join"
+            android:textColor="@color/Black"
+            android:textSize="25dp"
+            android:layout_marginTop="11dp"
+            android:layout_below="@+id/textView4"
+            android:layout_toEndOf="@+id/textView5" />
 
+    </RelativeLayout>
+    </ScrollView>
 
     <!--<Button-->
     <!--android:layout_width="380dp"-->
