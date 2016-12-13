@@ -107,48 +107,59 @@ public class JoinedTeamList extends android.app.Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                final String [] strArray;
                 final String aFinalString = response.body().string();
                 System.out.println(aFinalString);
                 final JoinedTeamListItem item = new JoinedTeamListItem();
                 if (response.isSuccessful()) try {
                     final JSONArray array = new JSONArray(aFinalString);
+                    strArray = new String[array.length()];
+                    System.out.println("strarray length     "+strArray.length);
 
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject obj = array.getJSONObject(i);
-
                         item.setGroupname(obj.getString("groupname"));
+                        strArray[i] = item.getGroupname();
+                        System.out.println("my friend name is "+strArray[i]);
 
-                        System.out.println(item.getGroupname());
+
 
                         OkHttpClient client2 = new OkHttpClient();
 
 
                         Request req1 = new Request.Builder()
-                                .url("http://ncnurunforall-yychiu.rhcloud.com/groups/joined/info/" + item.getGroupname())
+                                .url("http://ncnurunforall-yychiu.rhcloud.com/groups/joined/info/" + strArray[i])
                                 .build();
                         Call call2 = client2.newCall(req1);
 
+                        final int finalI = i;
                         call2.enqueue(new Callback() {
 
                             @Override
                             public void onResponse(Call call, Response response) throws IOException {
-                                final String aFinalString = response.body().string();
-                                System.out.println(aFinalString);
+                                final String aFinalString2 = response.body().string();
+                                final JoinedTeamListItem item3 = new JoinedTeamListItem();
+                                System.out.println(aFinalString2);
                                 if (response.isSuccessful()) try {
-                                    final JSONArray array = new JSONArray(aFinalString);
+                                    final JSONArray array = new JSONArray(aFinalString2);
 
-                                    for (int i = 0; i < array.length(); i++) {
-                                        JSONObject obj = array.getJSONObject(i);
-                                        item.setUsername(obj.getString("username"));
-                                        item.setContent(obj.getString("content"));
-                                        item.setDate(obj.getString("date"));
-                                        item.setTime(obj.getString("time"));
-                                        item.setLocation(obj.getString("location"));
-                                        item.setPrivacy(obj.getString("privacy"));
-                                        item.setCreatername(obj.getString("creatername"));
-                                        item.setImagename(obj.getString("imagename"));
-                                        item.setUrl(obj.getString("imagename"));
-                                    }
+                                    JSONObject obj = array.getJSONObject(0);
+                                    item3.setGroupname(strArray[finalI]);
+                                    item3.setUsername(obj.getString("username"));
+                                    item3.setContent(obj.getString("content"));
+                                    item3.setDate(obj.getString("date"));
+                                    item3.setTime(obj.getString("time"));
+                                    item3.setLocation(obj.getString("location"));
+                                    item3.setPrivacy(obj.getString("privacy"));
+                                    item3.setCreatername(obj.getString("creatername"));
+                                    item3.setImagename(obj.getString("imagename"));
+                                    item3.setUrl(obj.getString("imagename"));
+
+
+                                    item2 = item3;
+                                    Log.d("JSON:", item2.getUsername() + "/" + item2.getGroupname() + "/" + item2.getDate()+item2.getTime() + "/" + item2.getContent() + "/" + item2.getLocation()+ "/" + item2.getPrivacy());
+                                    sessionList.add(item2);
+
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -163,29 +174,6 @@ public class JoinedTeamList extends android.app.Fragment {
                                 //告知使用者連線失敗
                             }
                         });
-
-                        if (item.getCreatername() == null) {
-                            synchronized (this) {
-                                try {
-                                    wait(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            onStart();
-                        }
-
-
-
-
-
-
-
-
-                        item2 = item;
-
-                        sessionList.add(item2);
-                        Log.d("JSON:", item2.getUsername() + "/" + item2.getGroupname() + "/" + item2.getDate()+item2.getTime() + "/" + item2.getContent() + "/" + item2.getLocation()+ "/" + item2.getPrivacy());
                     }
 
                 } catch (JSONException e) {
@@ -205,7 +193,7 @@ public class JoinedTeamList extends android.app.Fragment {
         if (item2.getUsername() == null) {
             synchronized (this) {
                 try {
-                    wait(2000);
+                    wait(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

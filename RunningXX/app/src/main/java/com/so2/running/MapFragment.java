@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -51,7 +52,6 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import static android.content.Context.LOCATION_SERVICE;
-
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     GoogleMap mMap;
@@ -180,14 +180,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             SharedPreferences preferences = this.getActivity().getSharedPreferences("here", Context.MODE_PRIVATE);
             final String url = preferences.getString("url","error");
             Bitmap bmImg = Ion.with(getActivity()).load(url).asBitmap().get();
+            int oldwidth = bmImg.getWidth();
+            int oldheight = bmImg.getHeight();
+            Log.i("Alex","SettingManager====>bmp size is :"+oldwidth+","+oldheight);
+            float scaleWidth = 51 / (float)oldwidth;
+            float scaleHeight = 51 / (float)oldheight;
+            Log.i("Alex","SettingManager====> set scale value : "+scaleWidth + ":" + scaleHeight);
+            Matrix matrix = new Matrix();
+            matrix.postScale(scaleWidth, scaleHeight);
+            Bitmap resizedBitmap = Bitmap.createBitmap(bmImg, 0, 0, oldwidth,oldheight, matrix, true);
             MarkerOptions markerOpt = new MarkerOptions();
             markerOpt.position(new LatLng(lat, lng));
-            markerOpt.icon(BitmapDescriptorFactory.fromBitmap(bmImg));
+            markerOpt.icon(BitmapDescriptorFactory.fromBitmap(resizedBitmap));
             markerMe = mMap.addMarker(markerOpt);
             Toast.makeText(getActivity(), "lat:" + lat + ",lng:" + lng, Toast.LENGTH_SHORT).show();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
     }
@@ -264,13 +271,23 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                                     @Override
                                     public void run() {
                                         try {
+                                            Bitmap bmImg = Ion.with(getActivity()).load(obj.getString("url")).asBitmap().get();
+                                            int oldwidth = bmImg.getWidth();
+                                            int oldheight = bmImg.getHeight();
+                                            Log.i("Alex","SettingManager====>bmp size is :"+oldwidth+","+oldheight);
+                                            float scaleWidth = 51 / (float)oldwidth;
+                                            float scaleHeight = 51 / (float)oldheight;
+                                            Log.i("Alex","SettingManager====> set scale value : "+scaleWidth + ":" + scaleHeight);
+                                            Matrix matrix = new Matrix();
+                                            matrix.postScale(scaleWidth, scaleHeight);
+                                            Bitmap resizedBitmap = Bitmap.createBitmap(bmImg, 0, 0, oldwidth,oldheight, matrix, true);
                                             MarkerOptions markerOpt = new MarkerOptions();
                                             markerOpt.position(new LatLng(Double.parseDouble(obj.getString("lat")), Double.parseDouble(obj.getString("log"))));
-                                            markerOpt.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_arrow));
-                                            markerfriend = mMap.addMarker(markerOpt);
+                                            markerOpt.icon(BitmapDescriptorFactory.fromBitmap(resizedBitmap));
+                                            markerMe = mMap.addMarker(markerOpt);
                                             Toast.makeText(getActivity(), "lat:" + Double.parseDouble(obj.getString("lat")) + ",lng:" + Double.parseDouble(obj.getString("log")), Toast.LENGTH_SHORT).show();
 
-                                        } catch (JSONException e) {
+                                        } catch (JSONException | InterruptedException | ExecutionException e) {
                                             e.printStackTrace();
                                         }
                                     }
