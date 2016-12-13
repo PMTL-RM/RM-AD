@@ -22,7 +22,7 @@ public class FriendsListDetail extends Fragment{
     Button returnbutton ;
     TextView content ;
     String Username , Creatername , Groupname ;
-    ImageView imageView ;
+     ImageView imageView;
     public void setItem (FriendsListItem item)
     {
         this.item = item;
